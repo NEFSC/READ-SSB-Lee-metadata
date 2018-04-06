@@ -1,0 +1,88 @@
+---
+title: "Metadata"
+author: "Min-Yang Lee"
+output:
+  pdf_document:
+    includes:
+      in_header: preamble-latex.tex
+    keep_tex: yes
+    pandoc_args: --latex-engine=xelatex
+  html_document: null
+  word_document: null
+---
+<!--
+This is just the parent metadata document.  This shouldn't have much written in it. Think of it as a giant table of contents.
+This compiles to pdf well. I haven't tested word or html.
+
+-->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align='center')
+if(!require(ggplot2)) {  
+  install.packages("ggplot2")
+  require(ggplot2)}
+if(!require(tidyr)) {  
+  install.packages("tidyr")
+  require(tidyr)}
+if(!require(dplyr)) {  
+  install.packages("dplyr")
+  require(dplyr)}
+if(!require(broom)) {  
+  install.packages("broom")
+  require(broom)}
+if(!require(knitr)) {  
+  install.packages("knitr")
+  require(knitr)}
+if(!require(gridExtra)) {  
+  install.packages("gridExtra")
+  require(gridExtra)}
+if(!require(grid)) {  
+  install.packages("grid")
+  require(grid)}
+
+
+#to get table captions and numbering
+tn = local({
+  i = 0
+  function(x) {
+    i <<- i + 1
+    #paste('\n\n:Table ', i, ': ', x, sep = '')
+    paste('\n\n:', x, sep = '')
+    # The : before Table tells pandoc to wrap your caption in <caption></caption>
+  }
+})
+knit_hooks$set(tab.cap = function(before, options, envir) {
+  if(!before)
+    tn(options$tab.cap)
+})
+default_output_hook = knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  if (is.null(options$tab.cap) == F)  
+    x
+  else
+    default_output_hook(x,options)
+})
+
+
+```
+
+\tableofcontents
+
+\newpage
+This has a purpose and a target audience. I'm not quite sure what that is yet. One of the audiences is "future me."
+
+\newpage
+
+# Dealer Databases
+```{r child='dealer.Rmd'}
+```
+\newpage
+
+# VESLOG Databases
+This is very incomplete.
+
+```{r child='veslog.Rmd'}
+```
+
+

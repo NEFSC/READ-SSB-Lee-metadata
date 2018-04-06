@@ -1,0 +1,114 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+Tables: VESLOGyyyyT;  VESLOGyyyyG;  VESLOGyyyyS;  
+
+Location: Sole
+
+Schema: VTR
+
+## Overview
+The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fish dealers.
+
++ 1994 to present
+        
+        
+## Current Collection Methods
+These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished. 
+
+## Changes to Collections Methods
++ I dunno.  But the VTR form has changed slightly over time.
+
++ Electronic VTRs start in 2011.
+
+## Tips `n Tricks
++ A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
+
+## General Caveats
+* Electronic VTRs have very long serial numbers.  Some software doesn't like this (Excel, stata) -- you might want to do this:
+    - select to_char(g.serial_num) from veslog2014g g
+    
+* Some of the older numbers (from 1994-1995) are non-numeric. 
+    
+* All quanties are "Hail Weights," which are the operator's best estimate of catch.
+* SPPCODES will not match well to dealer's  NESPP4 codes. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
+
+* The following species are sketchy:
+
+    + Surfclam and Ocean Quahog dealer reports are contained in the SFCLAM schema (separate from CFDBS).  It is unclear whether reports of SC and OQ in CFDETS and CFDERS are duplicates or not, particularly for landings of Maine Mahogany Clam [Walden].
+
+    + Giant Bluefin Tuna dealer are supposed to be reported individually and should be in a different schema.  Giant Bluefin Tuna in CFDERS are either misreporting or duplication [George Silva, NMFS HMS].
+
+* The same permit number does not necessarily link to the same vessel through all years, as vessels may be upgraded or replaces. 
+* The same permit number does not necessarily link to the same owner over time, as vessels (with accompanying permits) can be sold.
+
+* PORTLND1 and PORTLND2 are inconsistently encoded over time. 
+    + The names corresponding to the port codes may or may not match to Census “units.”  The 2 digit state code does not correspond to FIPS codes.  
+
+* CAREA
+
+* 1994-1995 are kind of sketchy
+
+
+
+## Sample Projects
+
+## Update Frequency and Completeness
++ Nightly updates. Expect approximately 300 changes or additions to the current and previous year of data per day.
++ Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
++ This has consequences for reproducibility if you do not store a copy of the data.
+
+
+## Other Metadata sources
++ INPORT.  https://inport.nmfs.noaa.gov/inport/item/1423
++ NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
+
++ Preceded by: "none"
++ Succeeded by: n/a
+
+## Related Tables
++ CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. 
+
+## Support Tables
++ VLSPP decodes SPPCODES into names
++ SPECIES_ITIS_NE  decodes into names, links to the species_itis system
+
+
+```{r veslog unique , tab.cap="Unique  fields \\label{veslog_unique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Location_ Description
+|:------------	|:-----	|: -------------------------------------------------------
+This is | A|  placeholder
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+```{r veslog primary, tab.cap="Primary Source fields -  These fields are firsthand data. \\label{veslog_primary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Location_ Description
+|:------------	|:-----	|: -------------------------------------------------------
+This is | A|  placeholder
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+```{r veslog secondary, tab.cap="Secondary Source Fields. These fields might be more accurate somewhere else.  \\label{veslog_secondary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Location_ Description
+|:------------	|:-----	|: -------------------------------------------------------
+This is | A|  placeholder
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+```{r veslog QAQC, tab.cap="QAQC columns. Quality Control or Auditing fields.  \\label{veslog_QAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Location_ Description
+|:------------	|:-----	|: -------------------------------------------------------
+This is | A|  placeholder
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
