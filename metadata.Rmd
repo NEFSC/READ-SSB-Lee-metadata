@@ -7,12 +7,14 @@ output:
       in_header: preamble-latex.tex
     keep_tex: yes
     pandoc_args: --latex-engine=xelatex
-  html_document: null
   word_document: null
+  html_document: null
+date: '`r format(Sys.time(), "%B %d,  %Y")`'
 ---
 <!--
 This is just the parent metadata document.  This shouldn't have much written in it. Think of it as a giant table of contents.
-This compiles to pdf well. I haven't tested word or html.
+This compiles to pdf (needs XeLaTeX in TexLive or MikTex).   
+This compiles to html and docx.  docx is the ugliest.
 
 -->
 

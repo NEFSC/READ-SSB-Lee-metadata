@@ -1,0 +1,17 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.pdf
+*.Rproj
+*.xlsx
+*.html
+*.tex
+*.docx
+!metadata.pdf
+*.*~
