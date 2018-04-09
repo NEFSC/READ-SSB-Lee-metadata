@@ -12,9 +12,17 @@ output:
 date: '`r format(Sys.time(), "%B %d,  %Y")`'
 ---
 <!--
-This is just the parent metadata document.  This shouldn't have much written in it. Think of it as a giant table of contents.
+Read the rest of this comment before doing anything. 
+Make sure your system encoding is UTF-8.  In Rstudio -- File, Reopen with encoding.
+
+This is just the parent metadata document.  
+  This shouldn't have much written in it. Think of it as a giant table of contents.
+  The majority of things are in the "child" sub-documents.  
+  The Child references need to be unique.
+  
 This compiles to pdf (needs XeLaTeX in TexLive or MikTex).   
-This compiles to html and docx.  docx is the ugliest.
+This compiles to html and docx.  docx is the ugliest.  HTML is reasonable.
+
 
 -->
 

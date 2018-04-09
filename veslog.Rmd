@@ -23,10 +23,11 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
 + Electronic VTRs start in 2011.
 
-## Tips `n Tricks
+## Tips `n Tricks. very incomplete.
+
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 
-## General Caveats
+## General Caveats. very incomplete.
 * Electronic VTRs have very long serial numbers.  Some software doesn't like this (Excel, stata) -- you might want to do this:
     - select to_char(g.serial_num) from veslog2014g g
     
@@ -53,9 +54,9 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
 
 
-## Sample Projects
+## Sample Projects very incomplete.
 
-## Update Frequency and Completeness
+## Update Frequency and Completeness very incomplete.
 + Nightly updates. Expect approximately 300 changes or additions to the current and previous year of data per day.
 + Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
 + This has consequences for reproducibility if you do not store a copy of the data.
@@ -68,10 +69,10 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 + Preceded by: "none"
 + Succeeded by: n/a
 
-## Related Tables
+## Related Tables very incomplete.
 + CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. 
 
-## Support Tables
+## Support Tables very incomplete.
 + VLSPP decodes SPPCODES into names
 + SPECIES_ITIS_NE  decodes into names, links to the species_itis system
 
