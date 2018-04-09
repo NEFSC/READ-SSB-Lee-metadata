@@ -40,9 +40,15 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 
     + Herring stock assessments do not necessarily use Dealer data as the source for assessments [Jon Deroba, PDB].  This is because Maine DMR has collected herring data and comprises the population of catch. The dealer data does not match the ME DMR data for herring quantity landed.
 
-* There are a couple of species that have two NESPP3 codes. 
+* There are many species that have two NESPP3 codes (As of March,2018). 
     + Cod (080, 081) 
     + Monkfish (011, 012).  
+    + Winter flounder (119, 120)
+    + Yellowtail flounder (122, 123)
+    + Plaice (124, 125)
+    + Haddock (147, 148)
+    + White hake (153, 154).  155 is Red/White mixed
+    + Pollock (269, 270)
 
 * Some species were/are lumped together. 
     +  Tilefish, which starts as NK, but becomes Blueline and Golden. 
