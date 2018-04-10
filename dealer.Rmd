@@ -42,19 +42,21 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 
 * There are many species that have two NESPP3 codes (As of March,2018). 
     + Cod (080, 081) 
-    + Monkfish (011, 012).  
+    + Monkfish (011, 012)
     + Winter flounder (119, 120)
     + Yellowtail flounder (122, 123)
     + Plaice (124, 125)
     + Haddock (147, 148)
     + White hake (153, 154).  155 is Red/White mixed
     + Pollock (269, 270)
+    
 This bit of code may help:```select * from cfspp order by doc desc;```
 
 * Some species were/are grouped together, but subsequently split apart. 
 
     +  Tilefish, which starts as NK, but becomes Blueline and Golden. 
     +  Skates
+    
 This bit of code may help:```select * from cfspp order by doc desc;```
 
 * Data derived from “state” reporting may not include all fields that are populated by “federally reported” dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
