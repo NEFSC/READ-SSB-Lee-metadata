@@ -90,9 +90,16 @@ This has a purpose and a target audience. I'm not quite sure what that is yet. O
 \newpage
 
 # VESLOG Databases
-This is very incomplete.
+**This is very incomplete.**
 
 ```{r child='veslog.Rmd'}
 ```
 
+\newpage
+
+# PERMIT Databases
+**This is even more incomplete.**
+
+```{r child='permit.Rmd'}
+```
 

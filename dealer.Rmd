@@ -49,14 +49,15 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
     + Haddock (147, 148)
     + White hake (153, 154).  155 is Red/White mixed
     + Pollock (269, 270)
+This bit of code may help:```select * from cfspp order by doc desc;```
 
-* Some species were/are lumped together. 
+* Some species were/are grouped together, but subsequently split apart. 
+
     +  Tilefish, which starts as NK, but becomes Blueline and Golden. 
     +  Skates
-    
-* The same permit number does not necessarily link to the same vessel through all years, as vessels may be upgraded or replaces. 
+This bit of code may help:```select * from cfspp order by doc desc;```
 
-* The same permit number does not necessarily link to the same owner over time, as vessels (with accompanying permits) can be sold.
+
 
 * Data derived from “state” reporting may not include all fields that are populated by “federally reported” dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
 
@@ -66,6 +67,10 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
     + Some “port groups” were split into mutiple ports.  (Hampton, Seabrook, and Hampton/Seabrook, NH is a good example).
     + Many records are entered only at the “state” or “county” level.  This is particularly frequent for “older” records and non-federal reports that are received through SAFIS.
     + The names corresponding to the port codes may or may not match to Census “units.”  The 2 digit state code does not correspond to FIPS codes.  
+    + There is a table POPLACE_BASE that contains some Census Places. I'm not sure who made this, or if it's currently maintained.
+    
+
+    
 
 ## Sample Projects
 + Construct prices for fish [Lee, Demarest].

@@ -10,26 +10,41 @@ Location: Sole
 Schema: VTR
 
 ## Overview
-The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fish dealers.
+The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
 
 + 1994 to present
++ one table per year
         
         
 ## Current Collection Methods
-These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished. 
+These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished. 50CFR648.7(b)(1).
 
 ## Changes to Collections Methods
-+ I dunno.  But the VTR form has changed slightly over time.
++ The VTR form has changed slightly over time.  You can get the VTR form, with instructions at https://www.greateratlantic.fisheries.noaa.gov/aps/evtr/vtr_inst.pdf
 
 + Electronic VTRs start in 2011.
 
-## Tips `n Tricks. very incomplete.
++ Some fisheries allow for (or require) reporting through a different system.
 
+## Tips `n Tricks. very incomplete.
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
++ Vessels may declare out of fishing.  The NOT_FISHED column in VESLOG_T can be used to filter these out.   
++ The TRIPID is unique to a "fishing trip." 
+    * A TRIPID to should match to at least one GEARID.
+    * A TRIPID to should match to at least one CATCH_ID (if a vessel caught any fish)
+    * The NRPAGES and NSUBTRIP Columns will be something other than ```1``` if there are more than one GEARID corresponding to a particular TRIPID. 
++ The GEARID is unique to the "gear-mesh-area" fished. There should be a one-to-one correspondence between GEARID and SERIAL_NUM.  
+    * A GEARID to should match to exactly 1 TRIPID
+    * A GEARID to could match to 0 CATCH_ID if no fish was caught.
+    * A GEARID is far more likely to match to 1 or more CATCH_IDs though.
++ The CATCH_ID is unique to the "SPPCODE- DEALNUM-dealergear-mesh-area" fished.
+    * A CATCH_ID to should match to at exactly 1 GEARID. And therefore exactly 1 TRIPID).
++ DATESAIL, DATELND1, DATELND2 include clock time.  You can sometimes get negative trip durations due to reporting or data entry errors.
 
 ## General Caveats. very incomplete.
-* Electronic VTRs have very long serial numbers.  Some software doesn't like this (Excel, stata) -- you might want to do this:
-    - select to_char(g.serial_num) from veslog2014g g
+* 1994-1995 are kind of sketchy
+
+* Electronic VTRs have very long serial numbers.  Some software doesn't like this (Excel, stata) -- you might want to do this:```select to_char(g.serial_num) from veslog2014g g```
     
 * Some of the older numbers (from 1994-1995) are non-numeric. 
     
@@ -42,17 +57,31 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
     + Giant Bluefin Tuna dealer are supposed to be reported individually and should be in a different schema.  Giant Bluefin Tuna in CFDERS are either misreporting or duplication [George Silva, NMFS HMS].
 
-* The same permit number does not necessarily link to the same vessel through all years, as vessels may be upgraded or replaces. 
-* The same permit number does not necessarily link to the same owner over time, as vessels (with accompanying permits) can be sold.
-
 * PORTLND1 and PORTLND2 are inconsistently encoded over time. 
     + The names corresponding to the port codes may or may not match to Census “units.”  The 2 digit state code does not correspond to FIPS codes.  
+    + The PORTLND1 and PORTLND2 fields are data entered and error-corrected on the fly[Lee, Dentremont]  This means that data entry of ```NEW ROCHELL, NY``` is autocorrected to ```NEW ROCHELLE, NY``` and coded as ```PORT=350739```
+    + This might provide more insight:```select * from vtr.vlportsyn order by doc desc;```
+    
+* CAREA, CNEMAREA, CLATDEG, CLATMIN, CLATSEC, CLONDEG, CLONMIN, CLONSEC, CERRNO, AREA_IND, TENMSQ
+    + The "C" stands for calculated.  The calculation is pretty complicated. [Lee, H. McBride]
+    + The "AREA" refers to the Northeast region statistical areas.
+        + AREA in the 300s and 400s are in Canada
+        + AREAS under 200 are Inshore. They shouldn't show up, but occasionally do.
+    + "NEMAREA" includes "inshore areas"
+        + The latitude and longitude points reported on a VTR are first binned into a Ten Minute Square.
+        + These binned squares are then checked against a lookup table that converts Ten Minutes Squares into statistical areas [LOC2AREAS]. 
+        + If there is a match, then the reported latitude and longitude points are accepted.
+        + If there is no match and the reported lat-lon is in an AREA adjacent to the reported AREA, then the lat-lon points are accepted and the reported statistical area is replaced by the AREA corresponding to the lat-lon.
+        + If there is no match and the reported lat-lon is *not* in an AREA adjacent to the reported AREA, then the lat-lon points are rejected and converted to ```NULL``` values. The reported statistical area used as the CAREA.  
+    + Technically, only degrees and minutes are required to reported.
+    + Some vessels report LORAN readings. These are converted to lat-lon prior to that entire process.
+    + This QAQC step is performed differently in the GARFO CATCH, IMAGES, DOCUMENT data.
 
-* CAREA
-
-* 1994-1995 are kind of sketchy
-
-
+* Some dealer numbers (DNUM in VESLOG_S) indicate that catch was not sold to a federally permitted dealer (DNUM<=8 or DNUM=99998)
+* Recreational trips report numbers of fish, not pounds.
+* PORTLND1 and PORTLND2 are recorded. Sailing port is not recorded
+    + Use landing location from previous trip?
+    + Assume round trip to same port?
 
 ## Sample Projects very incomplete.
 
@@ -70,51 +99,114 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 + Succeeded by: n/a
 
 ## Related Tables very incomplete.
-+ CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. 
++ CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. C,I,D are a single table, not one per year.  I can't even.
 
 ## Support Tables very incomplete.
-+ VLSPP decodes SPPCODES into names
-+ SPECIES_ITIS_NE  decodes into names, links to the species_itis system
++ VLSPP,SPECIES_ITIS_NE decodes SPPCODES into names
++ TENMINSQ, LOC,LOC2AREAS
++ PORTSYN, VLPORTSYN
++ VLGEAR - decodes gear codes into english
 
-
-```{r veslog unique , tab.cap="Unique  fields \\label{veslog_unique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+```{r veslog unique , tab.cap="Fields in VESLOG  \\label{veslog_unique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 tabl <- "
 |	Column	|Location | 	Description
 |:---------------		|:---------- |:----------------------------------
-|	QTYKEPT	|	A   | Placeholder
-|	QTYLAND	|	A   | Placeholder
-
+CAREA	|		G		|
+CATCH_ID	|			S	|
+CLATDEG	|		G		|
+CLATMIN	|		G		|
+CLATSEC	|		G		|
+CLONDEG	|		G		|
+CLONMIN	|		G		|
+CLONSEC	|		G		|
+CNEMAREA	|		G		|
+CREW	|	T			|
+DATE_SIGNED	|	T			|
+DATELND1	|	T			| This includes  time
+DATELND2	|	T			| This includes  time
+DATESAIL	|	T			| This includes  time
+DATESOLD	|			S	| 
+DEALNAME	|			S	|
+DEALNUM	|			S	|
+DEPTH	|		G		|
+FZONE	|		G		|
+GEARCODE	|		G		|
+GEARID	|		G	S	|
+GEARQTY	|		G		|
+GEARSIZE	|		G		|
+HULLNUM	|	T			|
+MESH	|		G		|
+NANGLERS	|	T			|
+NHAUL	|		G		|
+NOT_FISHED	|	T			|
+NRPAGES	|	T			|
+NSUBTRIP	|	T			|
+OPERATOR	|	T			|
+OPERNUM	|	T			|
+PAGENO	|		G		|
+PERMIT	|	T			|
+PORT	|	T			|
+PORTLND1	|	T			|
+PORTLND2	|	T			|
+QDSQ	|		G		|
+QTYDISC	|			S	|
+QTYKEPT	|			S	|
+SERIAL_NUM	|		G		|
+SOAKHRS	|		G		|
+SOAKMIN	|		G		|
+SPPCODE	|			S	|
+STATE1	|	T			|
+STATE2	|	T			|
+SUBTRIP	|		G		|
+TENMSQ	|		G		|
+TIMELND1	|	T			|
+TIMELND2	|	T			|
+TIMESAIL	|	T			|
+TRIP_ACTIVITY_TYPE	|	T			|
+TRIPCATG	|	T			|
+TRIPID	|	T	G	S	|
 "
 cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
 
-```{r veslog primary, tab.cap="Primary Source fields -  These fields are firsthand data. \\label{veslog_primary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+```{r veslog primary, tab.cap="Primary Source fields -  These fields might be useful for linking, either exactly or fuzzy. \\label{veslog_primary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 tabl <- "
 |	Column	|Location | 	Description
 |:---------------		|:---------- |:----------------------------------
-|	TRIPID	|	A   | Placeholder
-|	GEARID	|	A   | Placeholder
-
+DATELND1	|	T			|
+DATELND2	|	T			|
+DATESAIL	|	T			|
+DATESOLD	|			S	|
+DEALNAME	|			S	|
+DEALNUM	|			S	|
+HULLNUM	|	T			|
+TIMELND1	|	T			|
+TIMELND2	|	T			|
+TIMESAIL	|	T			|
+PERMIT	|	T			|
+PORT	|	T			|
+PORTLND1	|	T			|
+PORTLND2	|	T			|
+SERIAL_NUM	|		G		|
 "
 cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
 
-```{r veslog secondary, tab.cap="Secondary Source Fields. These fields might be more accurate somewhere else.  \\label{veslog_secondary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+```{r veslog QAQC, tab.cap="QA/QC columns. Quality Control or Auditing fields.  \\label{veslog_QAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 tabl <- "
 |	Column	|Location | 	Description
 |:---------------		|:---------- |:----------------------------------
-|	IDK	|	A   | Placeholder
-|	IDK	|	A   | Placeholder
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r veslog QAQC, tab.cap="QAQC columns. Quality Control or Auditing fields.  \\label{veslog_QAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|Location | 	Description
-|:---------------		|:---------- |:----------------------------------
-|	IDK	|	A   | Placeholder
-|	IDK	|	A   | Placeholder
+AREA_IND	|		G		|
+BATCHID	|	T		S	|
+DATE_RECV	|		G		|
+DC	|	T	G	S	|
+DE	|	T	G	S	|
+FILENAME	|		G		|
+IMG_DATE	|		G		|
+IMGTYPE	|		G		|
+UC	|	T	G	S	|
+UE	|	T	G	S	|
+SIDEID	|		G		|
 "
 cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
 ```
