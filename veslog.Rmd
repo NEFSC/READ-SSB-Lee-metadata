@@ -26,7 +26,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
 + Some fisheries allow for (or require) reporting through a different system.
 
-## Tips `n Tricks. very incomplete.
+## Tips `n Tricks.
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 + Vessels may declare out of fishing.  The NOT_FISHED column in VESLOG_T can be used to filter these out.   
 + The TRIPID is unique to a "fishing trip." 
@@ -41,7 +41,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
     * A CATCH_ID to should match to at exactly 1 GEARID. And therefore exactly 1 TRIPID).
 + DATESAIL, DATELND1, DATELND2 include clock time.  You can sometimes get negative trip durations due to reporting or data entry errors.
 
-## General Caveats. very incomplete.
+## General Caveats.
 * 1994-1995 are kind of sketchy
 
 * Electronic VTRs have very long serial numbers.  Some software doesn't like this (Excel, stata) -- you might want to do this:```select to_char(g.serial_num) from veslog2014g g```
@@ -68,8 +68,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
         + AREA in the 300s and 400s are in Canada
         + AREAS under 200 are Inshore. They shouldn't show up, but occasionally do.
     + "NEMAREA" includes "inshore areas"
-        + The latitude and longitude points reported on a VTR are first binned into a Ten Minute Square.
-        + These binned squares are then checked against a lookup table that converts Ten Minutes Squares into statistical areas [LOC2AREAS]. 
+        + The latitude and longitude points reported on a VTR are first binned into a Ten Minute Square, then checked against a lookup table that converts Ten Minutes Squares into statistical areas [LOC2AREAS]. 
         + If there is a match, then the reported latitude and longitude points are accepted.
         + If there is no match and the reported lat-lon is in an AREA adjacent to the reported AREA, then the lat-lon points are accepted and the reported statistical area is replaced by the AREA corresponding to the lat-lon.
         + If there is no match and the reported lat-lon is *not* in an AREA adjacent to the reported AREA, then the lat-lon points are rejected and converted to ```NULL``` values. The reported statistical area used as the CAREA.  
@@ -82,14 +81,16 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 * PORTLND1 and PORTLND2 are recorded. Sailing port is not recorded
     + Use landing location from previous trip?
     + Assume round trip to same port?
+* The code for WOLFFISH is CAT.  The code for BLUE CATFISH and NS Catfish are CATB and CATNS respectively. This is hilarious.  If you need to pick WOLF apart from CATFISH, wolffish is not caught inshore.
+* The  code for WHITE HAKE is WHAK. White HAKE is not Whiting. Sometimes operators write "WHAK" for "WHITING - HAKE."  They should be writing SHAK, HAKOS, or WHB.   You can separate based on mesh size if necessary. [Thunberg]
 
-## Sample Projects very incomplete.
 
-## Update Frequency and Completeness very incomplete.
+
+## Sample Projects 
+
+## Update Frequency and Completeness 
 + Nightly updates. Expect approximately 300 changes or additions to the current and previous year of data per day.
 + Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
-+ This has consequences for reproducibility if you do not store a copy of the data.
-
 
 ## Other Metadata sources
 + INPORT.  https://inport.nmfs.noaa.gov/inport/item/1423
@@ -102,7 +103,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 + CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. C,I,D are a single table, not one per year.  I can't even.
 
 ## Support Tables very incomplete.
-+ VLSPP,SPECIES_ITIS_NE decodes SPPCODES into names
++ VLSPPTBL decodes SPPCODES into names and NESPP4 codes. So does VLSPPSYN_94_95, which looks deprecated.    
 + TENMINSQ, LOC,LOC2AREAS
 + PORTSYN, VLPORTSYN
 + VLGEAR - decodes gear codes into english

@@ -1,0 +1,71 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+Tables: AMS, DAS, DAS2 
+
+Location: Sole
+
+Schema: AMS, DAS, DAS2
+
+## Overview
+These are the three schema that track Allocations.  DAS was the initial schema. Then came DAS2. DAS2 begat AMS.
+
+## Changes to Collections Methods
+
+## Tips `n Tricks
+
+## General Caveats
+
+
+## Sample Projects
+
+## Update Frequency and Completeness
+
+
+## Other Metadata sources
++ INPORT.  https://inport.nmfs.noaa.gov/inport/item/11773
++ NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
+
+
+## Related Tables
+
+## Support Tables
+
+```{r amsunique , tab.cap="Unique  fields \\label{amsunique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Description
+|:---------------	|:--------------------------------------------------------
+|	Placeholders	|	
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+```{r amsprimary, tab.cap="Primary Source fields -  These fields are firsthand data. \\label{amsprimary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Description
+|:---------------	|:--------------------------------------------------------
+|	Placeholders	|	
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+```{r amssecondary, tab.cap="Secondary Source Fields. These fields might be more accurate somewhere else.  \\label{amssecondary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Description
+|:---------------	|:--------------------------------------------------------
+|	Placeholders	|	
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+```{r amsQAQC, tab.cap="QAQC columns. Quality Control or Auditing fields.  \\label{amsQAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+|	Column	|	Description
+|:---------------	|:--------------------------------------------------------
+|	Placeholders	|	
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+

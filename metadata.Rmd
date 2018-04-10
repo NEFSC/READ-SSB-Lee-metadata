@@ -79,9 +79,16 @@ knit_hooks$set(output = function(x, options) {
 
 \tableofcontents
 
+\onehalfspacing
+
 \newpage
 This has a purpose and a target audience. I'm not quite sure what that is yet. One of the audiences is "future me."
 
+# General things
+
+Many data tables are live, with nightly or continuous updates. For example, when working with the  dealer data, expect approximately 300 changes or additions to the current and previous year of data per day. Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
+
+This has consequences for reproducibility if you do not store a copy of the data.
 \newpage
 
 # Dealer Databases
@@ -90,7 +97,7 @@ This has a purpose and a target audience. I'm not quite sure what that is yet. O
 \newpage
 
 # VESLOG Databases
-**This is very incomplete.**
+**This is partially complete. Let's call it 8 out of 10. **
 
 ```{r child='veslog.Rmd'}
 ```
@@ -98,8 +105,41 @@ This has a purpose and a target audience. I'm not quite sure what that is yet. O
 \newpage
 
 # PERMIT Databases
-**This is even more incomplete.**
+**This is very incomplete. Let's call it 6 out of 10. **
 
 ```{r child='permit.Rmd'}
 ```
+
+\newpage
+
+# DMIS Databases  
+**This is complete. 10 out of 10. **
+The Data Matching and Imputation System is maintained by GARFO. Just email Michael Lanning at GARFO, he's very helpful. j.michael.lanning@noaa.gov 
+
+\newpage
+
+# MQRS Databases
+**This is a placeholder. Let's call it 0 out of 10. **
+
+```{r child='MQRS.Rmd'}
+```
+
+\newpage
+
+```{r child='sector.Rmd'}
+```
+\newpage
+# AMS, DAS, DAS2 Databases
+**This is a placeholder. Let's call it 0 out of 10. **
+
+```{r child='AMS_DAS.Rmd'}
+```
+
+# SFCLAM Databases
+**This is a placeholder. Let's call it -1 out of 10. **
+
+# OBDBS Databases
+**This is a placeholder. Let's call it -3 out of 10. **
+
+\newpage
 

@@ -57,8 +57,6 @@ This bit of code may help:```select * from cfspp order by doc desc;```
     +  Skates
 This bit of code may help:```select * from cfspp order by doc desc;```
 
-
-
 * Data derived from “state” reporting may not include all fields that are populated by “federally reported” dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
 
 *  Many NESPP4 codes will not match well to VTR’s SPPCODE. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
@@ -73,9 +71,10 @@ This bit of code may help:```select * from cfspp order by doc desc;```
     
 
 ## Sample Projects
-+ Construct prices for fish [Lee, Demarest].
++ Construct prices for fish [Lee, Demarest, Ardini].
++ Construct trip revenues, post 2005 [Demarest]
 + Commercial Landings and Revenues for the “Community Profiles.” [Olson, Colburn]
-+ “The record” of commercial landings for use in stock assessment. [PopDy]
++ “The record” of commercial landings for use in stock assessment.  Sort of. An "Area Allocation" usually need to be performed, because some species have multiple, spatially distinct stocks.[PopDy]
 + Construct entity-level gross revenues from commercial fishing for Regulatory Flexibility Act Analyses [Lee].  
 
 ## Update Frequency and Completeness
@@ -100,12 +99,10 @@ This bit of code may help:```select * from cfspp order by doc desc;```
 + CFAGEyyyy - fish-level port sampling data.
 
 ## Support Tables
-+ PORT
-+ VALID_PORTS
++ PORT, VALID_PORTS
 + GEAR
 + SPECIES_ITIS_NE  decodes into names, links to the species_itis system
 + CFSPP - decodes NESPP3 and NESPP4 into names
-
 
 ```{r dealer unique , tab.cap="Unique  fields \\label{dealer_unique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 tabl <- "
