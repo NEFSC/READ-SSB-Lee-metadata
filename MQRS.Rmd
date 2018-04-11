@@ -26,6 +26,8 @@ The SECTOR tables are in the MQRS schema, but they are special enough to warrant
 
 * There are business names. They do not necessarily match the business names from the permit system. 
 
+* History Retention and CPH are synonyms. 
+
 ## Sample Projects
 
 ## Update Frequency and Completeness
