@@ -92,6 +92,15 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 Make sure the table that you're using is not "stale."  Alot of the data is copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
 
+There are table and there are view.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
+
+\begin{figure}[htbp]
+\begin{centering}
+\includegraphics[width=.8\textwidth]{sql.png}
+\caption{An illustration of looking at the underying SQL code that generates a view.\label{sql_picture}}
+\end{centering}
+\end{figure}
+
 \newpage
 
 # Dealer Databases
@@ -121,6 +130,17 @@ The Data Matching and Imputation System is maintained by GARFO. Just email Micha
 
 \newpage
 
+# AMS, DAS, DAS2 Databases
+**This is a placeholder. Let's call it 6 out of 10. **
+
+```{r child='AMS_DAS.Rmd'}
+```
+
+
+\newpage
+
+
+
 # MQRS Databases
 **This is a placeholder. Let's call it 0 out of 10. **
 
@@ -128,15 +148,12 @@ The Data Matching and Imputation System is maintained by GARFO. Just email Micha
 ```
 
 \newpage
+# Sector Databases
+**This is a placeholder. Let's call it 0 out of 10. **
 
 ```{r child='sector.Rmd'}
 ```
 \newpage
-# AMS, DAS, DAS2 Databases
-**This is a placeholder. Let's call it 6 out of 10. **
-
-```{r child='AMS_DAS.Rmd'}
-```
 
 # SFCLAM Databases
 **This is a placeholder. Let's call it -1 out of 10. **
