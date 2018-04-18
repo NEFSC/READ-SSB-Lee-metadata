@@ -37,14 +37,14 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
     * A GEARID to should match to exactly 1 TRIPID
     * A GEARID to could match to 0 CATCH_ID if no fish was caught.
     * A GEARID is far more likely to match to 1 or more CATCH_IDs though.
-+ The CATCH_ID is unique to the "SPPCODE- DEALNUM-dealergear-mesh-area" fished.
++ The CATCH_ID is unique to the "SPPCODE- DEALNUM-dealer-gearcode-mesh-area" fished.
     * A CATCH_ID to should match to at exactly 1 GEARID. And therefore exactly 1 TRIPID).
 + DATESAIL, DATELND1, DATELND2 include clock time.  You can sometimes get negative trip durations due to reporting or data entry errors.
 
 ## General Caveats.
 * 1994-1995 are kind of sketchy
 
-* Electronic VTRs have very long serial numbers.  Some software doesn't like this (Excel, stata) -- you might want to do this:```select to_char(g.serial_num) from veslog2014g g```
+* Electronic VTRs have very long SERIAL_NUM, TRIPID, GEARID, and CATCH_ID.  Some software doesn't like this (Excel, stata) -- you might want to do this:```select to_char(g.serial_num) from veslog2014g g```
     
 * Some of the older numbers (from 1994-1995) are non-numeric. 
     
