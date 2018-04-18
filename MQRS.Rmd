@@ -49,6 +49,20 @@ This is happening in part because the underlying code forgot to screen for valid
   * There are business names. They do not necessarily match the business names from the permit system. 
 
   * History Retention and CPH are synonyms. 
+  
+  * When an owner puts a right into CPH, the last known PER_NUM associated with that RIGHT_ID is stored.  
+
+> we don't change the relationship between the CPH and the permit if a new owner or the same owner places a new set of permits on the vessel.  The CPH records remain as is until they are moved to another vessel.  We place the permits in CPH based on the last known or permitted vessel. [Ted Hawes @ GARFO, April 18, 2018]  
+
+This can create PER_NUMs with more than 1 RIGHT_ID. Ted Hawes suggests adding
+```
+auth_type not in ('CPH','HISTORY RETENTION')
+```
+and then 
+```
+auth_type  in ('CPH','HISTORY RETENTION')
+```
+And stitching results together.
 
 ## Sample Projects
 
