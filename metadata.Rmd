@@ -7,8 +7,8 @@ output:
       in_header: preamble-latex.tex
     keep_tex: yes
     pandoc_args: --latex-engine=xelatex
-  word_document: null
   html_document: null
+  word_document: null
 date: '`r format(Sys.time(), "%B %d,  %Y")`'
 ---
 <!--
@@ -131,7 +131,7 @@ The Data Matching and Imputation System is maintained by GARFO. Just email Micha
 \newpage
 
 # AMS, DAS, DAS2 Databases
-**This is a placeholder. Let's call it 6 out of 10. **
+**This is a partially complete. Let's call it 6 out of 10. **
 
 ```{r child='AMS_DAS.Rmd'}
 ```
@@ -142,17 +142,11 @@ The Data Matching and Imputation System is maintained by GARFO. Just email Micha
 
 
 # MQRS Databases
-**This is a placeholder. Let's call it 0 out of 10. **
+**This is mostly a placeholder. Let's call it 2 out of 10. **
 
 ```{r child='MQRS.Rmd'}
 ```
 
-\newpage
-# Sector Databases
-**This is a placeholder. Let's call it 0 out of 10. **
-
-```{r child='sector.Rmd'}
-```
 \newpage
 
 # SFCLAM Databases
