@@ -3,30 +3,52 @@ output:
   pdf_document: default
   html_document: default
 ---
-Tables: MORT_ELIG_CRITERIA
+Tables: MORT_ELIG_CRITERIA, SECTOR_YEAR_ROSTER
+
 
 Location: Sole
 
 Schema: MQRS
 
 ## Overview
-The MQRS system is fun.
-
-The SECTOR tables are in the MQRS schema, but they are special enough to warrant their own entry.
-       
+The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.
         
 ## Current Collection Methods
+Someone at GARFO puts data into the MQRS databases.
 
 ## Changes to Collections Methods
 
 ## Tips `n Tricks
 
 ## General Caveats
-* There is an APP_NUM. This is different from the AP_NUM in the PERMIT system.
 
-* There are business names. They do not necessarily match the business names from the permit system. 
+  *  The sector rosters are stored in "SECTOR_YEAR_ROSTERS."  These contain a sector_id, year, and MRI (among other things.)  There are also "views" (SECTOR_PARTICIPANTS_CPHYYYY and SECTOR_PARTICIPANTS_NO_CPHYYYY).  These link the MRI to the PERMIT. Unfortunately, they are all broken as of April 18, 2018. They are broken because the underyling code does not properly check dates when it links the MRI to a permit.  Here is code that will illustrate:
+    
+  1. MRI 1755 should link to permit 100598 any time between april 26, 1994 and june 17, 2015
+  
+```
+select per_num, vessel, owner, date_eligible, date_cancelled, right_id, auth_id
+from mqrs.mort_elig_criteria where right_id=1755 order by  date_eligible;
+```
 
-* History Retention and CPH are synonyms. 
+ 2.  None of these do that properly:
+ 
+```
+select * from mqrs.sector_participants_CPH where mri=1755;
+select * from mqrs.sector_participants_CPH2011 where mri=1755;
+select * from mqrs.sector_participants_CPH2011 where mri=1755;
+```
+
+
+This is happening in part because the underlying code forgot to screen for valid dates.
+
+  * There have been "clean ups" -- sometimes an entry gets put into the MQRS database where the DATE_ELIGIBLE is equal to the DATE_CANCELLED. This may cause mis-merges.  You also may want to exclude these completely from your query.
+    
+  * There is an APP_NUM. This is different from the AP_NUM in the PERMIT system.
+
+  * There are business names. They do not necessarily match the business names from the permit system. 
+
+  * History Retention and CPH are synonyms. 
 
 ## Sample Projects
 
@@ -42,6 +64,7 @@ The SECTOR tables are in the MQRS schema, but they are special enough to warrant
 + BUS_OWN contains ownership data that is often linked to these PERMIT data. We'll put them in a separate section.
 + CPH
 + OPERATORS (captains) are permitted independently 
+
 ## Support Tables
   + VALID_FISHERY translates the PLAN and CAT into words.
 
