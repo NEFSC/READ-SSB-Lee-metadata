@@ -29,6 +29,15 @@ The permit data contain information about fishing vessels, the fisheries they ca
 
 * The same permit number does not necessarily link to the same owner over time, as vessels (with accompanying permits) can be sold.
 
+* The are 5 date fields in VPS_FISHERY_NER  
+
+* There have been "clean ups" -- sometimes an entry gets put into VPS_VESSEL where the DATE_ISSUED is equal to the DATE_CANCELED. This may cause mis-merges.  You also may want to exclude these completely from your query.
+```
+select * from vps_vessel where (date_issued<>date_canceled or date_canceled is null);
+```
+
+* Similarly, you may  want to exclude rows where start_date >=end_date or start_date>=date_expired 
+ 
 
 ## Sample Projects
 
@@ -45,6 +54,10 @@ The permit data contain information about fishing vessels, the fisheries they ca
 + MQRS tracks the ability of a *thing* to participate in a moratorium fishery. We'll put them in a separate section.  Allocations are tracked in other places (DAS, DAS2, and AMS).
 + CPH
 + OPERATORS (captains) are permitted independently 
+
+
+
+
 ## Support Tables
   + VALID_FISHERY translates the PLAN and CAT into words.
 

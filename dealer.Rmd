@@ -60,6 +60,7 @@ This bit of code may help:```select * from cfspp order by doc desc;```
 This bit of code may help:```select * from cfspp order by doc desc;```
 
 * Data derived from “state” reporting may not include all fields that are populated by “federally reported” dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
+    +  Permit numbers may be encoded as  000000, 190998,390998 depending on vessel size.
 
 *  Many NESPP4 codes will not match well to VTR’s SPPCODE. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
 

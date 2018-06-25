@@ -43,7 +43,11 @@ select * from mqrs.sector_participants_CPH2011 where mri=1755;
 This is happening in part because the underlying code forgot to screen for valid dates.
 
   * There have been "clean ups" -- sometimes an entry gets put into the MQRS database where the DATE_ELIGIBLE is equal to the DATE_CANCELLED. This may cause mis-merges.  You also may want to exclude these completely from your query.
-    
+    ```
+select * from mqrs.mort_elig_criteria
+  where date_eligible<>date_cancelled or date_cancelled is null;
+```
+
   * There is an APP_NUM. This is different from the AP_NUM in the PERMIT system.
 
   * There are business names. They do not necessarily match the business names from the permit system. 
