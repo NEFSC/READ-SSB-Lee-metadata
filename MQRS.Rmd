@@ -11,7 +11,7 @@ Location: Sole
 Schema: MQRS
 
 ## Overview
-The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.
+The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.  It is used in conjunction with other tables, but not cross-referenced against them for logical consistency.
         
 ## Current Collection Methods
 Someone at GARFO puts data into the MQRS databases.
@@ -42,17 +42,12 @@ select * from mqrs.sector_participants_CPH2011 where mri=1755;
 
 This is happening in part because the underlying code forgot to screen for valid dates.
 
-  * There have been "clean ups" -- sometimes an entry gets put into the MQRS database where the DATE_ELIGIBLE is equal to the DATE_CANCELLED. This may cause mis-merges.  You also may want to exclude these completely from your query.
-    ```
-select * from mqrs.mort_elig_criteria
-  where date_eligible<>date_cancelled or date_cancelled is null;
-```
 
   * There is an APP_NUM. This is different from the AP_NUM in the PERMIT system.
 
   * There are business names. They do not necessarily match the business names from the permit system. 
 
-  * History Retention and CPH are synonyms. 
+  * History Retention and CPH are essentially synonyms. 
   
   * When an owner puts a right into CPH, the last known PER_NUM associated with that RIGHT_ID is stored.  
 
@@ -66,7 +61,33 @@ and then
 ```
 auth_type  in ('CPH','HISTORY RETENTION')
 ```
-And stitching results together.
+And stitching results together with a union.
+
+
+  * Sometimes an entry gets put into the MQRS database where the DATE_ELIGIBLE is equal to the DATE_CANCELLED. This may cause mis-merges.  You also may want to exclude these completely from your query.
+  
+  ```
+select * from mqrs.mort_elig_criteria
+  where date_eligible<>date_cancelled or date_cancelled is null;
+```
+  * There was a "cleanup" in 2009.  [Ted Hawes]
+
+  * Auth_id is really only used internally.  auth_id is a unique field for each transaction, and from the original creators of this system back in the early 1990s, the auth_id authorizes the issuance of a permit to the vessel or it authorizes allocation to be issued to the vessel.  The idea was that the auth_id would be used to connect the permit system with mort_elig_critieria when the permit staff processes an application for a limited access permit.  MQRS will authorize the issuance of a limited access using the auth_id. [Ted Hawes]
+  
+  * The auth_id and right_id can be the same when a new limited access permit is created. Alternatively, when auth_id=right_id, the right has never been transferred.[Ted Hawes]
+  
+  
+  * There are at least a handful of cases in which a different system (DAS, DAS2 mostly) links to an incorrect right id. For example: 
+  ```
+select * from DAS.DAS_ALLOCATION where right_to_days_id not in (select distinct right_id from MQRS.mort_elig_criteria where fishery='MULTISPECIES') and das_category='A';  
+```
+will extract all the entries in the DAS.DAS_ALLOCATION table that have an MRI that is not in the MQRS.mort_elig_criteria.  This shouldn't be possible, because an entity needs an MRI 
+
+similarly:
+```
+select distinct right_id  from das2.allocation where plan='MUL' and 
+right_id not in (select distinct right_id from mort_elig_criteria where fishery='MULTISPECIES')
+```
 
 ## Sample Projects
 
