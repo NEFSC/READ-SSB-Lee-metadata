@@ -257,6 +257,8 @@ compress;
 ```
 Charge is denominated in days. There was one entry in AMS that was negative. I don't think it's a data error. 
 
+This is not quite working properly - there seem to be some entries in AMS.TRIP_AND_CHARGE  that indicate that multispecies A-days are charged to vessels that don't have any A-DAYS, a right_id for Multispecies, or even a Limited Access multispecies permit. It seems like this is from MNK.
+
 You should be able to stack the results of all of these to form a giant table of DAS usage from 2004-present.  Permit, charge, fishing_year, date_sail, date_land, fishing_year and activity_code are in all. Sailing port, state, landings port state, gillnet, and observer were only databased in AMS.  DAS2 contains right_ids, but DAS and AMS do not. 
 
 ## Sample Projects
