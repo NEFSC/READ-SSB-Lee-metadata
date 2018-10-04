@@ -89,6 +89,22 @@ select distinct right_id  from das2.allocation where plan='MUL' and
 right_id not in (select distinct right_id from mort_elig_criteria where fishery='MULTISPECIES')
 ```
 
+Here's some code to link right_ids to permits for just the multispecies fishery, courtesy of Dan C.:
+```
+SELECT PER_NUM AS PERMIT,
+		RIGHT_ID AS MRI,
+		FISHERY,
+		DATE_ELIGIBLE,
+		DATE_CANCELLED,
+		AUTH_TYPE,
+		ELIG_STATUS
+	  FROM MQRS.MORT_ELIG_CRITERIA 
+	  WHERE FISHERY = 'MULTISPECIES'
+		AND not ((TRUNC(DATE_ELIGIBLE) =  TRUNC(NVL(DATE_CANCELLED,SYSDATE+20000))) AND (CANCEL_REASON_CODE = 7 AND AUTH_TYPE = 'BASELINE'))
+		AND DATE_ELIGIBLE IS NOT NULL
+		AND (TRUNC(DATE_CANCELLED) >= '01-MAY-07' or DATE_CANCELLED IS NULL):
+```
+
 ## Sample Projects
 
 ## Update Frequency and Completeness
