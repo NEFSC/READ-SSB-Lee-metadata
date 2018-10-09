@@ -70,7 +70,8 @@ And stitching results together with a union.
 select * from mqrs.mort_elig_criteria
   where date_eligible<>date_cancelled or date_cancelled is null;
 ```
-  * There was a "cleanup" in 2009.  [Ted Hawes]
+
+  * There was a "cleanup" in 2009.  Perhaps in March?  [Ted Hawes]
 
   * Auth_id is really only used internally.  auth_id is a unique field for each transaction, and from the original creators of this system back in the early 1990s, the auth_id authorizes the issuance of a permit to the vessel or it authorizes allocation to be issued to the vessel.  The idea was that the auth_id would be used to connect the permit system with mort_elig_critieria when the permit staff processes an application for a limited access permit.  MQRS will authorize the issuance of a limited access using the auth_id. [Ted Hawes]
   
@@ -89,7 +90,19 @@ select distinct right_id  from das2.allocation where plan='MUL' and
 right_id not in (select distinct right_id from mort_elig_criteria where fishery='MULTISPECIES')
 ```
 
-Here's some code to link right_ids to permits for just the multispecies fishery, courtesy of Dan C.:
+Here is a partial list of the MRI's affected by the cleanup. This came from Ted Hawes. But you could look at the "remark" field and see if there is a reference to a cleanup.   
+
+```
+select PER_NUM AS PERMIT,
+		AUTH_ID AS MRI,
+		FISHERY,
+		DATE_ELIGIBLE,
+		DATE_CANCELLED
+		from mort_elig_criteria where auth_id in(1179,1183,1187,1196,1219,1255,1261,1293,1296,1362,1374,2423,1174, 1184, 1176, 1209,1219,1298,1358,1372,2423);  
+```
+The date_eligible and date_cancelled fields were broken during the cleanup. I'm not sure the best way to deal with it.
+
+Here's some code to link right_ids to permits for just the multispecies fishery, courtesy of Dan Caless.:
 ```
 SELECT PER_NUM AS PERMIT,
 		RIGHT_ID AS MRI,
@@ -102,9 +115,10 @@ SELECT PER_NUM AS PERMIT,
 	  WHERE FISHERY = 'MULTISPECIES'
 		AND not ((TRUNC(DATE_ELIGIBLE) =  TRUNC(NVL(DATE_CANCELLED,SYSDATE+20000))) AND (CANCEL_REASON_CODE = 7 AND AUTH_TYPE = 'BASELINE'))
 		AND DATE_ELIGIBLE IS NOT NULL
-		AND (TRUNC(DATE_CANCELLED) >= '01-MAY-07' or DATE_CANCELLED IS NULL):
+		AND (TRUNC(DATE_CANCELLED) >= '01-MAY-03' or DATE_CANCELLED IS NULL):
 ```
 
+  
 ## Sample Projects
 
 ## Update Frequency and Completeness
