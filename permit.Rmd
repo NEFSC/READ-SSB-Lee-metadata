@@ -14,7 +14,8 @@ The permit data contain information about fishing vessels, the fisheries they ca
 
 + VPS_VESSEL
 + VPS_FISHERY_NER
-        
++ BUS_OWN
++ VPS_OWNER
         
 ## Current Collection Methods
 
@@ -38,6 +39,9 @@ select * from vps_vessel where (date_issued<>date_canceled or date_canceled is n
 
 * Similarly, you may  want to exclude rows where start_date >=end_date or start_date>=date_expired 
  
+*  BUS_OWN and VPS_OWNER are used to aggregate multi-vessel firms together for Regulatory Flexibility Act Analysis. 
+
+* Scallop and Groundfish "ownership" has been databased going back to 1996 (OWNER_HISTORY_PIDS). Not exactly relevant, but could track "income" or something else at the firm level for a sbuset of those two fisheries. Be careful when thinking about 
 
 ## Sample Projects
 

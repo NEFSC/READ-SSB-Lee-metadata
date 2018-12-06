@@ -14,7 +14,8 @@ The dealer data are transaction-level pricing at the level of the “market-cate
 
 + CFDETSyyyy contains “detailed species data” for 1994-2003
 + CFDERSyyyy contains “detailed species data” for 2004-present
-        
++ CFLENyyyy -fish-level port sampling data for length
+
         
 ## Current Collection Methods
 These data are the result of mandatory federal dealer reporting at the “trip-level”, supplemented by state-level, aggregated reporting.  Federally permitted fish dealers that are required to report purchases of all fish to NMFS.
@@ -74,6 +75,14 @@ This bit of code may help:```select * from cfspp order by doc desc;```
     + Scallop in-shell prices can be quite variable.
     + miscellaneous "parts" like monk liver, cod cheeks, or skate racks will have zero or null SPPLIVLB.
 
+* The length distribution of landed fish might be useful. This code extracts the length distribution for cod in 2010:
+```
+select year, state, nespp4, length, sum(numlen) as num_len from cflen2010
+where nespp3=081
+group by nespp4, year, state, length;
+```
+
+
 ## Sample Projects
 + Construct prices for fish [Lee, Demarest, Ardini].
 + Construct trip revenues, post 2005 [Demarest]
@@ -99,7 +108,6 @@ This bit of code may help:```select * from cfspp order by doc desc;```
 + CFDETSyyyyAA tables - “perform some Area Allocation”
 + CFDETTyyyy contains “detailed trip data”  for 1994-2003
 + CFSUMTyyyy, CFSUMSyyyy - “summary tables” for 1994-2003
-+ CFLENyyyy -fish-level port sampling data.
 + CFAGEyyyy - fish-level port sampling data.
 
 ## Support Tables
