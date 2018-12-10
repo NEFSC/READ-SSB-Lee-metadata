@@ -64,6 +64,9 @@ select * from vps_vessel where (date_issued<>date_canceled or date_canceled is n
 
 ## Support Tables
   + VALID_FISHERY translates the PLAN and CAT into words.
+  ```
+  select * from permit.valid_fishery where descr like '%SCALLOP%' order by plan, cat, permit_year
+  ```
 
 ```{r vpsunique , tab.cap="Unique  fields \\label{vpsunique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
 tabl <- "
