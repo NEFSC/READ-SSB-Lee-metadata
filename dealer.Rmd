@@ -61,7 +61,9 @@ This bit of code may help:```select * from cfspp order by doc desc;```
 This bit of code may help:```select * from cfspp order by doc desc;```
 
 * Data derived from “state” reporting may not include all fields that are populated by “federally reported” dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
-    +  Permit numbers may be encoded as  000000, 190998,390998 depending on vessel size.
+    +  Permit numbers that do not correspond to a single vessel are:
+        1.  000000, which means either "no vessel" (ex. from shore or aquaculture),or  "unknown" federal permit, which could be "no federal permit".
+        2.  190998,390998 correspond to different size classes of vessels
 
 *  Many NESPP4 codes will not match well to VTR’s SPPCODE. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
 
@@ -70,7 +72,7 @@ This bit of code may help:```select * from cfspp order by doc desc;```
     + Many records are entered only at the “state” or “county” level.  This is particularly frequent for “older” records and non-federal reports that are received through SAFIS.
     + The names corresponding to the port codes may or may not match to Census “units.”  The 2 digit state code does not correspond to FIPS codes.  
     + There is a table POPLACE_BASE that contains some Census Places. I'm not sure who made this, or if it's currently maintained.
-    
+    + month=0 or day=0 mean 'unknown' month or day.  I believe that both are due  to state-level reporting requirements that allow for monthly or yearly level reporting, instead of 'trip level' reporting.
 * Live and Landed weights are recorded.  
     + Scallop in-shell prices can be quite variable.
     + miscellaneous "parts" like monk liver, cod cheeks, or skate racks will have zero or null SPPLIVLB.
