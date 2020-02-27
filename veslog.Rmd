@@ -86,7 +86,10 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 * The code for WOLFFISH is CAT.  The code for BLUE CATFISH and NS Catfish are CATB and CATNS respectively. This is hilarious.  If you need to pick WOLF apart from CATFISH, wolffish is not caught inshore.
 * The  code for WHITE HAKE is WHAK. White HAKE is not Whiting. Sometimes operators write "WHAK" for "WHITING - HAKE."  They should be writing SHAK, HAKOS, or WHB.   You can separate based on mesh size if necessary. [Thunberg]
 
-
+* There are some errors on OPERNUM and OPERATOR. This happens mostly because of transcription mistakes
+    + The captain writes his name, but not the number and that name is incorrectly linked to the OPERNUM.
+    + The captain's writes his number, but it doesn't agree with the NAME
+    This type of error seems to happen infrequently, but often enough to be a problem.
 
 ## Sample Projects 
 
