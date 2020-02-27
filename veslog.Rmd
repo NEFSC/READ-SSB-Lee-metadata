@@ -53,7 +53,9 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
 * The following species are sketchy:
 
-    + Surfclam and Ocean Quahog dealer reports are contained in the SFCLAM schema (separate from CFDBS).  It is unclear whether reports of SC and OQ in CFDETS and CFDERS are duplicates or not, particularly for landings of Maine Mahogany Clam [Walden].
+    + Surfclam and Ocean Quahog dealer reports are contained in the SFCLAM schema (separate from VESLOG).  This might create inaccuracies for trips that land SF/OQ and other species (two un-linkable logbooks).
+    
+    + Lobster coverage is not full.  All lobster landings by vessels holding other federal permits are supposed to be in VTR.  
 
     + Giant Bluefin Tuna dealer are supposed to be reported individually and should be in a different schema.  Giant Bluefin Tuna in CFDERS are either misreporting or duplication [George Silva, NMFS HMS].
 
