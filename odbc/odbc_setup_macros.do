@@ -10,6 +10,10 @@ where $mysole_conn contains a connection string for sole
 This sample file shows how to build one.
 Because there are semicolons inside the connection string, you should not use semicolons as delimiters in this file*/
 
+/* windows notes: you need oracle instant client set up; tnsnames.ora in the proper place.
+Your database connections (sole and nova) have to be set up in ODBC Data sources. */
+
+
 version 15.1
 #delimit cr
 global myuid "your_uid"
@@ -18,7 +22,7 @@ global mygarfo_pwd "your_garfo_pwd"
 
 
 
-/* if you have a properly set up odbcinst.ini , then this will work. */
+/* if you have a properly set up odbcinst.ini , then this will work. for Linux */
 global mysole_conn "Driver={OracleODBC-11g};Dbq=path.to.sole.server.gov:PORT/sole;Uid=mlee;Pwd=$mypwd;"
 global mynova_conn "Driver={OracleODBC-11g};Dbq=path.to.nova.server.gov:PORT/nova;Uid=mlee;Pwd=$mypwd;"
 global mygarfo_conn "Driver={OracleODBC-11g};Dbq=NNN.NNN.NN.NNN/perhaps.more.letters.here.nfms.gov;Uid=mlee;Pwd=$mygarfo_pwd;"
@@ -31,7 +35,7 @@ global mynova_conn "Driver=/usr/lib/oracle/11.2/client64/lib/libsqora.so.11.1;Db
 */
 
 
-/* if you have a properly set up odbc.  Then this will work (on Windows). */
+/* if you have a properly set up odbc, then this will work (on Windows). */
 global mysole_conn "dsn(sole) user($myuid) password($mypwd)"
 global mynova_conn "dsn(nova) user($myuid) password($mypwd)"
 global mygarfo_conn "dsn(musky) user($myuid) password($mygarfo_pwd)"
