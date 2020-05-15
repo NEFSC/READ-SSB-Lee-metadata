@@ -126,7 +126,9 @@ There are table and there are view.  Sometimes, the sql that generates a view ca
 
 # DMIS Databases  
 **This is complete. 10 out of 10. **
-The Data Matching and Imputation System is maintained by GARFO. Just email Michael Lanning at GARFO, he's very helpful. j.michael.lanning@noaa.gov 
+```{r child='DMIS.Rmd'}
+```
+
 
 \newpage
 
