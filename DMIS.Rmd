@@ -1,1 +1,18 @@
-The Data Matching and Imputation System is maintained by GARFO. Just email Michael Lanning at GARFO, he's very helpful. j.michael.lanning@noaa.gov 
+Tables: 
+APSD.t_ssb_trip@garfo_nefsc
+APSD.t_ssb_catch@garfo_nefsc 
+APSD.t_ssb_discard@garfo_nefsc
+
+Location: GARFO super secret server
+
+Schema: 
+
+## Overview
+The Data Matching and Imputation System is maintained by GARFO. Just email Michael Lanning at GARFO, he's got all the answers. j.michael.lanning@noaa.gov 
+
+## Linking to Veslog
+
+Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020)
+1.  JML adds digits to DMIS DOCID to denote subtrips.
+1.  Another is that some data handling protocols (varies by file type) truncate a digit off the end of the EVTR serial numbers.
+1.  A third is that DMIS will Give positive (mostly correct) match’s where the DOCID fails for these and other reasons.
