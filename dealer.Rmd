@@ -16,6 +16,10 @@ The dealer data are transaction-level pricing at the level of the “market-cate
 + CFDERSyyyy contains “detailed species data” for 2004-present
 + CFLENyyyy -fish-level port sampling data for length
 
+Additionally, APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.  This can be accessed with
+
+select * from fso_admin.cfders_all_years@garfo_nefsc;
+
         
 ## Current Collection Methods
 These data are the result of mandatory federal dealer reporting at the “trip-level”, supplemented by state-level, aggregated reporting.  Federally permitted fish dealers that are required to report purchases of all fish to NMFS.
