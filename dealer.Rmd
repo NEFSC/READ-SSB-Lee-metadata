@@ -32,6 +32,17 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 ## Tips `n Tricks
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 
++ Here is a slick way to check confidentiality using dealer data:
+```
+ select year, port,
+CASE WHEN LEAST(COUNT(distinct COALESCE(NULLIF(permit,'000000'),NULLIF(cf_license,'0'))),COUNT(distinct COALESCE(TO_CHAR(dealnum),state_dnum))) >=3  THEN 'N' ELSE 'Y' END confidential
+from fso_admin.cfders_all_years@garfo_nefsc
+where NESPP3 in (081, 082, 120, 122, 123, 124, 125, 147, 152, 153, 155, 240, 269, 512, 159, 250)
+and year > 2018
+group by year, port
+;
+```
+
 ## General Caveats
 * Dealers are only required to record one VTR serial per trip.  
 
