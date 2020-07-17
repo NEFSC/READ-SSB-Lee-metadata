@@ -30,9 +30,11 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 + Mandatory electronic reporting began in 2004. This improved quality of data, in particular, the collection of VTRSERNO,which improves matching to VTR data.        
 
 ## Tips `n Tricks
+
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 
 + Here is a slick way to check confidentiality using dealer data:
+
 ```
  select year, port,
 CASE WHEN LEAST(COUNT(distinct COALESCE(NULLIF(permit,'000000'),NULLIF(cf_license,'0'))),COUNT(distinct COALESCE(TO_CHAR(dealnum),state_dnum))) >=3  THEN 'N' ELSE 'Y' END confidential
