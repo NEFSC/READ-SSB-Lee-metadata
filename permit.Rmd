@@ -43,6 +43,13 @@ select * from vps_vessel where (date_issued<>date_canceled or date_canceled is n
 
 * Scallop and Groundfish "ownership" has been databased going back to 1996 (OWNER_HISTORY_PIDS). Not exactly relevant, but could track "income" or something else at the firm level for a sbuset of those two fisheries. Be careful when thinking about 
 
+*  If a vessel is owned by one or more people or businesses in a partnership, then we use rank 2, 3, etc. for the additional owners in vps_owner.  The rank field does not represent any percentage ownership, hierarchy in the company, or majority ownership, it is simply used for mailing purposes.  The rank = 1 owner name shows up on the permit and we use that name for our mailings. (Ted Hawes - Sept 23, 2020)
+
+* In the vps_owner table, we only populate the business_id for the rank = 1 records. Add a condition that rank = 1 to ensure that there are no missing business ids.   If you do, that would be an error. (Ted Hawes - Sept 23, 2020)
+
+* The owners/shareholders of Company A  are entered in the Client system and given a person_id.  Each person in the system has a unique id that can be reused for any of the businesses that they may be a part of.  For new companies or changes in corporate owners, we then assign each person to the company.  Each year with our renewal applications, we collect the owner information and compare it to what we have in the system.  If there are no changes in owners, we don't alter any of the business information.  If a person is added to a company, we generate a person_id for them, if they don't already have one, and assign them to the business.  If a person leaves a company or dies, we don't delete them from the business.  We place an end_date on their relation with the company so that we can have a history of the owners.    (Ted Hawes - Sept 23, 2020)
+
+
 ## Sample Projects
 
 ## Update Frequency and Completeness
