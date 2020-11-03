@@ -36,9 +36,9 @@ global mynova_conn "Driver=/usr/lib/oracle/11.2/client64/lib/libsqora.so.11.1;Db
 
 
 /* if you have a properly set up odbc, then this will work (on Windows). */
-global mysole_conn "dsn(sole) user($myuid) password($mypwd)"
-global mynova_conn "dsn(nova) user($myuid) password($mypwd)"
-global mygarfo_conn "dsn(musky) user($myuid) password($mygarfo_pwd)"
+global mysole_conn "dsn(sole) user($myuid) password($mypwd) lower"
+global mynova_conn "dsn(nova) user($myuid) password($mypwd) lower"
+global mygarfo_conn "dsn(musky) user($myuid) password($mygarfo_pwd) lower"
 
 
 /*code to test
