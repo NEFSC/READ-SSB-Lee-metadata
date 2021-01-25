@@ -16,4 +16,4 @@ metadata, tips, tricks for databases.
 1. who maintains and contributes to the project. Min-Yang
 
 # License file
-See here for the [license file](https://github.com/minyanglee/READ-SSB-Lee-metadata/blob/main/license.txt)
+See here for the [license file](https://github.com/minyanglee/READ-SSB-Lee-metadata/blob/main/License.txt)
