@@ -9,8 +9,8 @@ metadata, tips, tricks for databases.
 
 1. who worked on this project:  Min-Yang
 1. when this project was created: Jan, 2021 
-1. what the project does: Helps people get organized.  Shows how to get data from NEFSC oracle 
-1. why the project is useful:  Helps people get organized.  Shows how to get data from NEFSC oracle 
+1. what the project does: Describes data in the oracle databases with a special eye towards fields that are used by social scientists
+1. why the project is useful:  Describes data in the oracle databases with a special eye towards fields that are used by social scientists
 1. how users can get started with the project: Download and follow the readme
 1. where users can get help with your project:  email me or open an issue
 1. who maintains and contributes to the project. Min-Yang
