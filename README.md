@@ -1,6 +1,5 @@
-# ssb-meta
-metadata, tips, tricks for databases.
-
+# Social Sciences Branch Metadata
+Describes data in the oracle databases with a special eye towards fields that are used by social scientists
 
 
 # NOAA Requirements
