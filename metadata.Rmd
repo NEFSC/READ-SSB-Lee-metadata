@@ -2,12 +2,12 @@
 title: "Metadata"
 author: "Min-Yang Lee"
 output:
+  html_document: null
   pdf_document:
     includes:
       in_header: preamble-latex.tex
     keep_tex: yes
-    pandoc_args: --latex-engine=xelatex
-  html_document: null
+    pandoc_args: --pdf-engine=pdflatex
   word_document: null
 date: '`r format(Sys.time(), "%B %d,  %Y")`'
 ---
@@ -20,8 +20,8 @@ This is just the parent metadata document.
   The majority of things are in the "child" sub-documents.  
   The Child references need to be unique.
   
-This compiles to pdf (needs XeLaTeX in TexLive or MikTex).   
-This compiles to html and docx.  docx is the ugliest.  HTML is reasonable.
+This compiles to pdf (needs pdflatex in TexLive or MikTex).   
+This will also compile to html and docx.  docx is the ugliest.  HTML is reasonable.
 
 
 -->
