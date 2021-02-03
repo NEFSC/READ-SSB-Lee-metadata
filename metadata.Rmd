@@ -2,12 +2,12 @@
 title: "Metadata"
 author: "Min-Yang Lee"
 output:
-  html_document: null
   pdf_document:
     includes:
       in_header: preamble-latex.tex
     keep_tex: yes
     pandoc_args: --pdf-engine=pdflatex
+  html_document: null
   word_document: null
 date: '`r format(Sys.time(), "%B %d,  %Y")`'
 ---

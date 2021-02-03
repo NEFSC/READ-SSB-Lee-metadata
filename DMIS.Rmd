@@ -1,7 +1,17 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 Tables: 
 APSD.t_ssb_trip@garfo_nefsc
 APSD.t_ssb_catch@garfo_nefsc 
 APSD.t_ssb_discard@garfo_nefsc
+
+APSD.t_ssb_trip_current@garfo_nefsc
+APSD.t_ssb_catch_current@garfo_nefsc 
+APSD.t_ssb_discard_current@garfo_nefsc
+
 
 Location: GARFO super secret server
 
