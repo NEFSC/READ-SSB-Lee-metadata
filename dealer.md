@@ -1,16 +1,12 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+## Overview
+
 Tables: CFDETSyyyy; CFDERSyyyy 
 
 Location: Sole
 
 Schema: CFDBS
 
-## Overview
-The dealer data are transaction-level pricing at the level of the “market-category.”  These data are primarily generated through mandatory reporting by federally-permitted fish dealers.  The federal reporting is supplemented with data from non-federally-permitted (state-only) fish dealers.  Data are currently reported electronically in partnership with ACCSP through SAFIS.
+The dealer data are transaction-level reports at the level of the “market-category.”  These data are primarily generated through mandatory reporting by federally-permitted fish dealers.  The federal reporting is supplemented with data from non-federally-permitted (state-only) fish dealers.  Data are currently reported electronically in partnership with ACCSP through SAFIS.
 
 + CFDETSyyyy contains “detailed species data” for 1994-2003
 + CFDERSyyyy contains “detailed species data” for 2004-present
@@ -21,15 +17,15 @@ Additionally, APSD has a table of CFDERS for all years, so no need to loop throu
 select * from fso_admin.cfders_all_years@garfo_nefsc;
 
         
-## Current Collection Methods
+# Current Collection Methods
 These data are the result of mandatory federal dealer reporting at the “trip-level”, supplemented by state-level, aggregated reporting.  Federally permitted fish dealers that are required to report purchases of all fish to NMFS.
 
-## Changes to Collections Methods
+# Changes to Collections Methods
 + The number of species triggering these requirements have increased over time, which has implications for completeness (50 CFR 648.6). For example, mandatory dealer reporting for Monkfish, herring, and hagfish began in 1999, 2001, and 2007 respectively.
 
 + Mandatory electronic reporting began in 2004. This improved quality of data, in particular, the collection of VTRSERNO,which improves matching to VTR data.        
 
-## Tips `n Tricks
+# Tips and Tricks
 
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 
@@ -44,7 +40,7 @@ and year > 2018
 group by year, port;
 ```
 
-## General Caveats
+# General Caveats
 * Dealers are only required to record one VTR serial per trip.  
 
 * Outlier prices are always possible.  Filter these out carefully.
@@ -134,25 +130,22 @@ group by nespp4, year, state, length;
 + SPECIES_ITIS_NE  decodes into names, links to the species_itis system
 + CFSPP - decodes NESPP3 and NESPP4 into names
 
-```{r dealer unique , tab.cap="Unique  fields \\label{dealer_unique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	SPPLNDLB	|	
-|	SPPVALUE	|	
-|	UTILCD	|	Quality unknown
-|	DISPOSITION_CODE	|	Quality unknown 
-|	REPORTED_QUANTITY	|	
-|	UOM	|	
-|	GRADE_CODE	|	
-|	MARKET_CODE	|	
-|	SPPLIVB	|	Certain NESPP4 codes (monkfish livers, cod milt) convert into zero “live pounds.”  This is done to prevent potential double counting during the stock assessment.
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
-```{r dealer primary, tab.cap="Primary Source fields -  These fields are firsthand data. \\label{dealer_primary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
+# Cool Stuff
+
+##  Dealer data is the only source for these kinds of information
+
+	SPPLNDLB	
+	SPPVALUE		
+	UTILCD	-	Quality unknown
+	DISPOSITION_CODE		Quality unknown 
+	REPORTED_QUANTITY		
+	UOM		
+	GRADE_CODE		
+	MARKET_CODE 	
+	SPPLIVB	 - Certain NESPP4 codes (monkfish livers, cod milt) convert into zero “live pounds.”  This is done to prevent potential double counting during the stock assessment.
+
+##  Dealer data should probably be considered the primary source for these kinds of information
 |	Column	|	Description
 |:---------------	|:--------------------------------------------------------
 |	YEAR	|	This may not be the same as the year in which fish was caught.
@@ -163,12 +156,10 @@ tabl <- "
 |	WHSPP	|	
 |	SPECIES_ITIS	|	
 |	STATE_DNUM	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
-```{r dealer secondary, tab.cap="Secondary Source Fields. These fields might be more accurate somewhere else.  \\label{dealer_secondary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
+
+##  Dealer data should probably be considered a secondary source for these kinds of information. These fields might be more accurate somewhere else.
+
 |	Column	|	Description
 |:---------------	|:--------------------------------------------------------
 |	PORT	|	 Concatenation of state, port, county
@@ -191,12 +182,10 @@ tabl <- "
 |	FIPS_COUNTY	|	
 |	CF_LICENSE	|	
 |	NEGEAR_VTR	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
-```{r dealer QAQC, tab.cap="QAQC columns. Quality Control or Auditing fields.  \\label{dealer_QAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
+
+## These are the QA/QC fields 
+
 |	Column	|	Description
 |:---------------	|:--------------------------------------------------------
 |	LINK	|	
@@ -208,7 +197,4 @@ tabl <- "
 |	DEALER_RPT_ID	|	
 |	DOE	|	
 |	LANDING_SEQ	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
