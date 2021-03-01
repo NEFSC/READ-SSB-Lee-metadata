@@ -134,16 +134,17 @@ group by nespp4, year, state, length;
 # Cool Stuff
 
 ##  Dealer data is the only source for these kinds of information
-
-	SPPLNDLB	
-	SPPVALUE		
-	UTILCD	-	Quality unknown
-	DISPOSITION_CODE		Quality unknown 
-	REPORTED_QUANTITY		
-	UOM		
-	GRADE_CODE		
-	MARKET_CODE 	
-	SPPLIVB	 - Certain NESPP4 codes (monkfish livers, cod milt) convert into zero “live pounds.”  This is done to prevent potential double counting during the stock assessment.
+|	Column	|	Description
+|:---------------	|:--------------------------------------------------------
+|	SPPLNDLB	|
+|	SPPVALUE	|
+|	UTILCD		| Quality unknown
+|	DISPOSITION_CODE| Quality unknown 
+|	REPORTED_QUANTITY|		
+|	UOM		|
+|	GRADE_CODE	|	
+|	MARKET_CODE 	|
+|	SPPLIVB	 | Certain NESPP4 codes (monkfish livers, cod milt) convert into zero “live pounds.”  This is done to prevent potential double counting during the stock assessment.
 
 ##  Dealer data should probably be considered the primary source for these kinds of information
 |	Column	|	Description
