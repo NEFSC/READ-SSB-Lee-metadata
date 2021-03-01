@@ -1,24 +1,18 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+# Overview
 Tables: MORT_ELIG_CRITERIA, SECTOR_YEAR_ROSTER
-
 
 Location: Sole
 
 Schema: MQRS
 
-## Overview
 The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.  It is used in conjunction with other tables, but not cross-referenced against them for logical consistency.
         
-## Current Collection Methods
+# Current Collection Methods
 Someone at GARFO puts data into the MQRS databases.
 
-## Changes to Collections Methods
+# Changes to Collections Methods
 
-## Tips `n Tricks
+# Tips and Tricks
 
 ## General Caveats
 
@@ -119,57 +113,21 @@ SELECT PER_NUM AS PERMIT,
 ```
 
   
-## Sample Projects
+# Sample Projects
 
-## Update Frequency and Completeness
+# Update Frequency and Completeness
 
 
-## Other Metadata sources
+# Other Metadata sources
 + INPORT.  https://inport.nmfs.noaa.gov/inport/item/12987
 + Missing from NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
 
 
-## Related Tables
+# Related Tables
 + BUS_OWN contains ownership data that is often linked to these PERMIT data. We'll put them in a separate section.
 + CPH
 + OPERATORS (captains) are permitted independently 
 
 ## Support Tables
   + VALID_FISHERY translates the PLAN and CAT into words.
-
-```{r MQRSunique , tab.cap="Unique  fields \\label{MQRSunique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r MQRSprimary, tab.cap="Primary Source fields -  These fields are firsthand data. \\label{MQRSprimary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r MQRSsecondary, tab.cap="Secondary Source Fields. These fields might be more accurate somewhere else.  \\label{MQRSsecondary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r MQRSQAQC, tab.cap="QAQC columns. Quality Control or Auditing fields.  \\label{MQRSQAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
