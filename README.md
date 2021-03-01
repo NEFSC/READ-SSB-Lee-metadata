@@ -11,9 +11,12 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 Make sure the table that you're using is not "stale."  Alot of the data is copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
 
-There are table and there are view.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
+There are tables and there are views.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
 
 ![sql picture](/figures/sql.png)
+
+
+If you want to figure out how to get the data, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
 
 # The Goods
 
@@ -32,7 +35,6 @@ There are table and there are view.  Sometimes, the sql that generates a view ca
 [sector](sector.md) : Sector Databases
 
 
-If you want to figure out how to get the data, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
 
 
 
