@@ -1,22 +1,17 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+# Overview
+These are the three schema that track Allocations.  DAS begat DAS2. DAS2 begat AMS.
+
 Tables: AMS, DAS, DAS2 
 
 Location: Sole
 
 Schema: AMS, DAS, DAS2
 
-## Overview
-These are the three schema that track Allocations.  DAS begat DAS2. DAS2 begat AMS.
+# Changes to Collections Methods
 
-## Changes to Collections Methods
+# Tips and Tricks
 
-## Tips `n Tricks
-
-## General Caveats
+# General Caveats
 + You can't simply "stack" data from these three datasets because there are some duplicate entries.  I think this happened because GARFO transitioned from one to the next and continued to record in both. 
     + Use DAS for multispecies fishing years 2004 and 2005
     + Use DAS2 for FYs 2006-2008 inclusive.  Scallop and multispecies allocations are stored here. 
@@ -25,17 +20,7 @@ These are the three schema that track Allocations.  DAS begat DAS2. DAS2 begat A
 + In general, there are (BASE) Allocations, base allocation adjustments, carryover, Leases (in and out), transfers, and sanctions.
 
 AMS stores transfers in a funky way:
-<div class="quote-container">
-> The allocation_transfer table has a different structure than the ams.allocation_tx table.
->
->The column is called allocation number,and the value may be an MRI. That is because GC scallop
-has MRI's but tilefish does not, It uses allocation numbers. They serve the same purpose, which is to uniquely identify an access privilege, whether it is an MRI or allocation number.
->
->The from/to tells what allocation number the pounds came from or to. If the amount is positive, the from/to column contains the allocation number that bought the pounds. If the amount is negative the from/to column contains the allocation number that sold them.
->
->In AMS, there are two rows, one for the seller and one for the buyer. . They each have columns
-called "root_mri" and "charge_mri" - which is misleading because the tilfish entries are not MRI's [Steve Cohen @ GARFO. April, 2016]
-</div>
+The allocation_transfer table has a different structure than the ams.allocation_tx table. The column is called allocation number,and the value may be an MRI. That is because GC scallop has MRI's but tilefish does not, It uses allocation numbers. They serve the same purpose, which is to uniquely identify an access privilege, whether it is an MRI or allocation number. The from/to tells what allocation number the pounds came from or to. If the amount is positive, the from/to column contains the allocation number that bought the pounds. If the amount is negative the from/to column contains the allocation number that sold them. In AMS, there are two rows, one for the seller and one for the buyer. . They each have columns called "root_mri" and "charge_mri" - which is misleading because the tilfish entries are not MRI's [Steve Cohen @ GARFO. April, 2016]
 
 + I've embedded some code to extract initial allocations, usage, leases, and transfers. I think it works for multispecies, but you might want to double check before just running it.
 
@@ -264,53 +249,17 @@ This is not quite working properly - there seem to be some entries in AMS.TRIP_A
 
 You should be able to stack the results of all of these to form a giant table of DAS usage from 2004-present.  Permit, charge, fishing_year, date_sail, date_land, fishing_year and activity_code are in all. Sailing port, state, landings port state, gillnet, and observer were only databased in AMS.  DAS2 contains right_ids, but DAS and AMS do not. 
 
-## Sample Projects
+# Sample Projects
 
-## Update Frequency and Completeness
+# Update Frequency and Completeness
 + Not sure about AMS.
 + DAS and DAS2 are "legacy" GARFO tables. GARFO doesn't really care about maintaining them.
 
-## Other Metadata sources
+# Other Metadata sources
 + INPORT.  https://inport.nmfs.noaa.gov/inport/item/11773
 + NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
 
-## Related Tables
+# Related Tables
 
-## Support Tables
-
-```{r amsunique , tab.cap="Unique  fields \\label{amsunique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r amsprimary, tab.cap="Primary Source fields -  These fields are firsthand data. \\label{amsprimary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r amssecondary, tab.cap="Secondary Source Fields. These fields might be more accurate somewhere else.  \\label{amssecondary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
-
-```{r amsQAQC, tab.cap="QAQC columns. Quality Control or Auditing fields.  \\label{amsQAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
-|	Column	|	Description
-|:---------------	|:--------------------------------------------------------
-|	Placeholders	|	
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
+# Support Tables
 
