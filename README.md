@@ -17,19 +17,19 @@ There are table and there are view.  Sometimes, the sql that generates a view ca
 
 # The Goods
 
-[Veslog](veslog.md) 
+[Veslog](veslog.md) : Vessel Trip Reports (VTRs)
 
-[AMS and DAS ](AMS_DAS.md) 
+[AMS and DAS ](AMS_DAS.md) : Allocation Management System (AMS); Days-at-Sea Management System
 
-[DMIS](DMIS.md)
+[DMIS](DMIS.md): Data Matching and Imputation System
 
-[MQRS](MQRS.md)
+[MQRS](MQRS.md) : Moratorium Qualification something System
 
-[Dealer](dealer.md)
+[Dealer](dealer.md) Dealer or Commercial Fisheries Dealer Database (CFDBS)
 
-[permit](permit.md)
+[permit](permit.md): Vessel permitting
 
-[sector](sector.md)
+[sector](sector.md) : Sector Databases
 
 
 If you want to figure out how to get the data, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
