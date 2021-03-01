@@ -1,6 +1,15 @@
 # Social Sciences Branch Metadata
 Describes data in the oracle databases with a special eye towards fields that are used by social scientists
 
+Please help make this a valuable up-to-date resource.  To add your knowledge:
+1.   [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) - It's in the top right of github.
+2.   Make your changes  - click the file you want to edit and then the little pencil on the right side
+ 
+ ![Here's a picture](/figures/fork_edit.png)
+
+
+4.   [Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) so the changes get into the document.
+
 
 
 # General things
@@ -53,8 +62,8 @@ If you want to figure out how to get the data, take a look [here](https://github
 1. when this project was created: Jan, 2021 
 1. what the project does: Describes data in the oracle databases with a special eye towards fields that are used by social scientists
 1. why the project is useful:  Describes data in the oracle databases with a special eye towards fields that are used by social scientists
-1. how users can get started with the project: Download and follow the readme
-1. where users can get help with your project:  email me or open an issue
+1. how users can get started with the project: Just read the readme
+1. where users can get help with your project:  Open an issue
 1. who maintains and contributes to the project. Min-Yang
 
 # License file
