@@ -1,14 +1,47 @@
 # Social Sciences Branch Metadata
 Describes data in the oracle databases with a special eye towards fields that are used by social scientists
 
-# Organization
 
-[metadata.Rmd](https://github.com/NEFSC/READ-SSB-Lee-metadata/blob/master/metadata.Rmd) is the parent file. Other Rmd files are called from the parent.  If you want to read some of the metadata, you want to look at:
 
-[metadata.html](https://github.com/NEFSC/READ-SSB-Lee-metadata/blob/master/metadata.html) and
-[metadata.pdf](https://github.com/NEFSC/READ-SSB-Lee-metadata/blob/master/metadata.pdf)
+# General things
+
+Many data tables are live, with nightly or continuous updates. For example, when working with the  dealer data, expect approximately 300 changes or additions to the current and previous year of data per day. Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
+
+This has consequences for reproducibility if you do not store a copy of the data.
+
+Make sure the table that you're using is not "stale."  Alot of the data is copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
+
+There are table and there are view.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
+
+![sql picture](/figures/sql.png)
+
+# The Goods
+
+[Veslog](veslog.md) 
+
+[AMS and DAS ](AMS_DAS.md) 
+
+[DMIS](DMIS.md)
+
+[MQRS](MQRS.md)
+
+[Dealer](dealer.md)
+
+[permit](permit.md)
+
+[sector](sector.md)
+
 
 If you want to figure out how to get the data, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
+
+
+
+
+
+
+
+
+
 
 # NOAA Requirements
 “This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.”
