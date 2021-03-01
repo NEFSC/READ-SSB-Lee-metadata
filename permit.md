@@ -1,6 +1,8 @@
 # Overview
 Tables: VPS_VESSEL; VPS_FISHERY_NER; BUS_OWN, VPS_OWNER
+
 Location: Sole
+
 Schema: PERMIT
 
 The permit data contain information about fishing vessels, the fisheries they can participate in. These data are generated through permit applications that are submitted to GARFO by vessel owners.  
