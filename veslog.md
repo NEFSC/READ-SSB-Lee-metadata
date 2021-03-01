@@ -1,16 +1,13 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
+
+
+## Overview
+The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
+
 Tables: VESLOGyyyyT;  VESLOGyyyyG;  VESLOGyyyyS;  
 
 Location: Sole
 
 Schema: VTR
-
-## Overview
-The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
 
 + 1994 to present
 + one table per year
@@ -29,7 +26,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 + In 2019, the PORT code and PORTLND1 variable has been frequently NULL.
 > When the (e-VTR) app was programmed the intent was to replicate the paper VTR but landed port was left off the fields to be entered. I'm not sure when/if this will be corrected and this was not well advertised as APSD did not know about this until July. The sail port was included so to the extent to which sail port and landed port may be the same would be an alternative work around. For recreational evtr's this is very likely since passengers need to get back to where their cars are parked.  --Eric Thunberg, October 1, 2020.
 
-## Tips `n Tricks.
+# Tips and Tricks.
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 + Vessels may declare out of fishing.  The NOT_FISHED column in VESLOG_T can be used to filter these out.   
 + The TRIPID is unique to a "fishing trip." 
@@ -47,7 +44,9 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 ## General Caveats.
 * 1994-1995 are kind of sketchy
 
-* Electronic VTRs have very long SERIAL_NUM, TRIPID, GEARID, and CATCH_ID.  Some software doesn't like this (Excel, stata) -- you might want to do this:```select to_char(g.serial_num) from veslog2014g g```
+* Electronic VTRs have very long SERIAL_NUM, TRIPID, GEARID, and CATCH_ID.  Some software doesn't like this (Excel, stata) -- you might want to do this:
+
+```select to_char(g.serial_num) from veslog2014g g```
     
 * Some of the older numbers (from 1994-1995) are non-numeric. 
     
@@ -76,7 +75,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
         + The latitude and longitude points reported on a VTR are first binned into a Ten Minute Square, then checked against a lookup table that converts Ten Minutes Squares into statistical areas [LOC2AREAS]. 
         + If there is a match, then the reported latitude and longitude points are accepted.
         + If there is no match and the reported lat-lon is in an AREA adjacent to the reported AREA, then the lat-lon points are accepted and the reported statistical area is replaced by the AREA corresponding to the lat-lon.
-        + If there is no match and the reported lat-lon is *not* in an AREA adjacent to the reported AREA, then the lat-lon points are rejected and converted to ```NULL``` values. The reported statistical area used as the CAREA.  
+        + If there is no match and the reported lat-lon is *not* in an AREA adjacent to the reported AREA, then the lat-lon points are rejected and converted to "NULL" values. The reported statistical area used as the CAREA.  
     + Technically, only degrees and minutes are required to reported.
     + Some vessels report LORAN readings. These are converted to lat-lon prior to that entire process.
     + This QAQC step is performed differently in the GARFO CATCH, IMAGES, DOCUMENT data.
@@ -94,30 +93,33 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
     + The captain's writes his number, but it doesn't agree with the NAME
     This type of error seems to happen infrequently, but often enough to be a problem.
 
-## Sample Projects 
+# Sample Projects 
 
-## Update Frequency and Completeness 
+# Update Frequency and Completeness 
 + Nightly updates. Expect approximately 300 changes or additions to the current and previous year of data per day.
 + Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
 
-## Other Metadata sources
+# Other Metadata sources
 + INPORT.  https://inport.nmfs.noaa.gov/inport/item/1423
 + NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
 
 + Preceded by: "none"
 + Succeeded by: n/a
 
-## Related Tables very incomplete.
+# Related Tables very incomplete.
 + CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. C,I,D are a single table, not one per year.  I can't even.
 
-## Support Tables very incomplete.
+# Support Tables very incomplete.
 + VLSPPTBL decodes SPPCODES into names and NESPP4 codes. So does VLSPPSYN_94_95, which looks deprecated.    
 + TENMINSQ, LOC,LOC2AREAS
 + PORTSYN, VLPORTSYN
 + VLGEAR - decodes gear codes into english
 
-```{r veslog unique , tab.cap="Fields in VESLOG  \\label{veslog_unique}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
+
+# Cool Stuff
+
+##  VESLOG data is the only source for these kinds of information
+
 |	Column	|Location | 	Description
 |:---------------		|:---------- |:----------------------------------
 CAREA	|		G		|
@@ -174,12 +176,9 @@ TIMESAIL	|	T			|
 TRIP_ACTIVITY_TYPE	|	T			|
 TRIPCATG	|	T			|
 TRIPID	|	T	G	S	|
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
-```{r veslog primary, tab.cap="Primary Source fields -  These fields might be useful for linking, either exactly or fuzzy. \\label{veslog_primary}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
+##  VESLOG data should probably be considered the primary source for these kinds of information
+
 |	Column	|Location | 	Description
 |:---------------		|:---------- |:----------------------------------
 DATELND1	|	T			|
@@ -197,26 +196,24 @@ PORT	|	T			|
 PORTLND1	|	T			|
 PORTLND2	|	T			|
 SERIAL_NUM	|		G		|
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
-```{r veslog QAQC, tab.cap="QA/QC columns. Quality Control or Auditing fields.  \\label{veslog_QAQC}", echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-tabl <- "
+##  VESLOG data should probably be considered a secondary source for these kinds of information. These fields might be more accurate somewhere else.
 |	Column	|Location | 	Description
 |:---------------		|:---------- |:----------------------------------
-AREA_IND	|		G		|
+AREA_IND	|		G		| I have no idea what this is.
+
+## These are the QA/QC fields 
+
+|	Column	|	Description
+|:---------------	|:--------------------------------------------------------
 BATCHID	|	T		S	|
 DATE_RECV	|		G		|
 DC	|	T	G	S	|
 DE	|	T	G	S	|
+UC	|	T	G	S	|
+UE	|	T	G	S	|
 FILENAME	|		G		|
 IMG_DATE	|		G		|
 IMGTYPE	|		G		|
-UC	|	T	G	S	|
-UE	|	T	G	S	|
 SIDEID	|		G		|
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-```
 
