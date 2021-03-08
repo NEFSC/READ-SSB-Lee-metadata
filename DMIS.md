@@ -103,4 +103,11 @@ Week/ (NESPP3) / North East
 Month / (NESPP3) / North East     
 
 ```
+# Price Variables
 
+There are two different price variables within DMIS.
+
+DLR_DOLLAR: The value of landed catch to the nearest dollar, paid to fishermen by the dealer, for a given species. All value from for this variable comes directly from dealer reports.
+
+DOLLAR_SSB: In addition to the values represented in the DLR_DOLLAR variable, DOLLAR_SSB imputs values according to the above code. Imputation is performed in the cases of bait and home consumption (BHC) or if there is a VTR record, but no matching dealer report.
+*Greg has some correspondence from Dan Caless that he can forward to anyone interested.
