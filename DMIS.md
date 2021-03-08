@@ -35,3 +35,72 @@ Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020
 > There is a "_current" versioning of tables. As of April 2020, current contains a little bit more data. I now use _trip for everything, whereas a yearly ago I used _current.  There were some discrepancies for earlier years (2013?) that _trip had correct and _trip_current did not.  Otherwise I believe they are the same. (Chad)
 
 > I have been using current since there is more recent data included. Hopefully for older data the two match up, but I haven't looked into that in a while. (Greg)
+ 
+
+# Prices
+
+Here is the algorithm for doing prices in DMIS circulated on March 7, 2021.
+
+======  what you sent ====== 
+The imputation is in the following order: 
+
+Day / (NESPP3 , MARKET GRADE) / Port                      :     Code:   D4P 
+Day / (NESPP3 , MARKET GRADE) / County                 :     Code:   D4C 
+Day / (NESPP3 , MARKET GRADE) / State                    :     Code:   D4S 
+Day / (NESPP3 , MARKET GRADE) / Region                 :     Code:   D4P 
+Day / (NESPP3 , MARKET GRADE) / North East           :     Code:   D4 
+Week/ (NESPP3 , MARKET GRADE) / North East         :     Code:   W4 
+Month / (NESPP3 , MARKET GRADE) / North East        :     Code:   M4 
+
+Then 
+
+Day / (NESPP3 ) / Por                      :     Code:   D3P 
+Day / (NESPP3) / County                 :     Code:   D3C 
+Day / (NESPP3) / State                    :     Code:   D3S 
+Day / (NESPP3) / Region                 :     Code:   D3P 
+Day / (NESPP3) / North East           :     Code:   D3 
+Week/ (NESPP3) / North East         :     Code:   W3 
+Month / (NESPP3) / North East        :     Code:   M3 
+================== 
+
+MODIFICATION: 
+
+The imputation is in the following order: 
+
+Day / (NESPP3 , MARKET GRADE) / Port                      :     Code:   D4P 
+Day / (NESPP3 , MARKET GRADE) / County                 :     Code:   D4C 
+Day / (NESPP3 , MARKET GRADE) / State                    :     Code:   D4S 
+Day / (NESPP3 , MARKET GRADE) / Region                 :     Code:   D4P  (D4R??) 
+Day / (NESPP3 , MARKET GRADE) / North East           :     Code:   D4 
+
+Then FOR NON-MONKFISH: 
+
+Day / (NESPP3 ) / Port                      :     Code:   D3P 
+Day / (NESPP3) / County                 :     Code:   D3C 
+Day / (NESPP3) / State                    :     Code:   D3S 
+Day / (NESPP3) / Region                 :     Code:   D3P (D3R??) 
+Day / (NESPP3) / North East           :     Code:   D3 
+
+Week/ (NESPP3) / North East         :     Code:   W3 
+Month / (NESPP3) / North East        :     Code:   M3 
+
+THEN FOR MONKFISH ONLY: 
+
+Week / (NESPP3 , MARKET GRADE) / Port
+Week / (NESPP3 , MARKET GRADE) / County
+Week / (NESPP3 , MARKET GRADE) / State
+Week / (NESPP3 , MARKET GRADE) / Region
+Week/ (NESPP3 , MARKET GRADE) / North East      
+
+
+Month / (NESPP3 , MARKET GRADE) / Port
+Month / (NESPP3 , MARKET GRADE) / County
+Month / (NESPP3 , MARKET GRADE) / State
+Month / (NESPP3 , MARKET GRADE) / Region
+Month / (NESPP3 , MARKET GRADE) / North East
+       
+Week/ (NESPP3) / North East
+Month / (NESPP3) / North East     
+
+
+
