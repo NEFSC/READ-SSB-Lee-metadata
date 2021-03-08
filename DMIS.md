@@ -41,9 +41,9 @@ Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020
 
 Here is the algorithm for doing prices in DMIS circulated on March 7, 2021.
 
+```
 ======  what you sent ====== 
 The imputation is in the following order: 
-```
 Day / (NESPP3 , MARKET GRADE) / Port                      :     Code:   D4P 
 Day / (NESPP3 , MARKET GRADE) / County                 :     Code:   D4C 
 Day / (NESPP3 , MARKET GRADE) / State                    :     Code:   D4S 
