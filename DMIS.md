@@ -43,7 +43,7 @@ Here is the algorithm for doing prices in DMIS circulated on March 7, 2021.
 
 ======  what you sent ====== 
 The imputation is in the following order: 
-
+```
 Day / (NESPP3 , MARKET GRADE) / Port                      :     Code:   D4P 
 Day / (NESPP3 , MARKET GRADE) / County                 :     Code:   D4C 
 Day / (NESPP3 , MARKET GRADE) / State                    :     Code:   D4S 
@@ -102,5 +102,5 @@ Month / (NESPP3 , MARKET GRADE) / North East
 Week/ (NESPP3) / North East
 Month / (NESPP3) / North East     
 
-
+```
 
