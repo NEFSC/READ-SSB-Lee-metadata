@@ -10,19 +10,26 @@ Please help make this a valuable up-to-date resource.  To add your knowledge:
 
 # General things
 
-Many data tables are live, with nightly or continuous updates. For example, when working with the  dealer data, expect approximately 300 changes or additions to the current and previous year of data per day. Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
-
+1.  Many data tables are live, with nightly or continuous updates. For example, when working with the  dealer data, expect approximately 300 changes or additions to the current and previous year of data per day. Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
 This has consequences for reproducibility if you do not store a copy of the data.
 
-Make sure the table that you're using is not "stale."  Alot of the data is copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
+1.  Make sure the table that you're using is not "stale."  Alot of the data is copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
 
-There are tables and there are views.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
+1.  There are tables and there are views.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
 
 ![sql picture](/figures/sql.png)
 
+1.  If you want to figure out how to get the data, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
 
-If you want to figure out how to get the data, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
+1.  It's good practice to include the schema when you query data. That is, write:
+```
+select * from permit.vps_owner
+```
+instead of 
+```
+select * from vps_owner
 
+```
 # The Goods
 
 [Veslog](veslog.md) : Vessel Trip Reports (VTRs)
