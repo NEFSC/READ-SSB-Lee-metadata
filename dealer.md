@@ -29,6 +29,12 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 
++  APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.
+
+```
+select * from fso_admin.cfders_all_years@garfo_nefsc;
+```
+
 + Here is a slick way to check confidentiality using dealer data:
 
 ```
