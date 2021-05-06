@@ -27,7 +27,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 > When the (e-VTR) app was programmed the intent was to replicate the paper VTR but landed port was left off the fields to be entered. I'm not sure when/if this will be corrected and this was not well advertised as APSD did not know about this until July. The sail port was included so to the extent to which sail port and landed port may be the same would be an alternative work around. For recreational evtr's this is very likely since passengers need to get back to where their cars are parked.  --Eric Thunberg, October 1, 2020.
 
 # Tips and Tricks.
-+ A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
++ A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the VTRSERNO in CFDBS to SERIAL_NUM in the VTR.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 + Vessels may declare out of fishing.  The NOT_FISHED column in VESLOG_T can be used to filter these out.   
 + The TRIPID is unique to a "fishing trip." 
     * A TRIPID to should match to at least one GEARID.
@@ -46,7 +46,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
 * Electronic VTRs have very long SERIAL_NUM, TRIPID, GEARID, and CATCH_ID.  Some software doesn't like this (Excel, stata) -- you might want to do this:
 
-```select to_char(g.serial_num) from veslog2014g g```
+```select to_char(g.serial_num) from vtr.veslog2014g g```
     
 * Some of the older numbers (from 1994-1995) are non-numeric. 
     
