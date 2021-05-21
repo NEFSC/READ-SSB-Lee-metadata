@@ -41,6 +41,8 @@ select * from vps_owner
 
 [Dealer](dealer.md) Dealer or Commercial Fisheries Dealer Database (CFDBS)
 
+[observer](observer.md): Fishery Observers
+
 [permit](permit.md): Vessel permitting
 
 [sector](sector.md) : Sector Databases
