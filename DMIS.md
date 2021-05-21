@@ -111,3 +111,7 @@ DLR_DOLLAR: The value of landed catch to the nearest dollar, paid to fishermen b
 
 DOLLAR_SSB: In addition to the values represented in the DLR_DOLLAR variable, DOLLAR_SSB imputs values according to the above code. Imputation is performed in the cases of bait and home consumption (BHC) or if there is a VTR record, but no matching dealer report.
 *Greg has some correspondence from Dan Caless that he can forward to anyone interested.
+
+# Matching to Observer data
+1.  [Code](/code_fragments/DMIS_observer_match.sas) to match observer data to DMIS 
+
