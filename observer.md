@@ -14,7 +14,7 @@ These data are are collected by fishery observers on board a fishing trip.
 # Changes to Collections Methods
 
 # Tips and Tricks
-
+1.  [Code](/code_fragments/DMIS_observer_match.sas) to match observer data to DMIS 
 
 # General Caveats
 
