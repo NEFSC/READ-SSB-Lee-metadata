@@ -36,7 +36,6 @@ from mqrs.mort_elig_criteria where right_id=1755 order by  date_eligible;
 ```
 select * from mqrs.sector_participants_CPH where mri=1755;
 select * from mqrs.sector_participants_CPH2011 where mri=1755;
-select * from mqrs.sector_participants_CPH2011 where mri=1755;
 ```
 
 
