@@ -16,6 +16,16 @@ Location: GARFO super secret server
 
 Schema: 
 
+# GARFO provided metadata
+
+Here are a few documents that describe DMIS.
+
+1.  [DMIS Data Dictionary](/external/DMIS%20Data%20Dictionary%20(SSB).docx) 
+1.  [DMIS Data Dictionary part 2](/external/DMIS_Table_Dictionaries_July_2012.docx).  I'm not sure how this differs from the previous.
+1.  [DMIS Documentation](/external/DMIS%20Documentation.pdf).   This appears to be from J. Michael Lanning and last modified on September 26, 2019.
+  
+
+
 
 # Linking to Veslog
 
