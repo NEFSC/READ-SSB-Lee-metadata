@@ -20,9 +20,10 @@ Schema:
 
 Here are a few documents that describe DMIS.
 
-1.  [DMIS Data Dictionary](/external/DMIS%20Data%20Dictionary%20(SSB).docx) 
-1.  [DMIS Data Dictionary part 2](/external/DMIS_Table_Dictionaries_July_2012.docx).  I'm not sure how this differs from the previous.
+1.  [DMIS Data Dictionary](/external/DMIS%20Data%20Dictionary%20(SSB).docx). Circulated by Tammy Murphy on April 27, 2020.
+1.  [DMIS Data Dictionary part 2](/external/DMIS_Table_Dictionaries_July_2012.docx).  Circulated by Tammy Murphy on May 1, 2020. I'm not sure how this differs from the previous.
 1.  [DMIS Documentation](/external/DMIS%20Documentation.pdf).   This appears to be from J. Michael Lanning and last modified on September 26, 2019.
+1.  [DMIS and AA comparison](/external/NRCC-Report-Catch-Differences-180511-Lanning.pdf).   J. Michael Lanning's Presentation that describes AA and DMIS, given to [NRCC on May 15,2018](https://www.nefmc.org/calendar/may-15-16-2018-nrcc-meeting).
   
 
 
