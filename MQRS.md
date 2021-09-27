@@ -10,6 +10,12 @@ The MQRS system is fun. It contains information on "eligibilities."  The sector 
 # Current Collection Methods
 Someone at GARFO puts data into the MQRS databases.
 
+
+# GARFO Documentation
+
+1.  [MQRS Presentation](/external/MQRS%20talk.ppt).  PPT circulated by Tammy Murphy on Feb 21, 2017.  Probably by Jay Hermsen, last edited June 10, 2014.
+
+
 # Changes to Collections Methods
 
 # Tips and Tricks
