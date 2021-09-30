@@ -4,7 +4,7 @@ Describes data in the oracle databases with a special eye towards fields that ar
 Please help make this a valuable up-to-date resource.  To add your knowledge:
 1.   [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) - It's in the top right of github.
 1.   Make your changes  - click the file you want to edit and then the little pencil on the right side.  ![Here's a picture](/figures/fork_edit.jpg)
-1.   [Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) so the changes get into the document.
+1.   Issue a [Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) so the changes get into the document.  Please request a review so the maintainer knows that they need to review and commit.
 
 
 
