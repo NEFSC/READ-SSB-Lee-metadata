@@ -47,6 +47,25 @@ Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020
 
 > I have been using current since there is more recent data included. Hopefully for older data the two match up, but I haven't looked into that in a while. (Greg)
  
+ *UPDATE FROM Sept. 30, 2021: APSD.t_ssb_trip@garfo_nefsc and APSD.t_ssb_catch@garfo_nefsc apparently are no longer in use. Recommend to use the _CURRENT tables. Below is the _CURRENT tables values minus the "NON-CURRENT" values for the full DMIS time period. If pulling exclusively before 2019, then values are similar.
+ 
+ | Calenday_Year   | Total_Observations| 	dlr_dollar| 	 dollar_ssb| 	
+|-----------|-----------|-----------|-----------|         
+|2007 	 |       0| 	                0| 	             0| 	
+|2008    |       0| 	                0|               0| 	
+|2009    |     384| 	             -478|          17,367| 
+|2010    |     -32| 	           50,712|         269,606| 
+|2011    |     219| 	           -3,525|          14,669| 
+|2012    |     -23| 	            2,420|          58,671| 
+|2013    |       0| 	                0|               0| 
+|2014    |       0| 	                0|               0| 
+|2015    |       0| 	                0|               0| 
+|2016    |       0| 	                0|               0| 
+|2017    |       0| 	                0|               0| 
+|2018    |       0| 	                0|               0| 
+|2019    |  52,595| 	       42,412,031|      41,091,647| 
+|2020    | 618,861| 	      923,960,142|     956,768,538| 
+|2021    | 468,514| 	    1,030,426,010|   1,077,516,423| 
 
 # Prices
 
