@@ -126,13 +126,15 @@ DOLLAR_SSB: In addition to the values represented in the DLR_DOLLAR variable, DO
 # Completeness of Fishery Revenue data
 For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_current@garfo_nefsc) includes the vast majority of ex-vessel revenues as compared to CFDBS. However, in fisheries which have large state waters components, or unqiue reporting requirements, DMIS may fail to capture a significant portion of revenues. A comparison of fishery ex-vessel revenues in 2018 for the two data sources is provided below. Note lobster and SC/OQ. 
 
- 	           Black Sea Bass 	Bluefish 	 Groundfish 	Herring 	    Jonah Crab 	  Lobster 	    Mackerel 	  Monkfish 	    Red Crab
-DMIS Query 	 $9,488,729 	    $956,188 	 $47,767,489 	$23,096,764 	$18,313,781 	$459,191,551 	$4,276,065 	$14,782,472 	$3,594,397
-Dealer Query $12,060,017 	    $2,073,282 $48,352,305 	$23,150,685 	$18,574,993 	$631,134,282 	$4,348,775 	$14,937,020 	$3,594,397
+| Schema   | Black Sea Bass| 	Bluefish| 	 Groundfish| 	Herring| 	    Jonah Crab| 	  Lobster| 	    Mackerel| 	  Monkfish| 	    Red Crab|
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|            
+|DMIS Query 	 | $9,488,729| 	    $956,188| 	 $47,767,489| 	$23,096,764| 	$18,313,781| 	$459,191,551 |	$4,276,065| 	$14,782,472 |	$3,594,397|
+|Dealer Query| $12,060,017| 	    $2,073,282| $48,352,305| 	$23,150,685| 	$18,574,993| 	$631,134,282| 	$4,348,775| 	$14,937,020| 	$3,594,397|
 
-             Scup 	     Sea Scallop 	  Skate 	    Spiny Dogfish 	Squid 	      Summer Flounder 	Surf Clam / Ocean Quahog 	Tilefish 	  Whiting
-DMIS Query 	 $8,537,625  $524,952,412 	$7,042,994 	$2,627,879 	    $61,797,190 	$22,780,233 	    $3,023,109 	              $5,098,011 	$9,967,509
-Dealer Query $9,708,960  $532,086,840 	$7,437,288 	$2,832,603 	    $62,300,665 	$25,395,970 	    $61,321,459 	            $5,152,426 	$10,040,221
+| Schema   |       Scup 	  |   Sea Scallop| 	  Skate| 	    Spiny Dogfish| 	Squid| 	      Summer Flounder| 	Surf Clam / Ocean Quahog| 	Tilefish| 	  Whiting|
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|            
+|DMIS Query| 	 $8,537,625|  $524,952,412| 	$7,042,994| 	$2,627,879| 	    $61,797,190| 	$22,780,233| 	    $3,023,109| 	              $5,098,011| 	$9,967,509|
+|Dealer Query| $9,708,960|  $532,086,840| 	$7,437,288| 	$2,832,603| 	    $62,300,665| 	$25,395,970| 	    $61,321,459| 	            $5,152,426| 	$10,040,221|
 
 # Matching to Observer data
 1.  [Code](/code_fragments/DMIS_observer_match.sas) to match observer data to DMIS 
