@@ -3,7 +3,7 @@
 libname test '~gardini/SAS/DMIS_Observer/only_2019';
 
 proc sql;
-	connect to oracle (user = gardini password = "XXXXXXXXXXXX" path = sole);
+	connect to oracle (user = gardini password = "MYACTUALPASSWORD" path = sole);
 
 create view dmis_trips as select * from connection to oracle
 (select * from APSD.t_ssb_trip_current@garfo_nefsc
