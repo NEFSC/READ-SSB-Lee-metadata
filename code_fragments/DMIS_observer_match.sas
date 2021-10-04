@@ -2,6 +2,8 @@
 
 libname test '~gardini/SAS/DMIS_Observer/only_2019';
 
+/* adding another silly thing that you should reject */
+
 proc sql;
 	connect to oracle (user = gardini password = "XXXXXXXXXXXX" path = sole);
 
