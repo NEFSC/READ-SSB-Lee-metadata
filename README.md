@@ -1,7 +1,7 @@
 # Social Sciences Branch Oracle Metadata
 Describes data in the oracle databases with a special eye towards fields that are used by social scientists
 
-Please help make this a valuable up-to-date resource.  To add your knowledge, follow the instructions in the "How to help" section [here](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently):
+Please help make this a valuable up-to-date resource.  To add your knowledge, follow the instructions in the "How to help" section [here](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently).
 
 # General things
 
