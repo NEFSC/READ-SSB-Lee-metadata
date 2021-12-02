@@ -22,7 +22,9 @@ Someone at GARFO puts data into the MQRS databases.
 
 ## General Caveats
 
-  *  The sector rosters are stored in "SECTOR_YEAR_ROSTERS."  These contain a sector_id, year, and MRI (among other things.)  There are also "views" (SECTOR_PARTICIPANTS_CPHYYYY and SECTOR_PARTICIPANTS_NO_CPHYYYY).  These link the MRI to the PERMIT. Unfortunately, they are all broken as of April 18, 2018. They are broken because the underyling code does not properly check dates when it links the MRI to a permit.  Here is code that will illustrate:
+  *  The sector rosters are stored in "SECTOR_YEAR_ROSTERS."  These contain a sector_id, year, and MRI (among other things.)  There are also "views" (SECTOR_PARTICIPANTS_CPHYYYY and SECTOR_PARTICIPANTS_NO_CPHYYYY). However, these views are not updated past the 2019 groundfish fishing year. If interested in linking a groundfish MRI to a permit, SECTOR.MRI_PERMIT_VESSEL_HISTORY should be used. There is also SECTOR.MRI_PERMIT_HISTORY. This table appears to be updated as of November 30, 2021. However, Torey Adler (GARFO APSD) indicated that it will eventually "go away".  
+
+The SECTOR_PARTICIPANTS views all broken as of April 18, 2018. They are broken because the underyling code does not properly check dates when it links the MRI to a permit. Here is code that will illustrate:
     
   1. MRI 1755 should link to permit 100598 any time between april 26, 1994 and june 17, 2015
   
