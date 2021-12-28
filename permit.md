@@ -5,8 +5,8 @@ Location: Sole
 
 Schema: PERMIT
 
-The permit data contain information about fishing vessels, the fisheries they can participate in. These data are generated through permit applications that are submitted to GARFO by vessel owners.  
-        
+The permit data contain information about fishing vessels, the fisheries they can participate in. These data are generated through permit applications that are submitted to GARFO by vessel owners.  A vessel owner will often submit more than one permit application per year. This can happen if a vessel owner renews some permits early in the year and others later in the year or if a vessel changes ownership. There are probably other reasons as well.
+
 # Current Collection Methods
 
 # Changes to Collections Methods
