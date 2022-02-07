@@ -156,7 +156,7 @@ For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_curren
 |DMIS Query| 	 $8,537,625|  $524,952,412| 	$7,042,994| 	$2,627,879| 	    $61,797,190| 	$22,780,233| 	    $3,023,109| 	              $5,098,011| 	$9,967,509|
 |Dealer Query| $9,708,960|  $532,086,840| 	$7,437,288| 	$2,832,603| 	    $62,300,665| 	$25,395,970| 	    $61,321,459| 	            $5,152,426| 	$10,040,221|
 
-# Matching to Observer data
+# Sample Code
 1.  [Code](/code_fragments/DMIS_observer_match.sas) to match observer data to DMIS 
 
 
