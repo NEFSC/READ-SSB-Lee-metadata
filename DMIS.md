@@ -158,11 +158,7 @@ For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_curren
 
 # Sample Code
 1.  [Code](/code_fragments/DMIS_observer_match.sas) to match observer data to DMIS 
-
-
-# Groundfish trips
-
-This will get you groundfish trips every time:
+2.  This will get you groundfish trips every time:
 ```
 select XYZ
 from APSD.t_ssb_trip_current@garfo_nefsc T, APSD.t_ssb_catch_current@garfo_nefsc C
