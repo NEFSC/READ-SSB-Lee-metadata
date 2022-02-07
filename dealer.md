@@ -95,6 +95,8 @@ This bit of code may help:```select * from cfspp order by doc desc;```
     + Scallop in-shell prices can be quite variable.
     + miscellaneous "parts" like monk liver, cod cheeks, or skate racks will have zero or null SPPLIVLB.
 
+# Sample Code
+
 * The length distribution of landed fish might be useful. This code extracts the length distribution for cod in 2010:
 ```
 select year, state, nespp4, length, sum(numlen) as num_len from cflen2010
@@ -103,7 +105,7 @@ group by nespp4, year, state, length;
 ```
 
 
-## Sample Projects
+# Sample Projects
 + Construct prices for fish [Lee, Demarest, Ardini].
 + Construct trip revenues, post 2005 [Demarest]
 + Commercial Landings and Revenues for the “Community Profiles.” [Olson, Colburn]
