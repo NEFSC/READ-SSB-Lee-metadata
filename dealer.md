@@ -25,6 +25,8 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 
 + Mandatory electronic reporting began in 2004. This improved quality of data, in particular, the collection of VTRSERNO,which improves matching to VTR data.        
 
++ The NEPORT=331627 was incorrectly mapping to BARNEGAT LIGHT/LONG BEACH. 331527 has been added as BARNEGAT LIGHT and 331627 now maps to LONG BEACH (ie, the entire Township). Legacy/Historical data with NEPORT=331627 will be updated to 331527 under the assumption that fishers were reporting based on Port Name.  This changes is effective approximately Jan, 2022 [Chris Tholke, Jan 13, 2022].
+
 # Tips and Tricks
 
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the the CFDBS.VTRSERNO to VESLOG.SERIAL_NUM.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
