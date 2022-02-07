@@ -103,6 +103,9 @@ select PER_NUM AS PERMIT,
 ```
 The date_eligible and date_cancelled fields were broken during the cleanup. I'm not sure the best way to deal with it.
 
+
+# Sample Code
+
 Here's some code to link right_ids to permits for just the multispecies fishery, courtesy of Dan Caless.:
 ```
 SELECT PER_NUM AS PERMIT,
@@ -118,7 +121,6 @@ SELECT PER_NUM AS PERMIT,
 		AND DATE_ELIGIBLE IS NOT NULL
 		AND (TRUNC(DATE_CANCELLED) >= '01-MAY-03' or DATE_CANCELLED IS NULL):
 ```
-
   
 # Sample Projects
 
