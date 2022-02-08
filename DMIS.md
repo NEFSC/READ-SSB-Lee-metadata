@@ -189,3 +189,19 @@ and T.groundfish_permit is not null
 and T.sector_id <> 2
 and C.secgearfish <> 'CAR'
 ```
+
+
+
+# Update Frequency and Completeness 
+
+# Other Metadata sources
+
++ Preceded by: 
++ Succeeded by: CAMS (tbd)
+
+# Related Tables 
+
+# Support Tables 
+
+
+
