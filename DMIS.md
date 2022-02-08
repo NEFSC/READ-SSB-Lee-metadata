@@ -8,7 +8,7 @@ The Data Matching and Imputation System is maintained by GARFO. Just email Micha
 * APSD.t_ssb_catch_current@garfo_nefsc 
 * APSD.t_ssb_discard_current@garfo_nefsc
 
-Snapshot tables:
+obsolete tables:
 * APSD.t_ssb_trip@garfo_nefsc
 * APSD.t_ssb_catch@garfo_nefsc 
 * APSD.t_ssb_discard@garfo_nefsc
