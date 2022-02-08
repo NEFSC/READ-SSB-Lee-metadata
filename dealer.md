@@ -125,8 +125,9 @@ group by nespp4, year, state, length;
 + NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
 
 + Preceded by: “Weighout” (WODETSyy and WODETTyy)
-+ Succeeded by: n/a
++ Succeeded by: CAMS (tbd), for just the AA tables.
 
+# Support Tables 
 ## Related Tables
 + CFDERSyyyyAA tables - “perform some Area Allocation”
 + CFDETSyyyyAA tables - “perform some Area Allocation”
