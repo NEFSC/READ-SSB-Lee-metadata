@@ -1,6 +1,6 @@
 
 
-## Overview
+# Overview
 The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
 
 Tables: VESLOGyyyyT;  VESLOGyyyyG;  VESLOGyyyyS;  
@@ -13,10 +13,10 @@ Schema: VTR
 + one table per year
         
         
-## Current Collection Methods
+# Current Collection Methods
 These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished. 50CFR648.7(b)(1).
 
-## Changes to Collections Methods
+# Changes to Collections Methods
 + The VTR form has changed slightly over time.  You can get the VTR form, with instructions at https://www.greateratlantic.fisheries.noaa.gov/aps/evtr/vtr_inst.pdf
 
 + Electronic VTRs start in 2011.
