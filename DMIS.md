@@ -2,21 +2,26 @@
 # Overview
 The Data Matching and Imputation System is maintained by GARFO. Just email Michael Lanning at GARFO, he's got all the answers. j.michael.lanning@noaa.gov 
 
-Tables: 
-APSD.t_ssb_trip@garfo_nefsc
-APSD.t_ssb_catch@garfo_nefsc 
-APSD.t_ssb_discard@garfo_nefsc
+"Live" Tables: 
 
-APSD.t_ssb_trip_current@garfo_nefsc
-APSD.t_ssb_catch_current@garfo_nefsc 
-APSD.t_ssb_discard_current@garfo_nefsc
+* APSD.t_ssb_trip_current@garfo_nefsc
+* APSD.t_ssb_catch_current@garfo_nefsc 
+* APSD.t_ssb_discard_current@garfo_nefsc
 
+Snapshot tables:
+* APSD.t_ssb_trip@garfo_nefsc
+* APSD.t_ssb_catch@garfo_nefsc 
+* APSD.t_ssb_discard@garfo_nefsc
 
-Location: GARFO super secret server
+Location: GARFO super secret server (but really, @garfo_nefsc)
 
 Schema: 
 
-# GARFO provided metadata
+DMIS and AA are expected to be replaced by CAMS.
+
+# Current Collection Methods
+
+## GARFO provided metadata
 
 Here are a few documents that describe DMIS.
 
@@ -26,10 +31,17 @@ Here are a few documents that describe DMIS.
 1.  [DMIS and AA comparison](/external/NRCC-Report-Catch-Differences-180511-Lanning.pdf).   J. Michael Lanning's Presentation that describes AA and DMIS, given to [NRCC on May 15,2018](https://www.nefmc.org/calendar/may-15-16-2018-nrcc-meeting).
 1.  [DMIS Binning Rules](/external/Groundfish%20Quota%20Monitoring%20Binning%20Rules_201223.docx) for the "fishery_group" column. 
   
+# Changes to collection methods
+
+DMIS may inherit changes from 
 
 
+# Tips and Tricks
 
-# Linking to Veslog
+## General Caveats
+
+
+### Linking to Veslog
 
 Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020)
 1.  JML adds digits to DMIS DOCID to denote subtrips.
@@ -37,8 +49,17 @@ Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020
 1.  A third is that DMIS will Give positive (mostly correct) match’s where the DOCID fails for these and other reasons.
 
 
+For (1): 
 
-# On Home Consumption Fish
+```
+select docid_length,count(*) from(
+select length(to_char(docid)) as docid_length from APSD.t_ssb_trip_current@garfo_nefsc where docid is not null) group by docid_length;
+```
+because the docids are all either 7 (paper) or 14 (electronic) digits 
+
+For (2): you can use the `to_char()` function in oracle sql to force oracle to extract this column as a string. You can leave it as a string or use your statistical software to convert the string back to a number.
+
+### On Home Consumption Fish
 
 > The code for this stuff is BHC_ (either _LIVE_POUNDS or _LANDED_POUNDS).  "BHC" stands for "Bait and Home Consumption".  A few years ago they added LUMF (Legal UnMarketable Fish) to this category as well.  LUMF, at lease for here, and at least as I understand it, is derived from observer trips only.  But I'm not 100% sure on that. If you use DLR_LIVE or DLR_LANDED (or DLR_DOLLAR) you won't get the BHC fish.  If you use LANDED or POUNDS or DOLLAR_SSB/GDP you'll get 'em, plus imputed values for the DOLLAR field. Starting on the next run of DMIS, fish that are authorized to be landed on EFP trips but are not sold thu a dealer will be added to the BHC_ fish.   Chad's email April 11, 2018.
 
@@ -68,7 +89,7 @@ Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020
 |2020    | 618,861| 	      923,960,142|     956,768,538| 
 |2021    | 468,514| 	    1,030,426,010|   1,077,516,423| 
 
-# Prices
+### Prices
 
 Here is the algorithm for doing prices in DMIS circulated on March 7, 2021.
 
@@ -134,7 +155,7 @@ Week/ (NESPP3) / North East
 Month / (NESPP3) / North East     
 
 ```
-# Price Variables
+### Price Variables
 
 There are two different price variables within DMIS.
 
@@ -143,7 +164,7 @@ DLR_DOLLAR: The value of landed catch to the nearest dollar, paid to fishermen b
 DOLLAR_SSB: In addition to the values represented in the DLR_DOLLAR variable, DOLLAR_SSB imputs values according to the above code. Imputation is performed in the cases of bait and home consumption (BHC) or if there is a VTR record, but no matching dealer report.
 *Greg has some correspondence from Dan Caless that he can forward to anyone interested.
 
-# Completeness of Fishery Revenue data
+## Completeness of Fishery Revenue data
 For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_current@garfo_nefsc) includes the vast majority of ex-vessel revenues as compared to CFDBS. However, in fisheries which have large state waters components, or unqiue reporting requirements, DMIS may fail to capture a significant portion of revenues. A comparison of fishery ex-vessel revenues in 2018 for the two data sources is provided below. Note lobster and SC/OQ. 
 
 | Schema   | Black Sea Bass| 	Bluefish| 	 Groundfish| 	Herring| 	    Jonah Crab| 	  Lobster| 	    Mackerel| 	  Monkfish| 	    Red Crab|
