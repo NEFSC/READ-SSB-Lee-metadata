@@ -106,6 +106,10 @@ where nespp3=081
 group by nespp4, year, state, length;
 ```
 
+If you need to extract many years of CFBDB data, do it in a loop. 
+*  Here is a bit of sample code in [R](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/R_code/data_extraction_processing/extraction/r_oracle_connection.R) and in [stata](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/stata_code/data_extraction_processing/extraction/extract_from_sole.do) for veslog, just modify it to query from CFDBS.
+
+
 
 # Sample Projects
 + Construct prices for fish [Lee, Demarest, Ardini].
