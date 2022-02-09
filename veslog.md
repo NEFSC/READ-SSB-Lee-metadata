@@ -96,7 +96,7 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 # Sample Code
 
 If you need to extract many years of VESLOG data, do it in a loop. 
-*  Here is a bit of [sample code](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/R_code/data_extraction_processing/extraction/r_oracle_connection.R) in R
+*  Here is a bit of sample code in [R](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/R_code/data_extraction_processing/extraction/r_oracle_connection.R) and in [stata](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/stata_code/data_extraction_processing/extraction/extract_from_sole.do)
 
 # Sample Projects 
 
