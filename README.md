@@ -13,7 +13,7 @@ This has consequences for reproducibility if you do not store a copy of the data
 1.  There are tables and there are views.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
 ![sql picture](/figures/sql.png)
 
-1.  If you want to use ODBC with R or Stata to read data straight into your software, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-templates)
+1.  If you want to use ODBC with R or Stata to read data straight into your software, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-template)
 
 1.  It's good practice to include the schema when you query data. That is, write:
 ```
