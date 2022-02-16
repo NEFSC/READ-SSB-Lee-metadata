@@ -49,7 +49,7 @@ Linking to VESLOG with DMIS DOCID has a few issues. (Chad Demarest, May 14, 2020
 1.  A third is that DMIS will Give positive (mostly correct) match’s where the DOCID fails for these and other reasons.
 
 
-For (1): 
+As of Feb 2022, I'm not sure if (1) is still true: 
 
 ```
 select docid_length,count(*) from(
