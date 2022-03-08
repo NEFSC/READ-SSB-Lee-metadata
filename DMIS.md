@@ -30,7 +30,15 @@ Here are a few documents that describe DMIS.
 1.  [DMIS Documentation](/external/DMIS%20Documentation.pdf).   This appears to be from J. Michael Lanning and last modified on September 26, 2019.
 1.  [DMIS and AA comparison](/external/NRCC-Report-Catch-Differences-180511-Lanning.pdf).   J. Michael Lanning's Presentation that describes AA and DMIS, given to [NRCC on May 15,2018](https://www.nefmc.org/calendar/may-15-16-2018-nrcc-meeting).
 1.  [DMIS Binning Rules](/external/Groundfish%20Quota%20Monitoring%20Binning%20Rules_201223.docx) for the "fishery_group" column. 
-  
+
+Ben Galuardi has built a custom DMIS table that combines the surfclam data with the DMIS data. It runs from 2007 to present.  The code used to generate it is [here](/external/make_sfclam_only_013022.sql) and [here]((/external/MAKE_DMIS_SFCLAM_122121.sql).  This DMIS table can be queried by:
+
+```
+select * from APSD.DMIS_WIND_TEST@garfo_nefsc
+```
+This table was constructed specifically to support the [offshoreWind](https://github.com/dcorvi/offshoreWind). It only has a subset of columns, but it retains linking variables additional data can easily be added to it.  
+
+
 # Changes to collection methods
 
 DMIS may inherit changes from 
