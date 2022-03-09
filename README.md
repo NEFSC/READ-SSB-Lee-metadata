@@ -1,5 +1,5 @@
-# Social Sciences Branch Oracle Metadata
-Describes data in the NEFSC databases with a special eye towards fields that are used by social scientists.  Sometimes contains sample code to extract data.
+# Social Sciences Branch Metadata
+Describes data in the NEFSC databases with a special eye towards fields that are used by social scientists.  This is mostly oracle focused, but there is information on other data sources too.  Sometimes contains sample code to extract data.
 
 Please help make this a valuable up-to-date resource.  To add your knowledge, follow the instructions in the "How to help" section [here](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently).
 
