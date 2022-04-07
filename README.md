@@ -30,6 +30,9 @@ select * from vps_owner
 
 [CAMS](CAMS.md): Catch Accounting and Monitoring System . The next generation DMIS and _AA
 
+[Client](Client.md) :The Client schema
+
+
 [Cost Survey](Cost_survey.md) : Cost survey Data
 
 [Dealer](dealer.md) Dealer or Commercial Fisheries Dealer Database (CFDBS)
