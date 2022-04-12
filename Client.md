@@ -2,11 +2,16 @@
 
 All about the Client Schema
 
-Tables:
+Tables: bus_own 
 
-Location: 
+Location: @garfo_nefsc
 
-Schema: 
+Schema: Client
+
+Example: Client.bus_own@garfo_nefsc
+
+# Overview
+This table is the source of most up-to-date and complete data related to the PERSON_ID variable (confirmed by Ted Hawes 04.12.2022) 
 
 # Current Collection Methods
 # Changes to collection methods
