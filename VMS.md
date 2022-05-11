@@ -3,6 +3,7 @@
 
 VMS data is maintained by [NMFS OLE](http://www.nmfs.noaa.gov/ole/index.html).  It contains a vessel id, a timestamp, and location.
 
+As of the end of 2018, the contact at NMFS OLE was Kelly Spalding .
 
 Tables: Not sure
 
