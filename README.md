@@ -51,6 +51,8 @@ select * from vps_owner
 
 [Veslog](veslog.md) : Vessel Trip Reports (VTRs)
 
+[VMS](VMS.md) : Vessel monitoring system  (VMS)
+
 [SSB survey and Data Efforts](SSB%20Survey%20and%20Data%20Efforts%20Tracking.md): SSB data collections that are not in oracle.
 
 
