@@ -9,6 +9,8 @@ Please help make this a valuable up-to-date resource.  To add your knowledge, fo
 
 1. There are various schema. Schema are collections of related tables.
 
+1. Quality Assurance and Quality Control (QA/QC) is often needed as the data are imperfect. 
+
 1.  Many data tables are live, with nightly or continuous updates. For example, when working with the  dealer data, expect approximately 300 changes or additions to the current and previous year of data per day. Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
 This has consequences for reproducibility if you do not store a copy of the data.
 
@@ -29,8 +31,6 @@ select * from vps_owner
 
 ```
  
-1. Quality Assurance and Quality Control (QA/QC) is often needed as the data are imperfect. 
-
 # The Goods (alphabetically)
 
 [AMS and DAS ](AMS_DAS.md) : Allocation Management System (AMS); Days-at-Sea Management System
