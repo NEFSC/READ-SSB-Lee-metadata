@@ -12,6 +12,7 @@ The dealer data are transaction-level reports at the level of the “market-cate
 + CFDERSyyyy contains “detailed species data” for 2004-present
 + CFLENyyyy -fish-level port sampling data for length
 
+
 Additionally, APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.  This can be accessed with
 
 select * from fso_admin.cfders_all_years@garfo_nefsc;
@@ -96,6 +97,11 @@ This bit of code may help:```select * from cfspp order by doc desc;```
 * Live and Landed weights are recorded.  
     + Scallop in-shell prices can be quite variable.
     + miscellaneous "parts" like monk liver, cod cheeks, or skate racks will have zero or null SPPLIVLB.
+
+* The AA tables are created at the end of a calendar year and released mid-May of the following year
+    + Used for Catch Accounting
+    + More-or-less static
+    + A guideline: use the AA tables if you need consistency with stock assessment or other products that also use them.
 
 # Sample Code
 

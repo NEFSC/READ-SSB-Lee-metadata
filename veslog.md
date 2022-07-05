@@ -3,7 +3,10 @@
 # Overview
 The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
 
-Tables: VESLOGyyyyT;  VESLOGyyyyG;  VESLOGyyyyS;  
+Tables: 
++ VESLOGyyyyT - contains trip level information
++ VESLOGyyyyG - contains gear information  
++ VESLOGyyyyS - contains species (Catch) information  
 
 Location: Sole
 
@@ -14,7 +17,7 @@ Schema: VTR
         
         
 # Current Collection Methods
-These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished. 50CFR648.7(b)(1).
+These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished.  Both commericial and for-hire (charter or party) recreational vessels are required to file VTRs.  50CFR648.7(b)(1).  
 
 # Changes to Collections Methods
 + The VTR form has changed slightly over time.  You can get the VTR form, with instructions at https://www.greateratlantic.fisheries.noaa.gov/aps/evtr/vtr_inst.pdf
@@ -29,10 +32,10 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 # Tips and Tricks.
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the VTRSERNO in CFDBS to SERIAL_NUM in the VTR.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 + Vessels may declare out of fishing.  The NOT_FISHED column in VESLOG_T can be used to filter these out.   
-+ The TRIPID is unique to a "fishing trip." 
++ The TRIPID is unique to a "fishing trip." (PRIMARY KEY)
     * A TRIPID to should match to at least one GEARID.
     * A TRIPID to should match to at least one CATCH_ID (if a vessel caught any fish)
-    * The NRPAGES and NSUBTRIP Columns will be something other than ```1``` if there are more than one GEARID corresponding to a particular TRIPID. 
+    * The NRPAGES and NSUBTRIP Columns will be something other than "1" if there are more than one GEARID corresponding to a particular TRIPID. 
 + The GEARID is unique to the "gear-mesh-area" fished. There should be a one-to-one correspondence between GEARID and SERIAL_NUM.  
     * A GEARID to should match to exactly 1 TRIPID
     * A GEARID to could match to 0 CATCH_ID if no fish was caught.

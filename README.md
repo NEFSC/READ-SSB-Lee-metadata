@@ -1,14 +1,18 @@
 # Social Sciences Branch Metadata
-Describes data in the NEFSC databases with a special eye towards fields that are used by social scientists.  This is mostly oracle focused, but there is information on other data sources too.  Sometimes contains sample code to extract data.
+This repository describes data in the NEFSC databases with a special eye towards fields that are used by social scientists.  It is intended as a supplement to the [data dictionary system](https://nova.nefsc.noaa.gov/datadict/). This repository is mostly oracle focused, but there is information on other data sources too.  Sometimes it contains sample code to extract data.
 
-Please help make this a valuable up-to-date resource.  To add your knowledge, follow the instructions in the "How to help" section [here](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently).
+Please help make this a valuable up-to-date resource.  To add your knowledge, follow the instructions in the [How to help](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently) section.
 
-# General things
+# Basics and General Thoughts
+
+1. Most data are stored in Oracle databases, primarily on the "sole" and "nova" servers.
+
+1. There are various schema. Schema are collections of related tables.
 
 1.  Many data tables are live, with nightly or continuous updates. For example, when working with the  dealer data, expect approximately 300 changes or additions to the current and previous year of data per day. Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
 This has consequences for reproducibility if you do not store a copy of the data.
 
-1.  Make sure the table that you're using is not "stale."  Alot of the data is copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
+1.  Make sure the table that you're using is not "stale."  Some of the data is stored at GARFO and periodically copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
 
 1.  There are tables and there are views.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
 ![sql picture](/figures/sql.png)
@@ -24,6 +28,9 @@ instead of
 select * from vps_owner
 
 ```
+ 
+1. Quality Assurance and Quality Control (QA/QC) is often needed as the data are imperfect. 
+
 # The Goods (alphabetically)
 
 [AMS and DAS ](AMS_DAS.md) : Allocation Management System (AMS); Days-at-Sea Management System

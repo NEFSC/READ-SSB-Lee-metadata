@@ -1,5 +1,13 @@
 # Overview
-Tables: VPS_VESSEL; VPS_FISHERY_NER; BUS_OWN, VPS_OWNER
+Tables: 
+
+* VPS_VESSEL - Holds vessel characteristic information (horsepower, length, gross tonnage) associated with a particular vessel permit 
+* VPS_FISHERY_NER - Detailed information on a vessel’s associated permit types.  
+Plan is the fishery management plan (FMP).  Cat is the category within that Plan.
+* BUS_OWN -Contains business ownership information that describest the people that own a fishing firm.  Allows for grouping of permits into firms based on identical owners.
+* VPS_OWNER -  Contains ownership information, including a business ID.
+* DEALER - Contains information on federal dealer permit application information 
+
 
 Location: Sole
 
