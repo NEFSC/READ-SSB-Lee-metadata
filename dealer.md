@@ -66,7 +66,6 @@ group by year, port;
     + Cod (080, 081) 
     + Monkfish (011, 012)
     + Winter flounder (119, 120)
-    + Yellowtail flounder (122, 123)
     + Haddock (147, 148)
     + White hake (153, 154).  155 is Red/White mixed
     + Pollock (269, 270)
