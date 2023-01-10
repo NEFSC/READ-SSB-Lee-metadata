@@ -1,4 +1,5 @@
-
+# Warning
+As of at least January 6, 2023 this table is no longer being supported by ITD. This means the table is not being updated and users should switch to GARFO VTR tables and ultimately CAMS when available.
 
 # Overview
 The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.

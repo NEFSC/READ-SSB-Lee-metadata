@@ -1,3 +1,6 @@
+# Warning
+Dealer database management was transitioned to GARFO in late 2022 and the Center views and tables are no longer being updated as of at least January 6, 2023. However, there is a duplication of surf clam and ocean quahog landings currently in GARFO's version of the tables. In addition, it seems that there is 35,000 metric ton difference in aggregate landings between the center and GARFO versions of CFDERS in the years 2020 and 2021. Both of these issues were caught by Susan Wigley. GARFO is in the process of tracking these issues/differences down and applying a fix. However, as of now there isn't a "correct" table to use.
+
 ## Overview
 
 Tables: CFDETSyyyy; CFDERSyyyy 
