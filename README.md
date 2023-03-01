@@ -1,7 +1,13 @@
 # Social Sciences Branch Metadata
 This repository describes data in the NEFSC databases with a special eye towards fields that are used by social scientists.  It is intended as a supplement to the [data dictionary system](https://nova.nefsc.noaa.gov/datadict/). This repository is mostly oracle focused, but there is information on other data sources too.  Sometimes it contains sample code to extract data.
 
-Please help make this a valuable up-to-date resource.  To add your knowledge, follow the instructions in the [How to help](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently) section.
+Please help make this a valuable up-to-date resource. This repository is public, but writing to the "master" branch is protected. To contribute, you should either:
+
+1. Create a branch, make your changes, and issue a pull request. Make sure to request a review from someone in SSB that is on the "approving list."
+2. Fork this repository to create your own version, make changes, and issue a pull request.
+
+See the instructions in the [How to help](https://github.com/NEFSC/READ-SSB-Lee-WorkingEfficiently) section for more info.
+
 
 # Basics and General Thoughts
 
