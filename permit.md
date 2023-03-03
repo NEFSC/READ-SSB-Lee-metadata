@@ -9,6 +9,8 @@ Plan is the fishery management plan (FMP).  Cat is the category within that Plan
 * DEALER - Contains information on federal dealer permit application information 
 
 
+*the BUS_OWN table is not the main view for business onwer information. THat is found here: Client.bus_own@garfo_nefsc. For more information on this system see Client.md
+
 Location: Sole
 
 Schema: PERMIT
@@ -38,6 +40,8 @@ select * from vps_vessel where (date_issued<>date_canceled or date_canceled is n
 * Similarly, you may  want to exclude rows where start_date >=end_date or start_date>=date_expired 
  
 *  BUS_OWN and VPS_OWNER are used to aggregate multi-vessel firms together for Regulatory Flexibility Act Analysis. 
+*  NOTE,*the BUS_OWN table is not the main view for business onwer information. THat is found here: Client.bus_own@garfo_nefsc. For more information on this  system see Client.md
+
 
 * Scallop and Groundfish "ownership" has been databased going back to 1996 (OWNER_HISTORY_PIDS). Not exactly relevant, but could track "income" or something else at the firm level for a sbuset of those two fisheries. Be careful when thinking about 
 
@@ -60,7 +64,7 @@ select * from vps_vessel where (date_issued<>date_canceled or date_canceled is n
 
 
 # Related Tables
-+ BUS_OWN contains ownership data that is often linked to these PERMIT data. We'll put them in a separate section.
++ CLIENT.BUS_OWN contains ownership data that is often linked to these PERMIT data. We'll put them in a separate section.
 + MQRS tracks the ability of a *thing* to participate in a moratorium fishery. We'll put them in a separate section.  Allocations are tracked in other places (DAS, DAS2, and AMS).
 + CPH
 + OPERATORS (captains) are permitted independently 
