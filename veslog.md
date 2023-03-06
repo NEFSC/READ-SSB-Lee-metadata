@@ -118,6 +118,19 @@ If you need to extract many years of VESLOG data, do it in a loop.
 # Related Tables very incomplete.
 + CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. C,I,D are a single table, not one per year.  I can't even.
 
+The following SQL code stitches together vtr records from GARFO's C,I,D tables
+```
+select d.*, i.*, c.*
+  from noaa.document@garfo_nefsc d,  -- vessel permit, sail, land, crew, trip category (commercial, P/C, rec)
+       noaa.images@garfo_nefsc i,    -- Subtrip information, gear, effort, area
+       noaa.catch@garfo_nefsc c      -- Species, kept, discarded, who sold to, ddate_sold
+ where i.docid = d.docid
+   and c.imgid = i.imgid;
+
+```
+
+
+
 # Support Tables very incomplete.
 + VLSPPTBL decodes SPPCODES into names and NESPP4 codes. So does VLSPPSYN_94_95, which looks deprecated.    
 + TENMINSQ, LOC,LOC2AREAS
