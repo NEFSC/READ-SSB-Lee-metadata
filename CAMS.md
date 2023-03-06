@@ -1,6 +1,12 @@
 # Overview
-
 CAMS is slated to replace both the CFDBS_AA tables and the DMIS tables.
+
+Location: NEFSC_USERS
+
+Schema: CAMS_GARFO
+
+Metadata can be found here: http://nerswind/cams/cams_documentation/index.html
+
 
 # Current Collection Methods
 
@@ -11,7 +17,7 @@ CAMS is slated to replace both the CFDBS_AA tables and the DMIS tables.
 # General Caveats.
 
 # Sample Code
-+
++ select * from CAMS_GARFO.CAMS_LANDINGS; 
 + 
 
 # Update Frequency and Completeness 
