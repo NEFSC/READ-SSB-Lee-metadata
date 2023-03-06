@@ -2,6 +2,8 @@
 
 CAMS is slated to replace both the CFDBS_AA tables and the DMIS tables.
 
+Metadata can be found here: http://nerswind/cams/cams_documentation/index.html
+
 # Current Collection Methods
 
 # Changes to Collections Methods
