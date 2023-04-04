@@ -11,9 +11,9 @@ See the instructions in the [How to help](https://github.com/NEFSC/READ-SSB-Lee-
 
 # Basics and General Thoughts
 
-1. Most data are stored in Oracle databases, primarily on the "sole" and "nova" servers.
+1. Most data are stored in **Oracle databases**, which are located on the "sole" and "NEFSC_USERS" **servers**.  "Nova" was shut down in 2022 and replaced with NEFSC_USERS on NEFSCDB1. 
 
-1. There are various schema. Schema are collections of related tables.
+1. There are various **schema**. Schema are collections of related tables.
 
 1. Quality Assurance and Quality Control (QA/QC) is often needed as the data are imperfect. 
 
@@ -22,7 +22,7 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 1.  Make sure the table that you're using is not "stale."  Some of the data is stored at GARFO and periodically copied from GARFO to NEFSC servers. Sometimes, they stop getting copied. Sometimes they are updated monthly. One way to check this is to get the maximum DE, DC, or some other date field.
 
-1. Exploring the databases using SQLDeveloper is a good way to biuld some intuition
+1. Exploring the databases using SQLDeveloper is a good way to build some intuition
     +  In the Connections tab, connect to Sole
     +  Expand the "Other Users" tab.
     +  Expand a schema, like "CFDBS" and explore both "Tables" and "Views" corresponding to that schema.
@@ -33,16 +33,22 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 1.  If you want to use ODBC with R or Stata to read data straight into your software, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-template)
 
-1.  It's good practice to include the schema when you query data. That is, write:
+1.  It's good practice to include the schema and server when you query data. That is, write:
 ```
-select * from permit.vps_owner
+select * from permit.vps_owner@sole
 ```
 instead of 
 ```
 select * from vps_owner
-
 ```
- 
+
+1.  There are tables at GARFO that can be queried through a **database link**.  For example, while connected to sole, you can do
+```
+select * from document@garfo_nefsc 
+```
+to pull the GARFO "document" table. 
+
+
 # The Goods (alphabetically)
 
 [AMS and DAS ](AMS_DAS.md) : Allocation Management System (AMS); Days-at-Sea Management System
