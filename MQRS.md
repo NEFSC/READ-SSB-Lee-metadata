@@ -103,6 +103,10 @@ select PER_NUM AS PERMIT,
 ```
 The date_eligible and date_cancelled fields were broken during the cleanup. I'm not sure the best way to deal with it.
 
+## Confirmation of Permit History
+A vessel owner can put a vessel's history into the Confirmation of Permit History program. This allows a vessel owner to get the benefits of a vessels history when a vessel does not exist. Perhaps a vessels was scrapped, sunk, or sold without it's history. For some fisheries (groundfish), this means that the owner can still recieve an annual allocation.  The owner databases are linked to vessels in the CPH program. 
+
+A vessel's history must be moved out of the CPH program to a vessel owned by the person that put the history into the CPH program before it is sold.  GARFO only will allow transfers of CPH when the sole permit holder is deceased and an estate or heir is taking possesion. An owner with a vessel in CPH is not required to fill out annual paperwork (like a permit renewal form). However, because the "transfer before sale" requirement, we know who owns the history even without a data collection effort like this.
 
 # Sample Code
 
