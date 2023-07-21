@@ -1,5 +1,4 @@
-Hi!
-Cost survey data is currently being databased in Oracle (07.21.2023). As of today, data from 20011, 2012 and 2015 are found on Oracle. The cost survey working group is also allocating efforts to database the 2022 data and 2006, 2007 and 2008 data.
+Cost survey data is currently being databased in Oracle (07.21.2023). As of today, data from 2001, 2012 and 2015 are found on Oracle. The cost survey working group is also allocating efforts to database the 2022 data and 2006, 2007 and 2008 data.
 Location: NEFSCDB1 (new nova)
 Schema: SSB_COST_SURVEY
 Views: 
