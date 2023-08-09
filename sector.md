@@ -6,7 +6,15 @@ Tables: SECTOR and derivatives
 Location: Sole
 
 Schema: MQRS
-        
+
+mv_mri_permit_vessel_history - contains the sector rosters, including permit numbers, vessel hull ids and other useful information. Use this instead of the MQRS.SECTOR_YEAR_ROSTERS views.
+
+SECTOR_MRI - contains just the MRI, sector name, sector id, fishing year and start/end dates.
+
+PSC_MRI_AS_PERCENT - MRI level allocations, in percentage terms.    
+
+ACE_MRI_AS_POUNDS - MRI level allocations, in pounds.    
+
 # Current Collection Methods
 
 # Changes to Collections Methods
