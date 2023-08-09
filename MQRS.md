@@ -22,7 +22,7 @@ Someone at GARFO puts data into the MQRS databases.
 
 ## General Caveats
 
-  *  The sector rosters can now be found in the table ``sector.mv_mri_permit_vessel_history.``
+  *  The sector rosters can now be found in the table ``sector.mv_mri_permit_vessel_history.``  See the sector schema.
   
   *  The data from 2010-2019 is also stored in "SECTOR_YEAR_ROSTERS,"  but it is easier to use the ``sector.mv_mri_permit_vessel_history.`` These contain a sector_id, year, and MRI (among other things.)  There are also "views" (SECTOR_PARTICIPANTS_CPHYYYY and SECTOR_PARTICIPANTS_NO_CPHYYYY). However, these views are not updated past the 2019 groundfish fishing year. If interested in linking a groundfish MRI to a permit, SECTOR.MRI_PERMIT_VESSEL_HISTORY should be used. There is also SECTOR.MRI_PERMIT_HISTORY. This table appears to be updated as of November 30, 2021. However, Torey Adler (GARFO APSD) indicated that it will eventually "go away".  
 
