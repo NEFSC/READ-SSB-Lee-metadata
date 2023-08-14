@@ -27,9 +27,6 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 
 + Some fisheries allow for (or require) reporting through a different system.
 
-+ In 2019, the PORT code and PORTLND1 variable has been frequently NULL.
-> When the (e-VTR) app was programmed the intent was to replicate the paper VTR but landed port was left off the fields to be entered. I'm not sure when/if this will be corrected and this was not well advertised as APSD did not know about this until July. The sail port was included so to the extent to which sail port and landed port may be the same would be an alternative work around. For recreational evtr's this is very likely since passengers need to get back to where their cars are parked.  --Eric Thunberg, October 1, 2020.
-
 # Tips and Tricks.
 + A dealer-veslog link can be made reasonbly well starting in 2005.  To make this link, match the VTRSERNO in CFDBS to SERIAL_NUM in the VTR.  Chances are that you care about Trip-level outcomes: be careful, because a vessel may have more than one SERIAL_NUM per TRIPID in the VESLOG tables.
 + Vessels may declare out of fishing.  The NOT_FISHED column in VESLOG_T can be used to filter these out.   
@@ -51,6 +48,11 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
 * Electronic VTRs have very long SERIAL_NUM, TRIPID, GEARID, and CATCH_ID.  Some software doesn't like this (Excel, stata) -- you might want to do this:
 
 ```select to_char(g.serial_num) from vtr.veslog2014g g```
+
+To quickly pull the EVTRs, you can do this:
+```
+ select * from vtr.veslog2020G b where substr(b.SERIAL_NUM,9,16) is not null;
+```
     
 * Some of the older numbers (from 1994-1995) are non-numeric. 
     
@@ -69,6 +71,34 @@ These data are the result of mandatory federal vessel reporting.  Federally perm
     + The names corresponding to the port codes may or may not match to Census “units.”  The 2 digit state code does not correspond to FIPS codes.  
     + The PORTLND1 and PORTLND2 fields are data entered and error-corrected on the fly[Lee, Dentremont]  This means that data entry of ```NEW ROCHELL, NY``` is autocorrected to ```NEW ROCHELLE, NY``` and coded as ```PORT=350739```
     + This might provide more insight:```select * from vtr.vlportsyn order by doc desc;```
+    + In 2019, the PORT code and PORTLND1 variable were been frequently NULL.  This appears to have been due to a problem with mapping what people write in the PORTLND1 field on a paper VTR to a port code, but has been fixed.  Here is some sample code to get a handle on trips with missing ports:
+
+```
+/* count up the number of trips with a populated PORTLND1 but a missing PORT code */ 
+select count(tripid), portlnd1, state1, port from vtr.veslog2019t where portlnd1 IS NOT NULL and PORT IS NULL group by portlnd1, state1, port;
+select * from port where stateabb='NY' order by portnm;
+/* there are no rows with missing PORTLND1 but a populated PORT code */
+select count(tripid), portlnd1, state1, port from vtr.veslog2019t where portlnd1 IS NULL and PORT IS NOT NULL group by portlnd1, state1, port;
+
+/* count the number of trips with a missing PORT code, aggregated by tripcatg*/
+select count(tripid), tripcatg, PORT_MISS from (            
+select tripid, tripcatg, CASE  WHEN PORT IS NULL THEN 'Missing' ELSE 'Exists' END PORT_MISS from  vtr.veslog2022t t ) group by tripcatg, PORT_MISS order by tripcatg, PORT_MISS;
+
+/* count the number of trips with a missing PORTLND1 code, aggregated by tripcatg*/
+select count(tripid), tripcatg, PORTLND1_MISS from (            
+select tripid, tripcatg, CASE  WHEN PORTLND1 IS NULL THEN 'Missing' ELSE 'Exists' END PORT_MISS from  vtr.veslog2022t t ) group by tripcatg, PORTLND1_MISS order by tripcatg, PORTLND1_MISS;
+
+
+/* examine missing PORTLND1 for eVTRs*/
+select count(a.TRIPID) from vtr.veslog2019T a, vtr.veslog2019G b where a.tripid = b.tripid and substr(b.SERIAL_NUM,9,16) is not null and a.portlnd1 is null;
+
+/* examine missing PORTLND1 for paper VTRs */
+select count(a.TRIPID) from vtr.veslog2020T a, vtr.veslog2020G b where a.tripid = b.tripid and substr(b.SERIAL_NUM,9,16) is null and a.portlnd1 is null;
+```   
+
+> When the (e-VTR) app was programmed the intent was to replicate the paper VTR but landed port was left off the fields to be entered. I'm not sure when/if this will be corrected and this was not well advertised as APSD did not know about this until July. The sail port was included so to the extent to which sail port and landed port may be the same would be an alternative work around. For recreational evtr's this is very likely since passengers need to get back to where their cars are parked.  --Eric Thunberg, October 1, 2020.
+
+ There are more VTR records with missing PORTLND after 2020, but it is not a massive increase.
     
 * CAREA, CNEMAREA, CLATDEG, CLATMIN, CLATSEC, CLONDEG, CLONMIN, CLONSEC, CERRNO, AREA_IND, TENMSQ
     + The "C" stands for calculated.  The calculation is pretty complicated. [Lee, H. McBride]
