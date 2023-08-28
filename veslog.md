@@ -127,6 +127,8 @@ select count(a.TRIPID) from vtr.veslog2020T a, vtr.veslog2020G b where a.tripid 
     + The captain's writes his number, but it doesn't agree with the NAME
     This type of error seems to happen infrequently, but often enough to be a problem.
 
+* Hullnum in the VESLOG T tables are NULL starting from 2018
+
 # Sample Code
 
 If you need to extract many years of VESLOG data, do it in a loop. 
