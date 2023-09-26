@@ -31,7 +31,7 @@ These sites were compiled by Scott Steinback.
 # Sample Code
 Here is some sample SQL to get the data.  Use SQLDeveloper to connect to SOLE:  
 ```
-select SITE_ID, STOCK_REGION_CALC from RECDBS.MRIP_MA_SITE_LIST;
+select SITE_ID, STOCK_REGION_CALC from recdbs.mrip_ma_site_list@sole;
 ```
 
 
