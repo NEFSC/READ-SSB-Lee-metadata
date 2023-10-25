@@ -5,7 +5,7 @@ Tables:
 
 Location: Sole
 
-Schema: MLEE.  This is in Min-Yang Lee's personal table space, you will have to email him for access. 
+Schema: RECDBS.  Send an email to nmfs.nec.stockeff@noaa.gov to gain access
 
 Recreational fishing trips that occur in Massachusetts sometimes must be assigned to the Gulf of Maine or Georges Bank.  Sites are classified as North or South.
 
@@ -31,7 +31,7 @@ These sites were compiled by Scott Steinback.
 # Sample Code
 Here is some sample SQL to get the data.  Use SQLDeveloper to connect to SOLE:  
 ```
-select * from MLEE.MRIP_MA_SITE_LIST;
+select SITE_ID, STOCK_REGION_CALC from recdbs.mrip_ma_site_list@sole;
 ```
 
 
