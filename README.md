@@ -74,6 +74,8 @@ to pull the GARFO "document" table.
 
 [svdbs](svdbs.md) : Survey Databases
 
+[Trip Costs](Trip_Costs.md) : Dataset containing predicted trip costs
+
 [Veslog](veslog.md) : Vessel Trip Reports (VTRs)
 
 [VMS](VMS.md) : Vessel monitoring system  (VMS)
