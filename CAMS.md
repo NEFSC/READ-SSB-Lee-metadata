@@ -42,6 +42,7 @@ And here is the code to get similar data from CAMS.
 		cl.area between 511 and 515 and 
 		cl.year between $commercial_grab_start and $commercial_grab_end and
 		itis_tsn in ('164712','164744')
+		group by year, extract(month from date_trip), itis_tsn;") $myNEFSC_USERS_conn ;	
 ```
 
 And discards
