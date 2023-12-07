@@ -192,7 +192,7 @@ The following SQL code stitches together vtr records from GARFO's C,I,D tables
 ```
 select d.*, i.*, c.*
   from NEFSC_GARFO.TRIP_REPORTS_DOCUMENT d,  -- vessel permit, sail, land, crew, trip category (commercial, P/C, rec)
-       NEFSC_GARFO.TRIP_REPORTS_IMAGES@garfo_nefsc i,    -- Subtrip information, gear, effort, area
+       NEFSC_GARFO.TRIP_REPORTS_IMAGES i,    -- Subtrip information, gear, effort, area
        NEFSC_GARFO.TRIP_REPORTS_CATCH c      -- Species, kept, discarded, who sold to, ddate_sold
  where i.docid = d.docid
    and c.imgid = i.imgid;
