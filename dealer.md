@@ -9,20 +9,20 @@ Location: Sole
 
 Schema: CFDBS
 
-The dealer data are transaction-level reports at the level of the “market-category.”  These data are primarily generated through mandatory reporting by federally-permitted fish dealers.  The federal reporting is supplemented with data from non-federally-permitted (state-only) fish dealers.  Data are currently reported electronically in partnership with ACCSP through SAFIS.
+The dealer data are transaction-level reports at the level of the market-category.  These data are primarily generated through mandatory reporting by federally-permitted fish dealers.  The federal reporting is supplemented with data from non-federally-permitted (state-only) fish dealers.  Data are currently reported electronically in partnership with ACCSP through SAFIS.
 
-+ CFDETSyyyy contains “detailed species data” for 1994-2003
-+ CFDERSyyyy contains “detailed species data” for 2004-present
++ CFDETSyyyy contains **detailed species data**  for 1994-2003
++ CFDERSyyyy contains **detailed species data** for 2004-present
 + CFLENyyyy -fish-level port sampling data for length
 
 
-Additionally, APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.  This can be accessed with
+Additionally, APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.  This can be accessed with 
 
-select * from fso_admin.cfders_all_years@garfo_nefsc;
+select * from NEFSC_GARFO.CFDERS_ALL_YEARS;
 
         
 # Current Collection Methods
-These data are the result of mandatory federal dealer reporting at the “trip-level”, supplemented by state-level, aggregated reporting.  Federally permitted fish dealers that are required to report purchases of all fish to NMFS.
+These data are the result of mandatory federal dealer reporting at the *trip-level*, supplemented by state-level, aggregated reporting.  Federally permitted fish dealers that are required to report purchases of all fish to NMFS.
 
 # Changes to Collections Methods
 + The number of species triggering these requirements have increased over time, which has implications for completeness (50 CFR 648.6). For example, mandatory dealer reporting for Monkfish, herring, and hagfish began in 1999, 2001, and 2007 respectively.
@@ -38,7 +38,7 @@ These data are the result of mandatory federal dealer reporting at the “trip-l
 +  APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.
 
 ```
-select * from fso_admin.cfders_all_years@garfo_nefsc;
+select * from NEFSC_GARFO.CFDERS_ALL_YEARS;
 ```
 
 + Here is a slick way to check confidentiality using dealer data:
@@ -46,7 +46,7 @@ select * from fso_admin.cfders_all_years@garfo_nefsc;
 ```
  select year, port,
 CASE WHEN LEAST(COUNT(distinct COALESCE(NULLIF(permit,'000000'),NULLIF(cf_license,'0'))),COUNT(distinct COALESCE(TO_CHAR(dealnum),state_dnum))) >=3  THEN 'N' ELSE 'Y' END confidential
-from fso_admin.cfders_all_years@garfo_nefsc
+from NEFSC_GARFO.CFDERS_ALL_YEARS
 where NESPP3 in (081, 082, 120, 122, 123, 124, 125, 147, 152, 153, 155, 240, 269, 512, 159, 250)
 and year > 2018
 group by year, port;
@@ -82,17 +82,17 @@ This bit of code may help:```select * from cfspp order by doc desc;```
     
 This bit of code may help:```select * from cfspp order by doc desc;```
 
-* Data derived from “state” reporting may not include all fields that are populated by “federally reported” dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
+* Data derived from **state** reporting may not include all fields that are populated by federally reported dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
     +  Permit numbers that do not correspond to a single vessel are:
         1.  000000, which means either "no vessel" (ex. from shore or aquaculture),or  "unknown" federal permit, which could be "no federal permit".
         2.  190998,390998 correspond to different size classes of vessels
 
-*  Many NESPP4 codes will not match well to VTR’s SPPCODE. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
+*  Many NESPP4 codes will not match well to VTR's SPPCODE. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
 
 * Ports are inconsistently encoded over time. 
-    + Some “port groups” were split into mutiple ports.  (Hampton, Seabrook, and Hampton/Seabrook, NH is a good example).
-    + Many records are entered only at the “state” or “county” level.  This is particularly frequent for “older” records and non-federal reports that are received through SAFIS.
-    + The names corresponding to the port codes may or may not match to Census “units.”  The 2 digit state code does not correspond to FIPS codes.  
+    + Some port groups were split into mutiple ports.  (Hampton, Seabrook, and Hampton/Seabrook, NH is a good example).
+    + Many records are entered only at the state or county level.  This is particularly frequent for older records and non-federal reports that are received through SAFIS.
+    + The names corresponding to the port codes may or may not match to Census units.  The 2 digit state code does not correspond to FIPS codes.  
     + There is a table POPLACE_BASE that contains some Census Places. I'm not sure who made this, or if it's currently maintained.
     + month=0 or day=0 mean 'unknown' month or day.  I believe that both are due  to state-level reporting requirements that allow for monthly or yearly level reporting, instead of 'trip level' reporting.
 * Live and Landed weights are recorded.  
@@ -121,13 +121,13 @@ If you need to extract many years of CFBDB data, do it in a loop.
 # Sample Projects
 + Construct prices for fish [Lee, Demarest, Ardini].
 + Construct trip revenues, post 2005 [Demarest]
-+ Commercial Landings and Revenues for the “Community Profiles.” [Olson, Colburn]
-+ “The record” of commercial landings for use in stock assessment.  Sort of. An "Area Allocation" usually need to be performed, because some species have multiple, spatially distinct stocks.[PopDy]
++ Commercial Landings and Revenues for the Community Profiles. [Olson, Colburn]
++ The record of commercial landings for use in stock assessment.  Sort of. An "Area Allocation" usually need to be performed, because some species have multiple, spatially distinct stocks.[PopDy]
 + Construct entity-level gross revenues from commercial fishing for Regulatory Flexibility Act Analyses [Lee].  
 
 ## Update Frequency and Completeness
 + Nightly updates. Expect approximately 300 changes or additions to the current and previous year of data per day.
-+ Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
++ Data is complete 6-9 months after the end of the calendar year; however, small changes are always occurring.
 + This has consequences for reproducibility if you do not store a copy of the data.
 
 
@@ -135,15 +135,15 @@ If you need to extract many years of CFBDB data, do it in a loop.
 + INPORT.  https://inport.nmfs.noaa.gov/inport/item/12205
 + NEFSC's Data Dictionary  http://nova.nefsc.noaa.gov/datadict/
 
-+ Preceded by: “Weighout” (WODETSyy and WODETTyy)
++ Preceded by: Weighout (WODETSyy and WODETTyy)
 + Succeeded by: CAMS (tbd), for just the AA tables.
 
 # Support Tables 
 ## Related Tables
-+ CFDERSyyyyAA tables - “perform some Area Allocation”
-+ CFDETSyyyyAA tables - “perform some Area Allocation”
-+ CFDETTyyyy contains “detailed trip data”  for 1994-2003
-+ CFSUMTyyyy, CFSUMSyyyy - “summary tables” for 1994-2003
++ CFDERSyyyyAA tables - perform some Area Allocation
++ CFDETSyyyyAA tables - perform some Area Allocation
++ CFDETTyyyy contains detailed trip data  for 1994-2003
++ CFSUMTyyyy, CFSUMSyyyy - summary tables for 1994-2003
 + CFAGEyyyy - fish-level port sampling data.
 
 ## Support Tables
@@ -166,7 +166,7 @@ If you need to extract many years of CFBDB data, do it in a loop.
 |	UOM		|
 |	GRADE_CODE	|	
 |	MARKET_CODE 	|
-|	SPPLIVB	 | Certain NESPP4 codes (monkfish livers, cod milt) convert into zero “live pounds.”  This is done to prevent potential double counting during the stock assessment.
+|	SPPLIVB	 | Certain NESPP4 codes (monkfish livers, cod milt) convert into zero live pounds.  This is done to prevent potential double counting during the stock assessment.
 
 ##  Dealer data should probably be considered the primary source for these kinds of information
 |	Column	|	Description

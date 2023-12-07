@@ -1,5 +1,5 @@
 # Warning
-As of at least January 6, 2023 this table is no longer being supported by ITD. This means the table is not being updated and users should switch to GARFO VTR tables and ultimately CAMS when available.
+As of at least January 6, 2023 this table is no longer being supported by ITD. This means the table is not being updated and users should switch to GARFO VTR tables (Catch, Images, and Document tables in the NEFSC_GARFO schema) and ultimately CAMS when available.
 
 # Overview
 The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
@@ -134,11 +134,49 @@ select count(a.TRIPID) from vtr.veslog2020T a, vtr.veslog2020G b where a.tripid 
 If you need to extract many years of VESLOG data, do it in a loop. 
 *  Here is a bit of sample code in [R](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/R_code/data_extraction_processing/extraction/r_oracle_connection.R) and in [stata](https://github.com/NEFSC/READ-SSB-Lee-project-template/blob/main/stata_code/data_extraction_processing/extraction/extract_from_sole.do)
 
+
+Here is some code that extracts data using VESLOG  
+
+```
+quietly forvalues yr=$firstyr/$lastyr{ ;
+	tempfile new;
+	local NEWfiles `"`NEWfiles'"`new'" "'  ;
+	clear;
+	odbc load, exec("select sum(s.qtykept) as qtykept, s.sppcode, s. dealnum, t.state1, t.portlnd1, t. permit, t.port, t.tripid, trunc(nvl(s.datesold, t.datelnd1)) as datesell from vtr.veslog`yr's s, vtr.veslog`yr't t 
+		where t.tripid= s.tripid and (t.tripcatg=1 or t.tripcatg=4)
+			and s.dealnum not in ('99998', '1', '2', '5', '7', '8')  and s.qtykept>=1 and s.qtykept is not null
+			and sppcode not in ('WHAK','HAKNS','RHAK','WHAK','SHAK','HAKOS','WHB','CAT','RED')
+			group by s.sppcode, t.state1, t.portlnd1, s.dealnum, t. permit, t.port, t.tripid, trunc(nvl(s.datesold, t.datelnd1));")  $oracle_cxn;                    
+	gen dbyear= `yr';
+	quietly save `new', emptyok;
+};
+	clear;
+	append using `NEWfiles';
+```
+
+And here is a port of that code that extracts similar data the Catch, Images, and Document tables in the NEFSC_GARFO schema.
+
+```
+	odbc load, exec("select sum(s.kept) as qtykept, s.SPECIES_ID as sppcode, s.dealer_num as dealnum, t.state1, t.port1 as portlnd1, 
+	t.VESSEL_PERMIT_NUM as permit, t.PORT1_NUMBER as port, t.docid as tripid, trunc(nvl(s.date_sold, t.date_land)) as datesell, 
+	EXTRACT(YEAR from t.DATE_LAND) as dbyear
+	from  NEFSC_GARFO.TRIP_REPORTS_CATCH s, NEFSC_GARFO.TRIP_REPORTS_DOCUMENT t, NEFSC_GARFO.TRIP_REPORTS_IMAGES g 
+	where t.docid= g.docid and g.imgid=s.imgid and (t.tripcatg=1 or t.tripcatg=4)
+			and s.dealer_num not in ('99998', '1', '2', '5', '7', '8')  and s.kept>=1 and s.kept is not null
+			and s.SPECIES_ID not in ('WHAK','HAKNS','RHAK','WHAK','SHAK','HAKOS','WHB','CAT','RED')
+			group by s.SPECIES_ID, t.state1, t.port1, s.dealer_num, t.VESSEL_PERMIT_NUM, t.PORT1_NUMBER, t.docid, trunc(nvl(s.date_sold, t.date_land)), EXTRACT(YEAR from t.DATE_LAND) ;")   $myNEFSC_USERS_conn; 
+```
+
+You should not expect these to match exactly, because ther is different underlying data processing.
+
+
+
+
 # Sample Projects 
 
 # Update Frequency and Completeness 
 + Nightly updates. Expect approximately 300 changes or additions to the current and previous year of data per day.
-+ Data is “complete” 6-9 months after the end of the calendar year; however, small changes are always occurring.
++ Data is complete 6-9 months after the end of the calendar year; however, small changes are always occurring.
 
 # Other Metadata sources
 + INPORT.  https://inport.nmfs.noaa.gov/inport/item/1423
@@ -153,15 +191,12 @@ If you need to extract many years of VESLOG data, do it in a loop.
 The following SQL code stitches together vtr records from GARFO's C,I,D tables
 ```
 select d.*, i.*, c.*
-  from noaa.document@garfo_nefsc d,  -- vessel permit, sail, land, crew, trip category (commercial, P/C, rec)
-       noaa.images@garfo_nefsc i,    -- Subtrip information, gear, effort, area
-       noaa.catch@garfo_nefsc c      -- Species, kept, discarded, who sold to, ddate_sold
+  from NEFSC_GARFO.TRIP_REPORTS_DOCUMENT d,  -- vessel permit, sail, land, crew, trip category (commercial, P/C, rec)
+       NEFSC_GARFO.TRIP_REPORTS_IMAGES@garfo_nefsc i,    -- Subtrip information, gear, effort, area
+       NEFSC_GARFO.TRIP_REPORTS_CATCH c      -- Species, kept, discarded, who sold to, ddate_sold
  where i.docid = d.docid
    and c.imgid = i.imgid;
-
 ```
-
-
 
 # Support Tables very incomplete.
 + VLSPPTBL decodes SPPCODES into names and NESPP4 codes. So does VLSPPSYN_94_95, which looks deprecated.    
