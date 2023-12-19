@@ -6,6 +6,8 @@ Location: NEFSCDB1
 Schema: NEFSC_GARFO
 
 The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.  It is used in conjunction with other tables, but not cross-referenced against them for logical consistency.
+
+The SECTOR schema still exists.
         
 # Current Collection Methods
 Someone at GARFO puts data into the MQRS databases.

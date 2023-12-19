@@ -5,7 +5,7 @@ Tables: SECTOR and derivatives
 
 Location: Sole
 
-Schema: MQRS
+Schema: SECTOR
 
 mv_mri_permit_vessel_history - contains the sector rosters, including permit numbers, vessel hull ids and other useful information. Use this instead of the MQRS.SECTOR_YEAR_ROSTERS views.
 

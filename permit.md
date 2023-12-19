@@ -1,19 +1,20 @@
 # Overview
-Tables: 
 
-* VPS_VESSEL - Holds vessel characteristic information (horsepower, length, gross tonnage) associated with a particular vessel permit 
-* VPS_FISHERY_NER - Detailed information on a vessel’s associated permit types.  
+
+The following views can be found in the NEFSC_GARFO schema on nefscdb1
+
+* PERMIT_VPS_VESSEL - Holds vessel characteristic information (horsepower, length, gross tonnage) associated with a particular vessel permit 
+* PERMIT_VPS_FISHERY_NER - Detailed information on a vessel's associated permit types.  
 Plan is the fishery management plan (FMP).  Cat is the category within that Plan.
-* BUS_OWN -Contains business ownership information that describest the people that own a fishing firm.  Allows for grouping of permits into firms based on identical owners.
+* PERMIT_DEALER - Contains information on federal dealer permit application information
+
+
+The following two tables are available in SOLE.
+* BUS_OWN -Contains business ownership information that describes the people that own a fishing firm.  Allows for grouping of permits into firms based on identical owners.
 * VPS_OWNER -  Contains ownership information, including a business ID.
-* DEALER - Contains information on federal dealer permit application information 
 
+*the BUS_OWN table is not the main view for business owner information. That is found here: Client.bus_own@garfo_nefsc. For more information on this system see Client.md
 
-*the BUS_OWN table is not the main view for business onwer information. THat is found here: Client.bus_own@garfo_nefsc. For more information on this system see Client.md
-
-Location: Sole
-
-Schema: PERMIT
 
 The permit data contain information about fishing vessels, the fisheries they can participate in. These data are generated through permit applications that are submitted to GARFO by vessel owners.  A vessel owner will often submit more than one permit application per year. This can happen if a vessel owner renews some permits early in the year and others later in the year or if a vessel changes ownership. There are probably other reasons as well.
 
@@ -34,7 +35,7 @@ The permit data contain information about fishing vessels, the fisheries they ca
 
 * There have been "clean ups" -- sometimes an entry gets put into VPS_VESSEL where the DATE_ISSUED is equal to the DATE_CANCELED. This may cause mis-merges.  You also may want to exclude these completely from your query.
 ```
-select * from vps_vessel where (date_issued<>date_canceled or date_canceled is null);
+select * from NEFSC_GARFO.PERMIT_VPS_VESSEL where (date_issued<>date_canceled or date_canceled is null);
 ```
 
 * Similarly, you may  want to exclude rows where start_date >=end_date or start_date>=date_expired 

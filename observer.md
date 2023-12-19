@@ -6,7 +6,7 @@ Tables:
 * obhau
 * and more  
 
-Location: nova
+Location: nefscdb1
 
 Schema: obdbs
 
