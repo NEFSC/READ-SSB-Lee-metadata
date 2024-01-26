@@ -2,20 +2,20 @@
 # Overview
 The Data Matching and Imputation System is maintained by GARFO. Just email Michael Lanning at GARFO, he's got all the answers. j.michael.lanning@noaa.gov 
 
-"Live" Tables: 
+"Live" Views to DMIS: 
 
-* APSD.t_ssb_trip_current@garfo_nefsc
-* APSD.t_ssb_catch_current@garfo_nefsc 
-* APSD.t_ssb_discard_current@garfo_nefsc
+* NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc
+* NEFSC_GARFO.APSD_t_ssb_catch_current@garfo_nefsc 
+* NEFSC_GARFO.APSD_t_ssb_discard_current@garfo_nefsc
 
 obsolete tables:
 * APSD.t_ssb_trip@garfo_nefsc
 * APSD.t_ssb_catch@garfo_nefsc 
 * APSD.t_ssb_discard@garfo_nefsc
 
-Location: GARFO super secret server (but really, @garfo_nefsc)
+Location:   NEFSCDB1 
 
-Schema: 
+Schema: NEFSC_GARFO
 
 DMIS and AA are expected to be replaced by CAMS.
 
@@ -61,7 +61,7 @@ As of Feb 2022, I'm not sure if (1) is still true:
 
 ```
 select docid_length,count(*) from(
-select length(to_char(docid)) as docid_length from APSD.t_ssb_trip_current@garfo_nefsc where docid is not null) group by docid_length;
+select length(to_char(docid)) as docid_length from NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc where docid is not null) group by docid_length;
 ```
 because the docids are all either 7 (paper) or 14 (electronic) digits 
 
@@ -196,7 +196,7 @@ For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_curren
 2.  This will get you groundfish trips every time:
 ```
 select XYZ
-from APSD.t_ssb_trip_current@garfo_nefsc T, APSD.t_ssb_catch_current@garfo_nefsc C
+from NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc T, NEFSC_GARFO.APSD_t_ssb_catch_current@garfo_nefsc C
 where C.trip_id=T.trip_id
 and C.fishery_group in ('GROUND', 'OTHER2')
 and T.groundfish_permit is not null
