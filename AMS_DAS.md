@@ -4,7 +4,7 @@ These are the three schema that track Allocations.  DAS begat DAS2. DAS2 begat A
 Tables: 
 
 AMS can be found in the NEFSC_GARFO schema. The relevant tables are prefixed with AMS_.
-DAS has been removed from SOLE but can be accessed through the GARFO_NEFSC dblink. 
+DAS can be found in the NEFSC_GARFO schema, the relevant tables are prefixed with DAS_.
 DAS2 have been removed from SOLE and cannot be accessed through the GARFO_NEFSC dblink.  
 
 

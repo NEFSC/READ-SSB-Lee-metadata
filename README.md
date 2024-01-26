@@ -35,18 +35,14 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 1.  It's good practice to include the schema and server when you query data. That is, write:
 ```
-select * from permit.vps_owner@sole
+select * from nefsc_garfo.permit_vps_owner@NEFSC_USERS
 ```
 instead of 
 ```
-select * from vps_owner
+select * from permit_vps_owner
 ```
 
-1.  There are tables at GARFO that can be queried through a **database link**.  For example, while connected to sole, you can do
-```
-select * from document@garfo_nefsc 
-```
-to pull the GARFO "document" table. 
+The second may work or it may fail. If there are multiple tables with the same name (in different schema),  it may fail invisibly.
 
 
 # The Goods (alphabetically)

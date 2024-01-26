@@ -3,7 +3,7 @@ Tables:
 
 * MRIP_MA_SITE_LIST
 
-Location: Sole
+Location: NEFSCDB1
 
 Schema: RECDBS.  Send an email to nmfs.nec.stockeff@noaa.gov to gain access
 
@@ -29,9 +29,9 @@ These sites were compiled by Scott Steinback.
 # General Caveats
 
 # Sample Code
-Here is some sample SQL to get the data.  Use SQLDeveloper to connect to SOLE:  
+Here is some sample SQL to get the data:  
 ```
-select SITE_ID, STOCK_REGION_CALC from recdbs.mrip_ma_site_list@sole;
+select SITE_ID, STOCK_REGION_CALC from recdbs.mrip_ma_site_list;
 ```
 
 

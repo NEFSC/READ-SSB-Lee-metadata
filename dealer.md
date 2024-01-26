@@ -1,11 +1,14 @@
 # Warning
 Dealer database management was transitioned to GARFO in late 2022 and the Center views and tables are no longer being updated as of at least January 6, 2023. However, there is a duplication of surf clam and ocean quahog landings currently in GARFO's version of the tables. In addition, it seems that there is 35,000 metric ton difference in aggregate landings between the center and GARFO versions of CFDERS in the years 2020 and 2021. Both of these issues were caught by Susan Wigley. GARFO is in the process of tracking these issues/differences down and applying a fix. However, as of now there isn't a "correct" table to use.
 
+CFDBS has been moved to NEFSCDB1, but use care
+
+
 ## Overview
 
-Tables: CFDETSyyyy; CFDERSyyyy 
+Tables: CFDETSyyyy; CFDERSyyyy; CFLENyyyy, CFAGEyyyy
 
-Location: Sole
+Location: NEFSCDB1
 
 Schema: CFDBS
 
@@ -17,9 +20,9 @@ The dealer data are transaction-level reports at the level of the market-categor
 
 
 Additionally, APSD has a table of CFDERS for all years, so no need to loop through iterative lists in R or or use UNION in SQL.  This can be accessed with 
-
+```
 select * from NEFSC_GARFO.CFDERS_ALL_YEARS;
-
+```
         
 # Current Collection Methods
 These data are the result of mandatory federal dealer reporting at the *trip-level*, supplemented by state-level, aggregated reporting.  Federally permitted fish dealers that are required to report purchases of all fish to NMFS.
@@ -73,14 +76,14 @@ group by year, port;
     + White hake (153, 154).  155 is Red/White mixed
     + Pollock (269, 270)
     
-This bit of code may help:```select * from cfspp order by doc desc;```
+This bit of code may help:```select * from cfdbs.cfspp order by doc desc;```
 
 * Some species were/are grouped together, but subsequently split apart. 
 
     +  Tilefish, which starts as NK, but becomes Blueline and Golden. 
     +  Skates
     
-This bit of code may help:```select * from cfspp order by doc desc;```
+This bit of code may help:```select * from cfdbs.cfspp order by doc desc;```
 
 * Data derived from **state** reporting may not include all fields that are populated by federally reported dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
     +  Permit numbers that do not correspond to a single vessel are:
@@ -108,7 +111,7 @@ This bit of code may help:```select * from cfspp order by doc desc;```
 
 * The length distribution of landed fish might be useful. This code extracts the length distribution for cod in 2010:
 ```
-select year, state, nespp4, length, sum(numlen) as num_len from cflen2010
+select year, state, nespp4, length, sum(numlen) as num_len from cfdbs.cflen2010
 where nespp3=081
 group by nespp4, year, state, length;
 ```
