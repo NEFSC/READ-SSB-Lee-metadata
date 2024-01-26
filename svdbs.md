@@ -1,5 +1,7 @@
 # Overview
+Location: NEFSCDB1
 
+Schema: SVDBS 
 SVDBS contains information from the fishery independent surveys.
 
 Most of the information there has been processed to some degree.
@@ -24,7 +26,7 @@ select nespp4, species_itis, common_name, scientific_name from cfdbs.species_iti
 Code to extract GOM cod ages and lengths from the bottom trawl and MADMF survey
 
 ```
-select cruise6, stratum, svspp,length, age, count(age) as count from UNION_FSCS_SVBIO
+select cruise6, stratum, svspp,length, age, count(age) as count from SVDBS.UNION_FSCS_SVBIO
 where cruise6 in 
   (select distinct cruise6 from svdbs_cruises where purpose_code in(10,11) and status_code=10 and Season in ( 'SPRING', 'FALL')) and
 svspp in (73) and cruise6>=201201 and age is not null and ((stratum between 01260 and 01300) or (stratum between 01360 and 01400))
