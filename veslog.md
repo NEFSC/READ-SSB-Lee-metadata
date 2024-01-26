@@ -1,5 +1,5 @@
 # Warning
-As of at least January 6, 2023 this table is no longer being supported by ITD. This means the table is not being updated and users should switch to GARFO VTR tables (Catch, Images, and Document tables in the NEFSC_GARFO schema) and ultimately CAMS when available.
+As of at least January 6, 2023 this table is no longer being supported by ITD. This means the table is not being updated and users should switch to GARFO VTR tables (TRIP_REPORTS_CATCH, TRIP_REPORTS_DOCUMENT, TRIP_REPORTS_IMAGES tables in the NEFSC_GARFO schema) and ultimately CAMS when available.
 
 # Overview
 The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
@@ -186,9 +186,9 @@ You should not expect these to match exactly, because ther is different underlyi
 + Succeeded by: n/a
 
 # Related Tables very incomplete.
-+ CATCH, IMAGES, DOCUMENT - these are the "GARFO" version of VTR. C,I,D are a single table, not one per year.  I can't even.
++ TRIP_REPORTS_CATCH, TRIP_REPORTS_IMAGES, TRIP_REPORTS_DOCUMENT - these are NEFSC views of the  "GARFO" tables  NOAA.CATCH, NOAA.IMAGES, and NOAA.DOCUMENT respectively.
 
-The following SQL code stitches together vtr records from GARFO's C,I,D tables
+The following SQL code stitches together vtr records from these views 
 ```
 select d.*, i.*, c.*
   from NEFSC_GARFO.TRIP_REPORTS_DOCUMENT d,  -- vessel permit, sail, land, crew, trip category (commercial, P/C, rec)
