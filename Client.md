@@ -1,14 +1,14 @@
 # Overview
 
-All about the Client Schema
+All about the Client. 
 
-Tables: bus_own 
+Tables: client_bus_own 
 
-Location: @garfo_nefsc
+Location: NEFSCDB1
 
-Schema: Client
+Schema: NEFSC_GARFO
 
-Example: Client.bus_own@garfo_nefsc
+Example: NEFSC_GARFO.Client_bus_own
 
 # Overview
 This table is the source of most up-to-date and complete data related to the PERSON_ID variable (confirmed by Ted Hawes 04.12.2022) 
