@@ -3,15 +3,15 @@
 libname test '~gardini/SAS/DMIS_Observer/only_2019';
 
 proc sql;
-	connect to oracle (user = gardini password = "XXXXXXXXXXXX" path = sole);
+	connect to oracle (user = gardini password = "XXXXXXXXXXXX" path = nova);
 
 create view dmis_trips as select * from connection to oracle
-(select * from APSD.t_ssb_trip_current@garfo_nefsc
+(select * from NEFSC_GARFO.APSD_t_ssb_trip_current
 where mult_year in (2019)
 order by permit, trip_id);
 
 create view dmis_catch as select * from connection to oracle
-(select * from APSD.t_ssb_catch_current@garfo_nefsc
+(select * from NEFSC_GARFO.APSD_t_ssb_catch_current
 where trip_id like '2019%'
 and fishery_group in ('GROUND', 'OTHER2')
 order by permit, trip_id);
