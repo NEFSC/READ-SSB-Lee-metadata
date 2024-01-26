@@ -1,13 +1,13 @@
 # Overview
-Tables: MORT_ELIG_CRITERIA, SECTOR_YEAR_ROSTER
+Tables: MORT_ELIG_CRITERIA,
 
-Location: These tables have been removed from sole and not replaced.
+Location: NEFSCDB1
 
-Schema: MQRS
+Schema: NEFSC_GARFO.MQRS_
 
 The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.  It is used in conjunction with other tables, but not cross-referenced against them for logical consistency.
 
-The SECTOR schema still exists.
+The SECTOR schema still exists on SOLE.
         
 # Current Collection Methods
 Someone at GARFO puts data into the MQRS databases.
@@ -23,32 +23,6 @@ Someone at GARFO puts data into the MQRS databases.
 # Tips and Tricks
 
 ## General Caveats
-
-  *  The sector rosters can now be found in the table ``sector.mv_mri_permit_vessel_history.``  It is not clear how often this table is updated. The source data is ``sector.mv_mri_permit_vessel_history@garfo_nefsc`` and is the most up-to-date table. See the sector schema.
-  
-  *  The data from 2010-2019 is also stored in "SECTOR_YEAR_ROSTERS,"  but it is easier to use the ``sector.mv_mri_permit_vessel_history.`` These contain a sector_id, year, and MRI (among other things.)  There are also "views" (SECTOR_PARTICIPANTS_CPHYYYY and SECTOR_PARTICIPANTS_NO_CPHYYYY). However, these views are not updated past the 2019 groundfish fishing year. If interested in linking a groundfish MRI to a permit, SECTOR.MRI_PERMIT_VESSEL_HISTORY should be used. There is also SECTOR.MRI_PERMIT_HISTORY. This table appears to be updated as of November 30, 2021. However, Torey Adler (GARFO APSD) indicated that it will eventually "go away".  
-
-
-
-
-The SECTOR_PARTICIPANTS views all broken as of April 18, 2018. They are broken because the underyling code does not properly check dates when it links the MRI to a permit. Here is code that will illustrate:
-    
-  1. MRI 1755 should link to permit 100598 any time between april 26, 1994 and june 17, 2015
-  
-```
-select per_num, vessel, owner, date_eligible, date_cancelled, right_id, auth_id
-from mqrs.mort_elig_criteria where right_id=1755 order by  date_eligible;
-```
-
- 2.  None of these do that properly:
- 
-```
-select * from mqrs.sector_participants_CPH where mri=1755;
-select * from mqrs.sector_participants_CPH2011 where mri=1755;
-```
-
-
-This is happening in part because the underlying code forgot to screen for valid dates.
 
 
   * There is an APP_NUM. This is different from the AP_NUM in the PERMIT system.
@@ -75,7 +49,7 @@ And stitching results together with a union.
   * Sometimes an entry gets put into the MQRS database where the DATE_ELIGIBLE is equal to the DATE_CANCELLED. This may cause mis-merges.  You also may want to exclude these completely from your query.
   
   ```
-select * from mqrs.mort_elig_criteria
+select * from NEFSC_GARFO.mqrs_mort_elig_criteria
   where date_eligible<>date_cancelled or date_cancelled is null;
 ```
 
@@ -88,14 +62,14 @@ select * from mqrs.mort_elig_criteria
   
   * There are at least a handful of cases in which a different system (DAS, DAS2 mostly) links to an incorrect right id. For example: 
   ```
-select * from DAS.DAS_ALLOCATION where right_to_days_id not in (select distinct right_id from MQRS.mort_elig_criteria where fishery='MULTISPECIES') and das_category='A';  
+select * from DAS.DAS_ALLOCATION where right_to_days_id not in (select distinct right_id from NEFSC_GARFO.mqrs_mort_elig_criteria where fishery='MULTISPECIES') and das_category='A';  
 ```
-will extract all the entries in the DAS.DAS_ALLOCATION table that have an MRI that is not in the MQRS.mort_elig_criteria.  This shouldn't be possible, because an entity needs an MRI 
+will extract all the entries in the DAS.DAS_ALLOCATION table that have an MRI that is not in the NEFSC_GARFO.mqrs_mort_elig_criteria.  This shouldn't be possible, because an entity needs an MRI 
 
 similarly:
 ```
 select distinct right_id  from das2.allocation where plan='MUL' and 
-right_id not in (select distinct right_id from mort_elig_criteria where fishery='MULTISPECIES')
+right_id not in (select distinct right_id from NEFSC_GARFO.mqrs_mort_elig_criteria where fishery='MULTISPECIES')
 ```
 
 Here is a partial list of the MRI's affected by the cleanup. This came from Ted Hawes. But you could look at the "remark" field and see if there is a reference to a cleanup.   
@@ -106,7 +80,7 @@ select PER_NUM AS PERMIT,
 		FISHERY,
 		DATE_ELIGIBLE,
 		DATE_CANCELLED
-		from mort_elig_criteria where auth_id in(1179,1183,1187,1196,1219,1255,1261,1293,1296,1362,1374,2423,1174, 1184, 1176, 1209,1219,1298,1358,1372,2423);  
+		from NEFSC_GARFO.mqrs_mort_elig_criteria where auth_id in(1179,1183,1187,1196,1219,1255,1261,1293,1296,1362,1374,2423,1174, 1184, 1176, 1209,1219,1298,1358,1372,2423);  
 ```
 The date_eligible and date_cancelled fields were broken during the cleanup. I'm not sure the best way to deal with it.
 
@@ -126,7 +100,7 @@ SELECT PER_NUM AS PERMIT,
 		DATE_CANCELLED,
 		AUTH_TYPE,
 		ELIG_STATUS
-	  FROM MQRS.MORT_ELIG_CRITERIA 
+	  FROM NEFSC_GARFO.mqrs_mort_elig_criteria 
 	  WHERE FISHERY = 'MULTISPECIES'
 		AND not ((TRUNC(DATE_ELIGIBLE) =  TRUNC(NVL(DATE_CANCELLED,SYSDATE+20000))) AND (CANCEL_REASON_CODE = 7 AND AUTH_TYPE = 'BASELINE'))
 		AND DATE_ELIGIBLE IS NOT NULL
