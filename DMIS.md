@@ -4,9 +4,9 @@ The Data Matching and Imputation System is maintained by GARFO. Just email Micha
 
 "Live" Views to DMIS: 
 
-* NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc
-* NEFSC_GARFO.APSD_t_ssb_catch_current@garfo_nefsc 
-* NEFSC_GARFO.APSD_t_ssb_discard_current@garfo_nefsc
+* NEFSC_GARFO.APSD_t_ssb_trip_current
+* NEFSC_GARFO.APSD_t_ssb_catch_current 
+* NEFSC_GARFO.APSD_t_ssb_discard_current
 
 obsolete tables:
 * APSD.t_ssb_trip@garfo_nefsc
