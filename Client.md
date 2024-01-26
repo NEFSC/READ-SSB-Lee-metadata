@@ -1,6 +1,6 @@
 # Overview
 
-All about the Client. 
+All about the Client schema.
 
 Tables: client_bus_own 
 
