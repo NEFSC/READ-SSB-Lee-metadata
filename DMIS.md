@@ -41,8 +41,6 @@ This table was constructed specifically to support the [offshoreWind](https://gi
 
 # Changes to collection methods
 
-DMIS may inherit changes from 
-
 
 # Tips and Tricks
 
