@@ -5,7 +5,13 @@ Location: NEFSC_USERS
 
 Schema: CAMS_GARFO
 
-Metadata can be found here: http://nerswind/cams/cams_documentation/index.html
+Metadata can be found here:
+
+https://www.greateratlantic.fisheries.noaa.gov/ro/fso/reports/cams/index.html
+
+and here
+
+http://nerswind/cams/cams_documentation/index.html
 
 
 # Current Collection Methods
@@ -17,6 +23,12 @@ Metadata can be found here: http://nerswind/cams/cams_documentation/index.html
 # General Caveats.
 
 # Sample Code
+
+Some sample code can be found here: 
+
+https://www.greateratlantic.fisheries.noaa.gov/ro/fso/reports/cams/articles/common_query_examples.html
+
+
 + select * from CAMS_GARFO.CAMS_LANDINGS; 
 
 
