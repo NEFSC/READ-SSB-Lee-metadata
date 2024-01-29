@@ -1,7 +1,5 @@
 # Overview
 
-All about the Client. 
-
 Tables: client_bus_own 
 
 Location: NEFSCDB1

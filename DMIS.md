@@ -4,9 +4,9 @@ The Data Matching and Imputation System has been replaced by  [CAMS](/CAMS.md). 
 
 "Live" Views to DMIS: 
 
-* NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc
-* NEFSC_GARFO.APSD_t_ssb_catch_current@garfo_nefsc 
-* NEFSC_GARFO.APSD_t_ssb_discard_current@garfo_nefsc
+* NEFSC_GARFO.APSD_t_ssb_trip_current
+* NEFSC_GARFO.APSD_t_ssb_catch_current 
+* NEFSC_GARFO.APSD_t_ssb_discard_current
 
 obsolete tables:
 * APSD.t_ssb_trip@garfo_nefsc
@@ -61,7 +61,7 @@ As of Feb 2022, I'm not sure if (1) is still true:
 
 ```
 select docid_length,count(*) from(
-select length(to_char(docid)) as docid_length from NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc where docid is not null) group by docid_length;
+select length(to_char(docid)) as docid_length from NEFSC_GARFO.APSD_t_ssb_trip_current where docid is not null) group by docid_length;
 ```
 because the docids are all either 7 (paper) or 14 (electronic) digits 
 
@@ -179,7 +179,7 @@ DOLLAR_SSB: In addition to the values represented in the DLR_DOLLAR variable, DO
 *Greg has some correspondence from Dan Caless that he can forward to anyone interested.
 
 ## Completeness of Fishery Revenue data
-For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_current@garfo_nefsc) includes the vast majority of ex-vessel revenues as compared to CFDBS. However, in fisheries which have large state waters components, or unqiue reporting requirements, DMIS may fail to capture a significant portion of revenues. A comparison of fishery ex-vessel revenues in 2018 for the two data sources is provided below. Note lobster and SC/OQ. 
+For many fisheries in the Greater Atlantic Region, DMIS (GARFO_NEFSC.APSD_t_ssb_catch_current) includes the vast majority of ex-vessel revenues as compared to CFDBS. However, in fisheries which have large state waters components, or unqiue reporting requirements, DMIS may fail to capture a significant portion of revenues. A comparison of fishery ex-vessel revenues in 2018 for the two data sources is provided below. Note lobster and SC/OQ. 
 
 | Schema   | Black Sea Bass| 	Bluefish| 	 Groundfish| 	Herring| 	    Jonah Crab| 	  Lobster| 	    Mackerel| 	  Monkfish| 	    Red Crab|
 |-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|            
@@ -196,7 +196,7 @@ For many fisheries in the Greater Atlantic Region, DMIS (APSD.t_ssb_catch_curren
 2.  This will get you groundfish trips every time:
 ```
 select XYZ
-from NEFSC_GARFO.APSD_t_ssb_trip_current@garfo_nefsc T, NEFSC_GARFO.APSD_t_ssb_catch_current@garfo_nefsc C
+from NEFSC_GARFO.APSD_t_ssb_trip_current T, NEFSC_GARFO.APSD_t_ssb_catch_current C
 where C.trip_id=T.trip_id
 and C.fishery_group in ('GROUND', 'OTHER2')
 and T.groundfish_permit is not null

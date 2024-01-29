@@ -5,7 +5,7 @@ Tables:
 
 AMS can be found in the NEFSC_GARFO schema. The relevant tables are prefixed with AMS_.
 DAS can be found in the NEFSC_GARFO schema, the relevant tables are prefixed with DAS_.
-DAS2 have been removed from SOLE and cannot be accessed through the GARFO_NEFSC dblink.  
+DAS2 have been removed from SOLE and cannot be accessed through the GARFO_NEFSC schema. They can be requested from cold storage.  
 
 
 # Changes to Collections Methods
