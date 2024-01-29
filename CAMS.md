@@ -49,9 +49,9 @@ And discards
 ```
 odbc load,  exec("select year, extract(month from date_trip) as month, itis_tsn, sum(nvl(cams_discard,0)) as discard from cams_garfo.cams_discard_all_years cl where 
 		cl.area between 511 and 515 and 
-		year>=2022 and 
+		year between $commercial_grab_start and $commercial_grab_end and
 		itis_tsn in (164712,164744)
-		group by year, month, itis_tsn;") $myNEFSC_USERS_conn ;		
+		group by year, extract(month from date_trip), itis_tsn;") $myNEFSC_USERS_conn ;		
 		
 ```
 
