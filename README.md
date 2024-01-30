@@ -11,7 +11,7 @@ See the instructions in the [How to help](https://github.com/NEFSC/READ-SSB-Lee-
 
 # Basics and General Thoughts
 
-1. Most data are stored in **Oracle databases**, which are located on the "sole" and "NEFSC_USERS" **servers**.  "Nova" was shut down in 2022 and replaced with NEFSC_USERS on NEFSCDB1. 
+1. Most data are stored in **Oracle databases**, which are located on the "NEFSC_USERS" **servers**.  "Nova" was shut down in 2022 and replaced with NEFSC_USERS on NEFSCDB1. Sole is planned to be shut down in January, 2024.
 
 1. There are various **schema**. Schema are collections of related tables.
 
@@ -43,6 +43,9 @@ select * from permit_vps_owner
 ```
 
 The second may work or it may fail. If there are multiple tables with the same name (in different schema),  it may fail invisibly.
+
+ITD maintains an Inventory of databases [here](https://docs.google.com/spreadsheets/d/15FtGnNUgct7mTsRpPP9xX4BLkceY7SfMnZvdA_kjlxY/edit#gid=1754518543&fvid=668259322)
+
 
 
 # The Goods (alphabetically)
