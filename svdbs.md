@@ -6,6 +6,8 @@ SVDBS contains information from the fishery independent surveys.
 
 Most of the information there has been processed to some degree.
 
+For access, email paul.kostovick@noaa.gov
+
 # Current Collection Methods
 
 # Changes to Collections Methods
