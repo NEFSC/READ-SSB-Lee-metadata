@@ -32,22 +32,10 @@ https://www.greateratlantic.fisheries.noaa.gov/ro/fso/reports/cams/articles/comm
 + select * from CAMS_GARFO.CAMS_LANDINGS; 
 
 
-Here is code to get landings for cod and haddock from particular stat areas from VTR.
-```
-forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
-/* and here is the odbc load command */
-	clear;
-	tempfile new;
-	local files `"`files'"`new'" "';
-	odbc load,  exec("select g.carea, s.gearid, s.tripid, s.sppcode, s.qtykept, s.datesold from vtr.veslog`yr's s, vtr.veslog`yr'g g where g.gearid=s.gearid and s.sppcode in ('COD', 'HADD') and g.carea between 511 and 515;
-") $oracle_cxn ;
-	gen year=`yr';
-	quietly save `new';
-};
-```
+## landings for cod and haddock from particular stat areas
 
 
-And here is the code to get similar data from CAMS.
+### From CAMS.
 
 ```
 	odbc load,  exec("select sum(nvl(lndlb,0)) as landings,  sum(livlb) as livelnd, year, month, itis_tsn from cams_garfo.cams_land cl where 
@@ -66,6 +54,22 @@ odbc load,  exec("select year, extract(month from date_trip) as month, itis_tsn,
 		group by year, extract(month from date_trip), itis_tsn;") $myNEFSC_USERS_conn ;		
 		
 ```
+
+
+### From VTR.
+```
+forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
+/* and here is the odbc load command */
+	clear;
+	tempfile new;
+	local files `"`files'"`new'" "';
+	odbc load,  exec("select g.carea, s.gearid, s.tripid, s.sppcode, s.qtykept, s.datesold from vtr.veslog`yr's s, vtr.veslog`yr'g g where g.gearid=s.gearid and s.sppcode in ('COD', 'HADD') and g.carea between 511 and 515;
+") $oracle_cxn ;
+	gen year=`yr';
+	quietly save `new';
+};
+```
+
 
 # Update Frequency and Completeness 
 
