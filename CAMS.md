@@ -70,14 +70,6 @@ forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
 ```
 
 
-## All permits that landed Summer Flounder in 2014
-
-```
-SELECT distinct PERMIT
-  from cams_garfo.cams_land where 
-  ITIS_TSN=172735 and YEAR in ('2014')
-```
-
 ## Summer Flounder example
 
 ### All permits that landed summer flounder in 2014
