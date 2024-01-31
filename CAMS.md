@@ -13,7 +13,7 @@ and here
 
 http://nerswind/cams/cams_documentation/index.html
 
-
+To get access, ask for it in the [CAMS Jira board](https://apps-st.fisheries.noaa.gov/jira/projects/CAMSNR/issues/CAMSNR-764?filter=allopenissues)
 # Current Collection Methods
 
 # Changes to Collections Methods
