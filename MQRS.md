@@ -6,6 +6,8 @@ Location: NEFSCDB1
 Schema: NEFSC_GARFO
 The MQRS system is fun. It contains information on "eligibilities."  The sector rosters are also stored here.  It is used in conjunction with other tables, but not cross-referenced against them for logical consistency.
 
+
+
 The SECTOR schema still exists on SOLE.
         
 # Current Collection Methods
@@ -23,6 +25,8 @@ Someone at GARFO puts data into the MQRS databases.
 
 ## General Caveats
 
+
+  *  At GARFO, MQRS.MORT_ELIG_CRITERIA is not archived and is a current production table. I strongly suggest using a view to interpret it, because there are some pitfalls in the table structure that aren't obvious.(torey.adler on 15/Dec/23 11:45 AM)
 
   * There is an APP_NUM. This is different from the AP_NUM in the PERMIT system.
 
