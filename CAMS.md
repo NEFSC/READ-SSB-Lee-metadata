@@ -117,7 +117,7 @@ LEFT OUTER JOIN
     order by t.permit, t.camsid, itis_tsn, dlr_mkt, dlr_grade;
 ```
 
-
+You may want to filter out the PERMIT=000000, add discards, or add VTR orphans depending the your project.
 
 
 
