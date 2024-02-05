@@ -49,8 +49,7 @@ forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
 };
 ```
 
-
-And here is the code to get similar data from CAMS.
+### From CAMS.
 
 ```
 	odbc load,  exec("select sum(nvl(lndlb,0)) as landings,  sum(livlb) as livelnd, year, month, itis_tsn from cams_garfo.cams_land cl where 
@@ -69,6 +68,65 @@ odbc load,  exec("select year, extract(month from date_trip) as month, itis_tsn,
 		group by year, extract(month from date_trip), itis_tsn;") $myNEFSC_USERS_conn ;		
 		
 ```
+
+
+### From VTR
+```
+forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
+/* and here is the odbc load command */
+	clear;
+	tempfile new;
+	local files `"`files'"`new'" "';
+	odbc load,  exec("select g.carea, s.gearid, s.tripid, s.sppcode, s.qtykept, s.datesold from vtr.veslog`yr's s, vtr.veslog`yr'g g where g.gearid=s.gearid and s.sppcode in ('COD', 'HADD') and g.carea between 511 and 515;
+") $oracle_cxn ;
+	gen year=`yr';
+	quietly save `new';
+};
+```
+
+
+## Summer Flounder example
+
+### All permits that landed summer flounder in 2014
+```
+SELECT distinct PERMIT
+  from cams_garfo.cams_land where 
+  ITIS_TSN=172735 and YEAR in ('2014')
+```
+
+### Subtrip level info for permits that landed summer flounder in 2014
+
+```
+select * FROM cams_garfo.cams_subtrip s 
+    where s.YEAR in ('2014') and s.PERMIT in (SELECT distinct PERMIT
+    from cams_garfo.cams_land where 
+    ITIS_TSN=172735 and YEAR in ('2014'));
+```
+
+
+
+### Catch level info for those trips
+
+This query adds landings level information for those subtrips, retains just some subtrip-level columns, and does some ordering.
+
+```
+SELECT t.CAMSID, t.DOCID, t.VTRSERNO, t.PERMIT, t.ITIS_TSN, t.DLRID, t.DLR_DATE, t.STATE, t.PORT, t.DLR_MKT, t.DLR_GRADE, t.LNDLB, t.VALUE, t.NEGEAR, t.WEEK, s.VTR_CREW, s.RECORD_SAIL, s.RECORD_LAND, s.VTR_TRIPCATG, s.subtrip, s.YEAR 
+  FROM cams_garfo.cams_land t
+LEFT OUTER JOIN 
+    (select CAMSID, VTR_CREW, RECORD_SAIL, RECORD_LAND,
+    VTR_TRIPCATG, SUBTRIP, YEAR, permit FROM cams_garfo.cams_subtrip) s 
+    on t.SUBTRIP=s.SUBTRIP AND
+    t.CAMSID=s.CAMSID
+    where t.YEAR in ('2014') and 
+      t.PERMIT in (SELECT distinct PERMIT
+           from cams_garfo.cams_land 
+              where ITIS_TSN=172735 and YEAR in ('2014'))
+    order by t.permit, t.camsid, itis_tsn, dlr_mkt, dlr_grade;
+```
+
+You may want to filter out the PERMIT=000000, add discards, or add VTR orphans depending the your project.
+
+
 
 # Update Frequency and Completeness 
 
