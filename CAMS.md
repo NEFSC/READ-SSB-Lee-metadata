@@ -13,7 +13,7 @@ and here
 
 http://nerswind/cams/cams_documentation/index.html
 
-
+To get access, ask for it in the [CAMS Jira board](https://apps-st.fisheries.noaa.gov/jira/projects/CAMSNR/issues/CAMSNR-764?filter=allopenissues)
 # Current Collection Methods
 
 # Changes to Collections Methods
@@ -32,7 +32,22 @@ https://www.greateratlantic.fisheries.noaa.gov/ro/fso/reports/cams/articles/comm
 + select * from CAMS_GARFO.CAMS_LANDINGS; 
 
 
-## landings for cod and haddock from particular stat areas
+Here is stata code that uses ODBC get landings for cod and haddock from particular stat areas from VTR.
+```
+global commercial_grab_start 2019
+global commercial_grab_end 2021
+
+forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
+/* and here is the odbc load command */
+	clear;
+	tempfile new;
+	local files `"`files'"`new'" "';
+	odbc load,  exec("select g.carea, s.gearid, s.tripid, s.sppcode, s.qtykept, s.datesold from vtr.veslog`yr's s, vtr.veslog`yr'g g where g.gearid=s.gearid and s.sppcode in ('COD', 'HADD') and g.carea between 511 and 515;
+") $myNEFSC_USERS_conn ;
+	gen year=`yr';
+	quietly save `new';
+};
+```
 
 ### From CAMS.
 

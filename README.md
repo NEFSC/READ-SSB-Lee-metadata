@@ -33,7 +33,7 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 1.  If you want to use ODBC with R or Stata to read data straight into your software, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-template)
 
-1.  It's good practice to include the schema and server when you query data. That is, write:
+1.  It's good practice to include the schema and connection name when you query data. That is, write:
 ```
 select * from nefsc_garfo.permit_vps_owner@NEFSC_USERS
 ```
