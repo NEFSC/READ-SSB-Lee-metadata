@@ -1,19 +1,17 @@
 # Overview
-The SECTOR tables are part of MQRS.  They map MRIs to sectors and do other things.  
+The SECTOR tables are related to MQRS.  They map MRIs to sectors and do other things.  
 
 Tables: SECTOR and derivatives 
 
-Location: Sole
+Location: NEFSCDB1
 
-Schema: MQRS
+Schema: NEFSC_GARFO
 
-mv_mri_permit_vessel_history - contains the sector rosters, including permit numbers, vessel hull ids and other useful information. Use this instead of the MQRS.SECTOR_YEAR_ROSTERS views.
+NEFSC_GARFO.sector_mri_permit_vessel_history contains sector rosters
+  
+NEFSC_GARFO.SECTOR_PSC_MRI_AS_PERCENT - MRI level allocations, in percentage terms.    
 
-SECTOR_MRI - contains just the MRI, sector name, sector id, fishing year and start/end dates.
-
-PSC_MRI_AS_PERCENT - MRI level allocations, in percentage terms.    
-
-ACE_MRI_AS_POUNDS - MRI level allocations, in pounds.    
+NEFSC_GARFO.SECTOR_ACE_MRI_AS_POUNDS - MRI level allocations, in pounds.    
 
 # Current Collection Methods
 

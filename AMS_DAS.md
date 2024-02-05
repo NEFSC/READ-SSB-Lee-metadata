@@ -1,11 +1,12 @@
 # Overview
 These are the three schema that track Allocations.  DAS begat DAS2. DAS2 begat AMS.
 
-Tables: AMS, DAS, DAS2 
+Tables: 
 
-Location: Sole
+AMS can be found in the NEFSC_GARFO schema. The relevant tables are prefixed with AMS_.
+DAS can be found in the NEFSC_GARFO schema, the relevant tables are prefixed with DAS_.
+DAS2 have been removed from SOLE and cannot be accessed through the GARFO_NEFSC schema. They can be requested from cold storage.  
 
-Schema: AMS, DAS, DAS2
 
 # Changes to Collections Methods
 
@@ -57,7 +58,7 @@ rename right_id mri;
 To extract initial allocations from AMS:
 
 ```
-SQL: select *  from ams.allocation_tx where FMP='MULT' and das_type='A-DAYS';  
+SQL: select *  from NEFSC_GARFO.AMS_allocation_tx where FMP='MULT' and das_type='A-DAYS';  
 STATA:
 destring, replace;
 keep if fishing_year>=2009;
@@ -126,7 +127,7 @@ To get AMS lease data.  I'm not 100% sure this is correct.
 
 ```
 SQL "select lease_exch_id,from_permit, to_permit, from_right, to_right, fishing_year, quantity, price, 
-approval_date  from ams.lease_exch_applic 
+approval_date  from NEFSC_GARFO.AMS_LEASE_EXCH_APPLIC
 	    where FMP='MULT' and from_das_type='A-DAYS' 
 	    and approval_status='APPROVED' and fishing_year>=2009;" 
 Stata:
@@ -227,7 +228,7 @@ gen schema="DAS2";
 To get Days at sea from AMS:
 ```
 SQL:
-"select * from AMS.TRIP_AND_CHARGE where fmp='MULT' and DAS_TYPE='A-DAYS'
+"select * from NEFSC_GARFO.AMS_TRIP_AND_CHARGE where fmp='MULT' and DAS_TYPE='A-DAYS'
   and charge<>0 and fishing_year>=2009;"
 
 Stata:

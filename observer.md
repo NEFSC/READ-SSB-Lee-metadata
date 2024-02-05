@@ -6,11 +6,13 @@ Tables:
 * obhau
 * and more  
 
-Location: nova
+Location: nefscdb1
 
 Schema: obdbs
 
 Observer data are collected by fishery observers the the Northeast Observer  (NEFOP) and the At-sea Monitor (ASM) Programs. They are deployed on a subset of fishing trips.  These also contain trip cost data
+
+For access, email nefsc.svc.dis@noaa.gov
         
 # Current Collection Methods
 These data are are collected by fishery observers on board a fishing trip.

@@ -11,7 +11,7 @@ See the instructions in the [How to help](https://github.com/NEFSC/READ-SSB-Lee-
 
 # Basics and General Thoughts
 
-1. Most data are stored in **Oracle databases**, which are located on the "sole" and "NEFSC_USERS" **servers**.  "Nova" was shut down in 2022 and replaced with NEFSC_USERS on NEFSCDB1. 
+1. Most data are stored in **Oracle databases**, which are located on the "NEFSC_USERS" **servers**.  "Nova" was shut down in 2022 and replaced with NEFSC_USERS on NEFSCDB1. Sole is planned to be shut down in January, 2024.
 
 1. There are various **schema**. Schema are collections of related tables.
 
@@ -33,20 +33,19 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 1.  If you want to use ODBC with R or Stata to read data straight into your software, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-template)
 
-1.  It's good practice to include the schema and server when you query data. That is, write:
+1.  It's good practice to include the schema and connection name when you query data. That is, write:
 ```
-select * from permit.vps_owner@sole
+select * from nefsc_garfo.permit_vps_owner@NEFSC_USERS
 ```
 instead of 
 ```
-select * from vps_owner
+select * from permit_vps_owner
 ```
 
-1.  There are tables at GARFO that can be queried through a **database link**.  For example, while connected to sole, you can do
-```
-select * from document@garfo_nefsc 
-```
-to pull the GARFO "document" table. 
+The second may work or it may fail. If there are multiple tables with the same name (in different schema),  it may fail invisibly.
+
+ITD maintains an Inventory of databases [here](https://docs.google.com/spreadsheets/d/15FtGnNUgct7mTsRpPP9xX4BLkceY7SfMnZvdA_kjlxY/edit#gid=1754518543&fvid=668259322)
+
 
 
 # The Goods (alphabetically)

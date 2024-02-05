@@ -9,7 +9,7 @@ Tables: Not sure
 
 Location: Not sure
 
-Schema: 
+Schema: VMS on NEFSCB1
 
 # Current Collection Methods
 # Changes to collection methods
@@ -18,9 +18,24 @@ Schema:
 # Tips and Tricks
 
 ## General Caveats
+VMS data from 1997-May 2008 is stored in 1 table.
 
+VMS data from 2008 on is stored in annual tables. 
 
 # Sample Code
+
+Here is a SQL query to pull out data from the 2008 table that corresponds roughly to the Northeast region.
+```
+select VESSEL_PERMIT as permit, LAT_GIS, LON_GIS, to_char(POS_SENT_DATE,'YYYY MON DD HH24:MI:SS') as POS_SENT_DATE, PREV_LAT_GIS, PREV_LON_GIS, AVG_COURSE, AVG_SPEED,to_char(PREV_POS_SENT_DATE,'YYYY MON DD HH24:MI:SS') as PREV_POS_SENT_DATE from VMS.VMS2008
+WHERE LAT_GIS BETWEEN 30 and 50 AND LON_GIS BETWEEN -80 and -60"
+```
+
+And here is a SQL query to extract the older data (1996-2007).
+
+```
+"select EXTRACT(YEAR FROM POS_SENT_DATE) as YEAR, VESSEL_PERMIT as permit, LAT_GIS, LON_GIS, to_char(POS_SENT_DATE,'YYYY MON DD HH24:MI:SS') as POS_SENT_DATE, PREV_LAT_GIS, PREV_LON_GIS,AVERAGE_COURSE AS AVG_COURSE, AVERAGE_SPEED AS AVG_SPEED,to_char(PREV_POS_SENT_DATE,'YYYY MON DD HH24:MI:SS') as PREV_POS_SENT_DATE from VMS.OLD_VMS_1997_TO_MAY_2008 WHERE EXTRACT(YEAR FROM POS_SENT_DATE) BETWEEN 1996 and 2007 AND LAT_GIS BETWEEN 30 and 50 AND LON_GIS BETWEEN -80 and -60"
+```
+
 
 # Update Frequency and Completeness 
 
