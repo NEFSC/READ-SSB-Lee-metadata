@@ -20,8 +20,10 @@ Schema: VTR
 # Current Collection Methods
 These data are the result of mandatory federal vessel reporting.  Federally permitted vessels are required to submit one VTR report per "gear-mesh-area" fished.  Both commericial and for-hire (charter or party) recreational vessels are required to file VTRs.  50CFR648.7(b)(1).  
 
+The [VTR instructions](./external/vtrinstructions.pdf)  can be useful to understand these data.
+
 # Changes to Collections Methods
-+ The VTR form has changed slightly over time.  You can get the VTR form, with instructions at https://www.greateratlantic.fisheries.noaa.gov/aps/evtr/vtr_inst.pdf
++ The VTR form has changed slightly over time.
 
 + Electronic VTRs start in 2011.
 

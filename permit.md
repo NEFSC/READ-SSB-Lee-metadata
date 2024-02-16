@@ -16,6 +16,11 @@ The permit data contain information about fishing vessels, the fisheries they ca
 
 # Current Collection Methods
 
+The [Permit Application form ](./external/Initial%20Vessel%20Permit%20Instructions%20-%2020170628.pdf) can be useful to understand these data.
+
+
+The [ownership form](./external/vesownershipform.pdf)  can also be useful.
+
 # Changes to Collections Methods
 
 # Tips and Tricks
