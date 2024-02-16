@@ -16,6 +16,8 @@ The permit data contain information about fishing vessels, the fisheries they ca
 
 # Current Collection Methods
 
+The [ownership forms](./external/vesownershipform.pdf) that are filled out by vessel operators can be useful to understand these data.
+
 # Changes to Collections Methods
 
 # Tips and Tricks
