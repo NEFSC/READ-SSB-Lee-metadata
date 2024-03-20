@@ -25,7 +25,7 @@ This has consequences for reproducibility if you do not store a copy of the data
 1. Exploring the databases using SQLDeveloper is a good way to build some intuition
     +  In the Connections tab, connect to Sole
     +  Expand the "Other Users" tab.
-    +  Expand a schema, like "CFDBS" and explore both "Tables" and "Views" corresponding to that schema.
+    +  Expand a schema, like "CFDBS" and explore  "Tables," "Views," and "Materialized Views" corresponding to that schema.  If they are empty, it may mean that you do not have permissions to view any of those tables.
     
 
 1.  There are tables and there are views.  Sometimes, the sql that generates a view can help you figure out why you're getting an unexplainable result of a query. For example, the following bit of code shows that SECTOR_PARTIPANTS_CPH is based, in part on permit.vps_owner, permit.vps_vessel, and mqrs.mort_elig_criteria.
@@ -44,7 +44,13 @@ select * from permit_vps_owner
 
 The second may work or it may fail. If there are multiple tables with the same name (in different schema),  it may fail invisibly.
 
-ITD maintains an Inventory of databases [here](https://docs.google.com/spreadsheets/d/15FtGnNUgct7mTsRpPP9xX4BLkceY7SfMnZvdA_kjlxY/edit#gid=1754518543&fvid=668259322)
+1.  You may find it useful to extract the comments for the columns. Here is some sample code to do that for the CAMS_LAND table in CAMS_GARFO.
+
+```  
+select table_name, column_name, comments from all_col_comments where owner='CAMS_GARFO' and table_name='CAMS_LAND' order by column_name;
+```
+
+1.  ITD maintains an Inventory of databases [here](https://docs.google.com/spreadsheets/d/15FtGnNUgct7mTsRpPP9xX4BLkceY7SfMnZvdA_kjlxY/edit#gid=1754518543&fvid=668259322)
 
 
 
