@@ -1,11 +1,11 @@
 /* 
 Min-Yang's preferred approach to connecting to NEFSC's Oracle from Stata is:
 
-odbc load,  exec("select something from table 
+odbc load,  exec("select something from schema.table 
 	where blah blah blah;")
-	conn("$mysole_conn") lower;
+	conn("$mydb1_connection") lower;
 
-where $mysole_conn contains a connection string for sole
+where $mydb1_connection contains a connection string for the oracale database
 
 This sample file shows how to build one.
 Because there are semicolons inside the connection string, you should not use semicolons as delimiters in this file*/
@@ -23,26 +23,23 @@ global mygarfo_pwd "your_garfo_pwd"
 
 
 /* if you have a properly set up odbcinst.ini , then this will work. for Linux */
-global mysole_conn "Driver={OracleODBC-11g};Dbq=path.to.sole.server.gov:PORT/sole;Uid=mlee;Pwd=$mypwd;"
-global mynova_conn "Driver={OracleODBC-11g};Dbq=path.to.nova.server.gov:PORT/nova;Uid=mlee;Pwd=$mypwd;"
+global mydb1_connection "Driver={OracleODBC-11g};Dbq=path.to.db1.server.gov:PORT/nova;Uid=mlee;Pwd=$mypwd;"
 global mygarfo_conn "Driver={OracleODBC-11g};Dbq=NNN.NNN.NN.NNN/perhaps.more.letters.here.nfms.gov;Uid=mlee;Pwd=$mygarfo_pwd;"
 
 
 /* If not, you'll need to paste in the full path tor your libsqora.so.11.1 driver. 
 
-global mysole_conn "Driver=/usr/lib/oracle/11.2/client64/lib/libsqora.so.11.1;Dbq=path.to.sole.server.gov:PORT/sole;Uid=mlee;Pwd=$mypwd;"
-global mynova_conn "Driver=/usr/lib/oracle/11.2/client64/lib/libsqora.so.11.1;Dbq=path.to.nova.server.gov:PORT/nova;Uid=mlee;Pwd=$mypwd;"
+global mydb1_connection "Driver=/usr/lib/oracle/11.2/client64/lib/libsqora.so.11.1;Dbq=path.to.db1.server.gov:PORT/sole;Uid=mlee;Pwd=$mypwd;"
 */
 
 
-/* if you have a properly set up odbc, then this will work (on Windows). */
-global mysole_conn "dsn(sole) user($myuid) password($mypwd) lower"
-global mynova_conn "dsn(nova) user($myuid) password($mypwd) lower"
-global mygarfo_conn "dsn(musky) user($myuid) password($mygarfo_pwd) lower"
+/* if you have a properly set up odbc where db1name is the Name of the DSN, then this will work (on Windows). */
+global mydb1_connection "dsn(db1name) user($myuid) password($mypwd) lower"
+global mygarfo_conn "dsn(garfo_name) user($myuid) password($mygarfo_pwd) lower"
 
 
 /*code to test
-odbc load, exec("select * from cfspp") $mysole_conn
+odbc load, exec("select * from cfdbs.cfspp") $mydb1_connection
 */
 
 
