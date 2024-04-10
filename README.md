@@ -33,9 +33,9 @@ This has consequences for reproducibility if you do not store a copy of the data
 
 1.  If you want to use ODBC with R or Stata to read data straight into your software, take a look [here](https://github.com/NEFSC/READ-SSB-Lee-project-template)
 
-1.  It's good practice to include the schema and connection name when you query data. That is, write:
+1.  It's usually good practice to include the schema when you query data. That is, write:
 ```
-select * from nefsc_garfo.permit_vps_owner@NEFSC_USERS
+select * from nefsc_garfo.permit_vps_owner
 ```
 instead of 
 ```
@@ -43,6 +43,20 @@ select * from permit_vps_owner
 ```
 
 The second may work or it may fail. If there are multiple tables with the same name (in different schema),  it may fail invisibly.
+
+However, an exception is the CAMS data, which uses transportable table spaces.  For CAMS schema, and any other tables that use TTS, you will want to use the public synonym for speed
+
+```
+select * from CAMS_LAND
+```
+
+will be much faster than 
+
+```
+select * from CAMS_GARFO.CAMS_LAND
+```
+
+
 
 1.  You may find it useful to extract the comments for the columns. Here is some sample code to do that for the CAMS_LAND table in CAMS_GARFO.
 
