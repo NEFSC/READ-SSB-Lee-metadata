@@ -20,6 +20,8 @@ To get access, ask for it in the [CAMS Jira board](https://apps-st.fisheries.noa
 
 # Tips and Tricks.
 
+See the [README](https://github.com/NEFSC/READ-SSB-Lee-metadata/) for a note about CAMS and Transportable Table Spaces (TTS).
+
 # General Caveats.
 
 # Sample Code
@@ -52,7 +54,7 @@ forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
 ### From CAMS.
 
 ```
-	odbc load,  exec("select sum(nvl(lndlb,0)) as landings,  sum(livlb) as livelnd, year, month, itis_tsn from cams_garfo.cams_land cl where 
+	odbc load,  exec("select sum(nvl(lndlb,0)) as landings,  sum(livlb) as livelnd, year, month, itis_tsn from cams_land cl where 
 		cl.area between 511 and 515 and 
 		cl.year between $commercial_grab_start and $commercial_grab_end and
 		itis_tsn in ('164712','164744')
@@ -61,7 +63,7 @@ forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
 
 And discards
 ```
-odbc load,  exec("select year, extract(month from date_trip) as month, itis_tsn, sum(nvl(cams_discard,0)) as discard from cams_garfo.cams_discard_all_years cl where 
+odbc load,  exec("select year, extract(month from date_trip) as month, itis_tsn, sum(nvl(cams_discard,0)) as discard from cams_discard_all_years cl where 
 		cl.area between 511 and 515 and 
 		year between $commercial_grab_start and $commercial_grab_end and
 		itis_tsn in (164712,164744)
@@ -90,14 +92,14 @@ forvalues yr=$commercial_grab_start(1)$commercial_grab_end {;
 ### All permits that landed summer flounder in 2014
 ```
 SELECT distinct PERMIT
-  from cams_garfo.cams_land where 
+  from cams_land where 
   ITIS_TSN=172735 and YEAR in ('2014')
 ```
 
 ### Subtrip level info for permits that landed summer flounder in 2014
 
 ```
-select * FROM cams_garfo.cams_subtrip s 
+select * FROM cams_subtrip s 
     where s.YEAR in ('2014') and s.PERMIT in (SELECT distinct PERMIT
     from cams_garfo.cams_land where 
     ITIS_TSN=172735 and YEAR in ('2014'));
@@ -111,15 +113,15 @@ This query adds landings level information for those subtrips, retains just some
 
 ```
 SELECT t.CAMSID, t.DOCID, t.VTRSERNO, t.PERMIT, t.ITIS_TSN, t.DLRID, t.DLR_DATE, t.STATE, t.PORT, t.DLR_MKT, t.DLR_GRADE, t.LNDLB, t.VALUE, t.NEGEAR, t.WEEK, s.VTR_CREW, s.RECORD_SAIL, s.RECORD_LAND, s.VTR_TRIPCATG, s.subtrip, s.YEAR 
-  FROM cams_garfo.cams_land t
+  FROM cams_land t
 LEFT OUTER JOIN 
     (select CAMSID, VTR_CREW, RECORD_SAIL, RECORD_LAND,
-    VTR_TRIPCATG, SUBTRIP, YEAR, permit FROM cams_garfo.cams_subtrip) s 
+    VTR_TRIPCATG, SUBTRIP, YEAR, permit FROM cams_subtrip) s 
     on t.SUBTRIP=s.SUBTRIP AND
     t.CAMSID=s.CAMSID
     where t.YEAR in ('2014') and 
       t.PERMIT in (SELECT distinct PERMIT
-           from cams_garfo.cams_land 
+           from cams_land 
               where ITIS_TSN=172735 and YEAR in ('2014'))
     order by t.permit, t.camsid, itis_tsn, dlr_mkt, dlr_grade;
 ```
