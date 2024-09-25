@@ -1,6 +1,8 @@
 # Warning
 As of at least January 6, 2023 this table is no longer being supported by ITD. This means the table is not being updated and users should switch to GARFO VTR tables (TRIP_REPORTS_CATCH, TRIP_REPORTS_DOCUMENT, TRIP_REPORTS_IMAGES tables in the NEFSC_GARFO schema) and ultimately CAMS when available.
 
+As of April 2024, the VTR.VLGEAR table no longer contains all possible gears and codes. No substitute or authoritative table currently exists.
+
 # Overview
 The veslog data contains everything collected through the Vessel Trip Report System.   These data are primarily generated through mandatory reporting by federally-permitted fishing vessels.
 
