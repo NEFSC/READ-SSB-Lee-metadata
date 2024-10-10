@@ -130,7 +130,9 @@ You may want to filter out the PERMIT=000000, add discards, or add VTR orphans d
 
 ### State Landings and Revenue
 
-Note that the above query (Catch level info for those trips) will only capture activity that occurs in federal waters. If interested in total catches at the vessel-level, hullid can be used rather than permit. State activity will show up as permit=000000. The variable PERMIT_STATE_FED in the CAMS_LAND table indicates whether landings are associated with state or federal fishing activity. Many Council managed species have minor state landings, however there are exceptions (e.g. summer flounder, scup, black sea bass).
+Note that the above query (Catch level info for those trips) will only capture activity that occurs by vessels with a federal permit at the time the trip was taken.  Vessel owners may not always renew all of their federal permits at the begininng of the year.   If interested in total catches at the vessel-level, hullid should be used rather than permit. Trips by vessels without a federal permit will have ``PERMIT=000000``.  Many Council managed species have minor state landings, however there are exceptions (e.g. summer flounder, scup, black sea bass).
+
+The variable ``PERMIT_STATE_FED`` in the CAMS_LAND table indicates whether landings are associated with state (PERMIT=000000) or federal fishing activity. Unknown vessels (``PERMIT=190998, 390998, 490998``) are classified as Federal  in the construction of ``PERMIT_STATE_FED''
 
 # Update Frequency and Completeness 
 
