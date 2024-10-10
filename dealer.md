@@ -88,7 +88,7 @@ This bit of code may help:```select * from cfdbs.cfspp order by doc desc;```
 * Data derived from **state** reporting may not include all fields that are populated by federally reported dealer reports.  This may affect the PORT, COUNTY, PORT2, PERMIT, HULLNUM, VTRSERNO, MONTH, and DAY fields.
     +  Permit numbers that do not correspond to a single vessel are:
         1.  000000, which means either "no vessel" (ex. from shore or aquaculture),or  "unknown" federal permit, which could be "no federal permit".
-        2.  190998,390998 correspond to different size classes of vessels
+        2.  190998,390998, 490998 correspond to different size classes of vessels but an unknown permit.
 
 *  Many NESPP4 codes will not match well to VTR's SPPCODE. For example, VTR cod is all 0818 (unclassifed round). Almost all Cod will eventually be classified when sold; there is very little 0818 in dealer data.
 
